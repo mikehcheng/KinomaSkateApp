@@ -8,6 +8,8 @@ var receivedTrick = undefined;
 
 var labelStyle = new Style( { font: "20px", color:"black" } );
 var whiteSkin = new Skin( { fill:"white" } );
+var blackSkin = new Skin({ fill: "black"});
+var graySkin = new Skin({fill: "#696969"});
 var titleStyle = new Style( { font: "bold 40px", color:"black" } );
 
 Handler.bind("/startPolling", {
@@ -57,6 +59,31 @@ var mainColumn = new Column({
 		trickOne,
 	]
 });
+
+
+var mainColumnMap = new Column({
+    left: 0, right: 0, top: 0, bottom: 0, active: true, skin: blackSkin,
+    contents: [
+        new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
+            contents:[
+                 
+                //new Label({top: 10, left: 50,string: "Skate App", style: titleStyle}),
+                
+			]
+		}),    	
+    	new Line({top:0, left:0, right:0, height:430, //skin: mapSkin,
+    		contents:[
+    		
+    		]
+    	}),
+    	new Line({top:0, bottom:0, left:0, right:0, height: 55, skin: graySkin,
+    		contents:[
+    		]
+    	}),
+   
+    ]
+ });
+
 
 var ApplicationBehavior = Behavior.template({
 	onDisplayed: function(application) {
