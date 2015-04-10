@@ -94,7 +94,7 @@ var backpic = new Texture('back.png');
 var backpicSkin = new Skin(backpic, {x:0,y:0,height:58,width:53});
 var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
 	index: $.index,
-    top:2, bottom:2, left: 5,  right: 1, height:50, skin: whiteSkin,
+    top:2, bottom:2, left: 5,  right: 5, height:50, skin: whiteSkin,
     contents: [
         new Label({left:0, right:0, height:45, skin: backpicSkin})
     ],
@@ -492,7 +492,7 @@ var mainColumnMap = new Column({
         new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
                 
-                new Label({top: 10, left: 5,string: "NEAREST SKATE PARKS", style: titleStyle})
+                new Label({top: 10, left: 35,string: "NEAREST SKATE PARKS", style: titleStyle})
                 
 			]
 		}),    	
@@ -550,7 +550,7 @@ var mainColumnHome = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                
+                 new Label({top: 10, left: 80,string: "ACTIVE GAMES", style: titleStyle})
                 
 			]
 		}),    	
@@ -583,8 +583,8 @@ var mainColumnChoose = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                backButton3
-                
+                backButton3,
+                 new Label({top: 10, left: 5,string: "CHOOSE GAME", style: titleStyle})
 			]
 		}),    	
     	new Line({top:3, left:0, right:0, height:430, active:true, 
@@ -617,8 +617,8 @@ var mainColumnOpp = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                backButton4
-                
+                backButton4,
+                 new Label({top: 10, left: 5,string: "CHOOSE OPPONENT", style: titleStyle})
 			]
 		}),    	
     	new Line({top:3, left:0, right:0, height:430, active:true, 
@@ -649,7 +649,8 @@ var mainColumnFriendList = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                backButton5
+                backButton5,
+                 new Label({top: 10, left: 5,string: "FRIENDS", style: titleStyle})
                 
 			]
 		}),    	
@@ -681,7 +682,8 @@ var mainColumnCommList = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                backButton6
+                backButton6,
+                 new Label({top: 10, left: 5,string: "COMMUNITY", style: titleStyle})
                 
 			]
 		}),    	
@@ -712,7 +714,7 @@ var mainColumnNewGame = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                
+               
                 
 			]
 		}),    	
@@ -869,7 +871,7 @@ var mainColumnTrick1 = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                
+                 new Label({top: 10, left: 5,string: "TRICK MANUAL", style: titleStyle})
                 
 			]
 		}),    	
@@ -901,7 +903,8 @@ var mainColumnTrick2 = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                backButton13
+                backButton13,
+                 new Label({top: 10, left: 5,string: "BASIC", style: titleStyle})
                 
 			]
 		}),    	
@@ -933,7 +936,8 @@ var mainColumnTrick3 = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                
+                backButton14,
+                 new Label({top: 10, left: 5,string: "OLLIE", style: titleStyle})
                
 			]
 		}),    	
@@ -967,7 +971,7 @@ var mainColumnProfile = new Column({
 	 contents: [
 	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                
+                 new Label({top: 10, left: 5,string: "PROFILE", style: titleStyle})
                 
 			]
 		}),    	
