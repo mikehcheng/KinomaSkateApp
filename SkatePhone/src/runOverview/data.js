@@ -1,0 +1,50 @@
+var user = {
+	profile: {},
+	games: [
+		{
+			opName: "Michael",
+			opPic: "resources/mike.jpg",
+			myScore: 0,
+			opScore: 0,
+			myTurn: 1,
+			myRuns: [],
+			opRuns: [],
+		},
+		{
+			opName: "Mark",
+			opPic: "resources/mike.jpg",
+			myScore: 14,
+			opScore: 7,
+			myTurn: 1,
+			myRuns: [],
+			opRuns: [],
+		},
+		{
+			opName: "Rahul",
+			opPic: "resources/mike.jpg",
+			myScore: 31,
+			opScore: 16,
+			myTurn: 0,
+			myRuns: [],
+			opRuns: [],
+		},
+		{
+			opName: "Mike",
+			opPic: "resources/mike.jpg",
+			myScore: 13,
+			opScore: 21,
+			myTurn: 0,
+			myRuns: [],
+			opRuns: [],
+		},
+		{
+			opName: "Sean",
+			opPic: "resources/mike.jpg",
+			myScore: 10,
+			opScore: 3,
+			myTurn: 0,
+			myRuns: [],
+			opRuns: [],
+		},
+	]
+};

@@ -3,6 +3,10 @@
 var SCROLLER = require('mobile/scroller');
 var THEME = require('themes/sample/theme');
 
+/*#########################################
+			SKINS & STYLES
+#########################################*/
+
 var titleStyle = new Style( { font: "bold 40px", color:"black" } );
 var labelStyle = new Style( { font: "20px", color:"black" } );
 var infoStyle = new Style( { font: "14px", color:"blue" });
@@ -13,6 +17,10 @@ var tableSkin = new Skin({borders: {top: 1, right: 1, left: 1}, stroke: "black"}
 var rowSkin = new Skin({borders: {bottom: 1}, stroke: "black"});
 var separatorSkin = new Skin({ fill: 'blue',});
 
+/*#########################################
+			GENERIC CONSTRUCTORS
+#########################################*/
+
 var Table = Column.template(function($) { return { left: $.left, right: $.right, top: $.top, 
 	contents: [
 		Label($, {left: 0, style: labelStyle, string: $.string}),
@@ -20,7 +28,7 @@ var Table = Column.template(function($) { return { left: $.left, right: $.right,
 	]
 }});
 
-var TableRow = Line.template(function($) { return { left: 0, right: 0, height: 60, active: true, skin: rowSkin,
+var homeTableRow = Line.template(function($) { return { left: 0, right: 0, height: 60, active: true, skin: rowSkin,
 	behavior: Object.create(Behavior.prototype, {
 		onTouchEnded: {value: function(container, id, x,  y, ticks) {
 			
@@ -43,31 +51,45 @@ var TableRow = Line.template(function($) { return { left: 0, right: 0, height: 6
 			]})
 		]}), ]
 }});
-
-/* This is template for a container which takes up the
- * whole screen.  It contains only a single object,
- * the SCROLLER.VerticalScroller.  Although we are not
- * referencing any values from an object passed on creation,
- * an object is still required as the SCROLLER uses it internally. */
-
-var myTurnTable = new Table({string: "Your Turn", left: 5, right:5, top: 5});
-var opTurnTable = new Table({string: "Opponent's Turn", left: 5, right:5, top: 35});
  
-var scrollContainer = new Container({
+var scrollContainer = Container.template(function($){return {
 	left:0, right:0, top:0, bottom: 70,  skin: whiteSkin,
 	contents: [
    		SCROLLER.VerticalScroller(new Object(), {
    			contents: [
-          			new Column({ left: 0, right: 0, top: 0, name: 'menu',  skin: whiteSkin, contents: [
-          				myTurnTable,
-          				opTurnTable
-          			]}),
+          			new Column({ left: 0, right: 0, top: 0, name: 'menu',  skin: whiteSkin, contents: $.contents}),
           			SCROLLER.VerticalScrollbar(new Object(), { })
    		]})
-   	]});
+   	]}});
+
+/*#########################################
+				HANDLERS
+#########################################*/
   
+Handler.bind("/loadInitial", {
+	onInvoke: function(handler, query){
+		comic.load('resources/loading.gif');
+		handler.invoke(new Message("http://xkcd.com/info.0.json"), Message.JSON);
+	},
+	onComplete: function(handler, message, json){
+		xkcdTitle = json.title;
+		numComics = json.num;
+		currComic = json.num;
+		xkcdImage = json.img;
+		altText = json.alt;
+		updateComic();
+	}
+});
+  
+/*#########################################
+		HOME SCREEN INSTANTIATION
+#########################################*/
+  
+var myTurnTable = new Table({string: "Your Turn", left: 5, right:5, top: 5});
+var opTurnTable = new Table({string: "Opponent's Turn", left: 5, right:5, top: 35});  
+
 var mainCon = new Container({left: 0, right: 0, bottom: 55, top: 55, contents: [
-	scrollContainer,
+	new scrollContainer({contents: [ myTurnTable, opTurnTable ]}),
 	new Container({left: 0, right:0, bottom: 0, height: 70, skin: whiteSkin, contents:[
 		new Container({left: 10, right: 10, bottom: 10, top: 10, skin: new Skin({fill: "green"}), contents:[
    			new Line({contents: [
@@ -78,72 +100,17 @@ var mainCon = new Container({left: 0, right: 0, bottom: 55, top: 55, contents: [
 	]})
 ]});
 
-var user = {
-	profile: {},
-	games: [
-		{
-			opName: "Michael",
-			opPic: "resources/mike.jpg",
-			myScore: 0,
-			opScore: 0,
-			myTurn: 1,
-			myRuns: [],
-			opRuns: [],
-		},
-		{
-			opName: "Mark",
-			opPic: "resources/mike.jpg",
-			myScore: 14,
-			opScore: 7,
-			myTurn: 1,
-			myRuns: [],
-			opRuns: [],
-		},
-		{
-			opName: "Rahul",
-			opPic: "resources/mike.jpg",
-			myScore: 31,
-			opScore: 16,
-			myTurn: 0,
-			myRuns: [],
-			opRuns: [],
-		},
-		{
-			opName: "Mike",
-			opPic: "resources/mike.jpg",
-			myScore: 13,
-			opScore: 21,
-			myTurn: 0,
-			myRuns: [],
-			opRuns: [],
-		},
-		{
-			opName: "Sean",
-			opPic: "resources/mike.jpg",
-			myScore: 10,
-			opScore: 3,
-			myTurn: 0,
-			myRuns: [],
-			opRuns: [],
-		},
-	]
-};
-
-/* This simple function exists so we can call "forEach" on
- * our array of list entries (menuItems).  It adds a new 
- * ProcessorLine() object to the Column named "menu" in the
- * screen object's SCROLLER */
-function ListBuilder(element, index, array) {
+function homeTableBuilder(element, index, array) {
 	if (element.myTurn){
-		myTurnTable.add(new TableRow(element));
+		myTurnTable.add(new homeTableRow(element));
 	} else {
-		opTurnTable.add(new TableRow(element));
+		opTurnTable.add(new homeTableRow(element));
 	}
 }
 
 application.behavior = Object.create(Object.prototype, {
 	onLaunch: { value: function(application) {
-		user.games.forEach(ListBuilder);
+		user.games.forEach(homeTableBuilder);
 		application.add(mainCon);
 		application.add(new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}));
 		application.add(new Container({bottom: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}));
