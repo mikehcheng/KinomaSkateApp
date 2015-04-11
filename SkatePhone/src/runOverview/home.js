@@ -9,11 +9,12 @@ var THEME = require('themes/sample/theme');
 
 var titleStyle = new Style( { font: "bold 40px", color:"black" } );
 var labelStyle = new Style( { font: "20px", color:"black" } );
+var smallLabelStyle = new Style( { font: "14px", color:"black" } );
 var infoStyle = new Style( { font: "14px", color:"blue" });
 
 var whiteSkin = new Skin( { fill:"white" });
 var graySkin = new Skin({fill: "#696969"});
-var tableSkin = new Skin({borders: {top: 1, right: 1, left: 1}, stroke: "black"});
+var tableSkin = new Skin({borders: {top: 2, right: 2, left: 2, bottom: 2}, stroke: "black"});
 var rowSkin = new Skin({borders: {bottom: 1}, stroke: "black"});
 var separatorSkin = new Skin({ fill: 'blue',});
 
@@ -23,19 +24,21 @@ var separatorSkin = new Skin({ fill: 'blue',});
 
 var Table = Column.template(function($) { return { left: $.left, right: $.right, top: $.top, 
 	contents: [
-		Label($, {left: 0, style: labelStyle, string: $.string}),
-		Column($, {left: 0, right: 0, top: 0, bottom: 0, skin: tableSkin, contents: []})
+		Label($, {left: 0, bottom: 10, style: labelStyle, string: $.string}),
+		Column($, {left: 0, right: 0, top: 0, skin: tableSkin, contents: []})
 	]
 }});
 
 var homeTableRow = Line.template(function($) { return { left: 0, right: 0, height: 60, active: true, skin: rowSkin,
 	behavior: Object.create(Behavior.prototype, {
 		onTouchEnded: {value: function(container, id, x,  y, ticks) {
-			
+			var msg = new Message("/loadGame");
+		    msg.requestText = JSON.stringify($);
+		    container.invoke(msg, Message.JSON);
 		}}
 	}),
 	contents: [
-		Container ($, {left: 5, right: 5, top: 5, bottom: 5, contents:[
+		Container ($, {left: 10, right: 10, top: 5, bottom: 5, contents:[
 			Thumbnail($, { left: 0, width: 40, height: 40, aspect: 'fit', url: $.opPic }),
 			Label($, { left: 45, style: labelStyle, string: $.opName,}),
 			Line($, {right: 0, contents: [
@@ -53,7 +56,7 @@ var homeTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 }});
  
 var scrollContainer = Container.template(function($){return {
-	left:0, right:0, top:0, bottom: 70,  skin: whiteSkin,
+	left:0, right:0, top:55, bottom: 125,  skin: whiteSkin,
 	contents: [
    		SCROLLER.VerticalScroller(new Object(), {
    			contents: [
@@ -66,18 +69,21 @@ var scrollContainer = Container.template(function($){return {
 				HANDLERS
 #########################################*/
   
-Handler.bind("/loadInitial", {
-	onInvoke: function(handler, query){
-		comic.load('resources/loading.gif');
-		handler.invoke(new Message("http://xkcd.com/info.0.json"), Message.JSON);
+Handler.bind("/loadGame", {
+	onInvoke: function(handler, message){
+		createGame(JSON.parse(message.requestText));
+		application.add(gameCon);
+		application.remove(homeCon);
 	},
 	onComplete: function(handler, message, json){
-		xkcdTitle = json.title;
-		numComics = json.num;
-		currComic = json.num;
-		xkcdImage = json.img;
-		altText = json.alt;
-		updateComic();
+	}
+});
+
+Handler.bind("/createGame", {
+	onInvoke: function(handler, message){
+		trace("Creating Game: Please enter proper behavior here...\n")
+	},
+	onComplete: function(handler, message, json){
 	}
 });
   
@@ -88,11 +94,18 @@ Handler.bind("/loadInitial", {
 var myTurnTable = new Table({string: "Your Turn", left: 5, right:5, top: 5});
 var opTurnTable = new Table({string: "Opponent's Turn", left: 5, right:5, top: 35});  
 
-var mainCon = new Container({left: 0, right: 0, bottom: 55, top: 55, contents: [
+var homeCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
 	new scrollContainer({contents: [ myTurnTable, opTurnTable ]}),
-	new Container({left: 0, right:0, bottom: 0, height: 70, skin: whiteSkin, contents:[
-		new Container({left: 10, right: 10, bottom: 10, top: 10, skin: new Skin({fill: "green"}), contents:[
-   			new Line({contents: [
+	new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
+	new Container({bottom: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
+	new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteSkin, contents:[
+		new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "green"}),
+			behavior: Object.create(Container.prototype, {
+				onTouchEnded: { value: function(content, id, x, y, ticks){
+					content.invoke(new Message("/createGame"));
+				}}
+			}),
+			contents:[ new Line({contents: [
    				new Thumbnail({width: 20, height: 20, aspect: 'fit', url: "resources/add.png" }),
    				new Label({style: labelStyle, width: labelStyle.measure("Create Game").width, string: "Create Game", left: 10})
    			]})
@@ -102,18 +115,14 @@ var mainCon = new Container({left: 0, right: 0, bottom: 55, top: 55, contents: [
 
 function homeTableBuilder(element, index, array) {
 	if (element.myTurn){
-		myTurnTable.add(new homeTableRow(element));
+		myTurnTable.last.add(new homeTableRow(element));
 	} else {
-		opTurnTable.add(new homeTableRow(element));
+		opTurnTable.last.add(new homeTableRow(element));
 	}
 }
 
-application.behavior = Object.create(Object.prototype, {
-	onLaunch: { value: function(application) {
-		user.games.forEach(homeTableBuilder);
-		application.add(mainCon);
-		application.add(new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}));
-		application.add(new Container({bottom: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}));
-	}}
-});
+function createHome(application) {
+	user.games.forEach(homeTableBuilder);
+	application.add(homeCon);
+}
 

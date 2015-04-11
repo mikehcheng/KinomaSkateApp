@@ -1,14 +1,30 @@
 var user = {
-	profile: {},
+	profile: {
+		pic: "resources/mike.jpg"
+	},
 	games: [
 		{
 			opName: "Michael",
 			opPic: "resources/mike.jpg",
-			myScore: 0,
-			opScore: 0,
+			myScore: 10,
+			opScore: 20,
 			myTurn: 1,
-			myRuns: [],
-			opRuns: [],
+			myRuns: [
+				{
+					index: 1,
+					score: 10,
+					moves: [],
+					video: ""
+				}
+			],
+			opRuns: [
+				{
+					index: 1,
+					score: 20,
+					moves: [],
+					video: ""
+				}
+			],
 		},
 		{
 			opName: "Mark",
