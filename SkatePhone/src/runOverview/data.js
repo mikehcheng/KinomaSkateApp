@@ -11,7 +11,6 @@ var user = {
 			myTurn: 1,
 			myRuns: [
 				{
-					index: 1,
 					score: 10,
 					moves: [],
 					video: ""
@@ -19,7 +18,6 @@ var user = {
 			],
 			opRuns: [
 				{
-					index: 1,
 					score: 20,
 					moves: [],
 					video: ""

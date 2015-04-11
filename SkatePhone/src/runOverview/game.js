@@ -21,7 +21,7 @@ var playerScore = Container.template(function($){ return {skin: boxSkin, content
 	]})
 ]}});
 
-var gameTableRow = Line.template(function($) { return { left: 0, right: 0, height: 60, active: true, skin: rowSkin,
+var gameTableRow = Line.template(function($) { return { left: 0, right: 0, height: 50, active: true, skin: rowSkin,
 	behavior: Object.create(Behavior.prototype, {
 		onTouchEnded: {value: function(container, id, x,  y, ticks) {
 			var msg = new Message("/loadRun");
@@ -30,16 +30,11 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 		}}
 	}),
 	contents: [
-			Container ($, {left: 5, right: 5, top: 5, bottom: 5, contents:[
-				Label($, { left: 0, style: labelStyle, string: "Run " + $.index,}),
-				Label($, { style: infoStyle, string: $.opRuns[$.index].score})
-			]}),
-			Container($, {width: 1, left: 10, right: 10, top: 0, bottom: 0, skin: separatorSkin}),
-			Container ($, {left: 5, right: 5, top: 5, bottom: 5, contents: [
-				Label($, { left: 0, style: labelStyle, string: "Run " + $.index,}),
-				Label($, { style: infoStyle, string: $.opRuns[$.index].score})
-			]}),
-		]
+		Container($, {left:10, top:10, right:10, bottom: 10, contents: [
+			Label($, { left: 0, style: labelStyle, string: "Run " + $.index,}),
+			Label($, { right: 0, style: infoStyle, string: $.score})
+		]})
+	]
 }});
 
 /*#########################################
@@ -49,9 +44,13 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 function createGame(game){
 	var buttonString = (game.myTurn) ? "Track Your Run" : "Wating for Opponent";
 	var buttonSkin = (game.myTurn) ? new Skin({fill: "green"}) : new Skin({fill: "gray"});
+	var customTableSkin = new Skin({stroke:"black", borders: {top: 2, bottom: 2, left: ((game.myTurn) ? 2 : 0), right: ((game.myTurn) ? 0 : 2)}});
+	var myRunsTable = new Table({string: "", left: 0, right: 0, top: 0, tableSkin: ((game.myTurn) ? customTableSkin : tableSkin)});
+	var opRunsTable = new Table({string: "", right: 0, left: 0, top: 0, tableSkin: ((game.myTurn) ? tableSkin : customTableSkin)});
 	
 	gameCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
-		//new scrollContainer({contents: [ myTurnTable, opTurnTable ]}),
+		new scrollContainer({top: 85, bottom: 105, contents: [new Line({left: 10, right: 10, top:0, bottom: 0, 
+			contents: [myRunsTable, opRunsTable]})]}),
 		new Container({skin:new Skin({fill: "#D3D3D3"}), top: 0, left:0, right:0, height: 86, contents:[
 			new Line({contents:[
 				new playerScore({pic: user.profile.pic, name: "You", score: game.myScore, left: 10, right: 0}),
@@ -59,7 +58,6 @@ function createGame(game){
 				new playerScore({pic: game.opPic, name: game.opName, score: game.opScore, left: 0, right: 10})
 			]}),
 		]}),
-		new Container({top: 85, left: 0, right: 0, bottom: 105, skin: whiteSkin}),
 		new Container({left: 0, right:0, bottom: 55, height: 50, skin: whiteSkin, contents:[
 			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: buttonSkin,
 				behavior: Object.create(Container.prototype, {
@@ -75,4 +73,7 @@ function createGame(game){
 			]})
 		]})
 	]});
+
+	game.myRuns.forEach(function(e, i){e["index"] = i+1; myRunsTable.last.add(new gameTableRow(e))});
+	game.opRuns.forEach(function(e, i){e["index"] = i+1; opRunsTable.last.add(new gameTableRow(e))});
 }

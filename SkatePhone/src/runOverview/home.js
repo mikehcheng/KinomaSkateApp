@@ -10,7 +10,7 @@ var THEME = require('themes/sample/theme');
 var titleStyle = new Style( { font: "bold 40px", color:"black" } );
 var labelStyle = new Style( { font: "20px", color:"black" } );
 var smallLabelStyle = new Style( { font: "14px", color:"black" } );
-var infoStyle = new Style( { font: "14px", color:"blue" });
+var infoStyle = new Style( { font: "16px", color:"blue" });
 
 var whiteSkin = new Skin( { fill:"white" });
 var graySkin = new Skin({fill: "#696969"});
@@ -25,7 +25,7 @@ var separatorSkin = new Skin({ fill: 'blue',});
 var Table = Column.template(function($) { return { left: $.left, right: $.right, top: $.top, 
 	contents: [
 		Label($, {left: 0, bottom: 10, style: labelStyle, string: $.string}),
-		Column($, {left: 0, right: 0, top: 0, skin: tableSkin, contents: []})
+		Column($, {left: 0, right: 0, top: 0, skin: (("tableSkin" in $) ? $.tableSkin: tableSkin), contents: []})
 	]
 }});
 
