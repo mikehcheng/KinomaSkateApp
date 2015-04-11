@@ -56,7 +56,7 @@ var homeTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 }});
  
 var scrollContainer = Container.template(function($){return {
-	left:0, right:0, top:55, bottom: 125,  skin: whiteSkin,
+	left:0, right:0, top:$.top, bottom: $.bottom,  skin: whiteSkin,
 	contents: [
    		SCROLLER.VerticalScroller(new Object(), {
    			contents: [
@@ -95,7 +95,7 @@ var myTurnTable = new Table({string: "Your Turn", left: 5, right:5, top: 5});
 var opTurnTable = new Table({string: "Opponent's Turn", left: 5, right:5, top: 35});  
 
 var homeCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
-	new scrollContainer({contents: [ myTurnTable, opTurnTable ]}),
+	new scrollContainer({top: 55, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
 	new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
 	new Container({bottom: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
 	new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteSkin, contents:[
