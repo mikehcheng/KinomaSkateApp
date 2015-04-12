@@ -84,7 +84,7 @@ home - 2
 10 maincolumnfinrun - finished run
 11 maincolumnactivegame2 
 
-12   maincolumntrick1 - trick main pg
+12 maincolumntrick1 - trick main pg
 13 trick2 - second trick screen
 14 trick 3 - third trick screen
 15 maincolumnprofile
@@ -859,7 +859,183 @@ var mainColumnActiveGame2 = new Column({
     ]
 })
 
+var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
 
+var BasicButton = BUTTONS.Button.template(function($){ return{
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
+	contents: [
+		new Label({left:5, height:45, string:"Basics", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
+		
+	],
+	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+		onTap: { value: function(content){
+			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
+			trace("clicked");
+			clearPage(); 
+			mainColumnTrick1.add(basicLabel);
+			mainColumnTrick1.add(ollieInsert);		
+						}},
+	})
+}});
+
+var IntermediateButton = BUTTONS.Button.template(function($){ return{
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
+	contents: [
+		new Label({left:5, height:45, string:"Intermediate", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
+	],
+	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+		onTap: { value: function(content){
+			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
+			trace("clicked");
+		}},
+	})
+}});
+
+var AdvancedButton = BUTTONS.Button.template(function($){ return{
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
+	contents: [
+		new Label({left:5, height:45, string:"Advanced", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
+	],
+	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+		onTap: { value: function(content){
+			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
+			trace("clicked");
+		}},
+	})
+}});
+
+var CustomButton = BUTTONS.Button.template(function($){ return{
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
+	contents: [
+		new Label({left:5, height:45, string:"Custom Tricks", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
+	],
+	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+		onTap: { value: function(content){
+			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
+			trace("clicked");
+		}},
+	})
+}});
+
+var FakieButton = BUTTONS.Button.template(function($){ return{
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
+	contents: [
+		new Label({left:5, height:45, string:"Fakie", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
+	],
+	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+		onTap: { value: function(content){
+			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
+			trace("clicked");
+		}},
+	})
+}});
+
+var OllieButton = BUTTONS.Button.template(function($){ return{
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
+	contents: [
+		new Label({left:5, height:45, string:"Ollie", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
+		
+	],
+	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+		onTap: { value: function(content){
+			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
+			trace("clicked");		
+						}},
+	})
+}});
+
+var KickTurnButton = BUTTONS.Button.template(function($){ return{
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
+	contents: [
+		new Label({left:5, height:45, string:"Kickturn", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
+	],
+	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+		onTap: { value: function(content){
+			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
+			trace("clicked");
+		}},
+	})
+}});
+
+/*var GrindButton = BUTTONS.Button.template(function($){ return{
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
+	contents: [
+		new Label({left:5, height:45, string:"50-50 Grind", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
+	],
+	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+		onTap: { value: function(content){
+			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
+			trace("clicked");
+		}},
+	})
+}});*/
+
+var manualLabel;
+var basicButton;
+var intermediateButton;
+var advancedButton;
+var customButton;
+var popularLabel;
+//var fakieButton;
+//var noseButton;
+//var tailButton;
+var originalNav;
+
+function clearPage() {
+		//trick manual
+		mainColumnTrick1.remove(manualLabel);
+		mainColumnTrick1.remove(basicButton);	
+		mainColumnTrick1.remove(intermediateButton);
+		mainColumnTrick1.remove(advancedButton);
+		mainColumnTrick1.remove(customButton);
+		mainColumnTrick1.remove(popularLabel);
+		//mainColumnTrick1.remove(fakieButton);
+		mainColumnTrick1.remove(originalNav);
+		
+}
+
+var basicLabel = new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
+            contents:[
+                 new Label({top: 10, left: 5,string: "BASIC", style: titleStyle}),
+                
+			]
+		}); 
+		
+var ollieInsert = new Line({left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new OllieButton(),
+    			
+		  	],	  	
+    	});
+
+/*var kickTurnInsert = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new IntermediateButton(),
+		  	],	  	
+    	});
+    	
+var grindInsert = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new AdvancedButton(),
+		  	],	  	
+    	});*/
+
+var navigator = new Line({top:150, bottom:0, left:0, right:0, height: 100, skin: graySkin,
+    		contents:[
+    			homeButton12,
+    			profButton12,
+    			mapButton12,
+    			tutButton12
+    		]
+    	})
 
 //Trick 1  12
 var homeButton12 = new homeButtonTemplate({index: 12});
@@ -869,18 +1045,54 @@ var tutButton12 = new tutButtonTemplate({index: 12});
 var mainColumnTrick1 = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
+	   manualLabel = new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                 new Label({top: 10, left: 5,string: "TRICK MANUAL", style: titleStyle})
+                 new Label({top: 10, left: 5,string: "TRICK MANUAL", style: titleStyle}),
                 
 			]
 		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
+    	basicButton = new Line({left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new BasicButton(),
     			
+		  	],	  	
+    	}),
+    	intermediateButton = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new IntermediateButton(),
+		  	],	  	
+    	}),
+    	advancedButton = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new AdvancedButton(),
+		  	],	  	
+    	}),
+    	customButton = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new CustomButton(),
+		  	],	  	
+    	}),
+    	popularLabel = new Label({top: -60, left: 8,string: "Popular Tricks:", style: titleStyle}),
+    	
+    	/*fakieButton = customButton = new Line({top: 0, left:0, right:0, height:107, active:true,  
+    		contents: [
+    			new CustomButton(),
+    			
+		  	],	  	
+    	}),
+    	noseButton = customButton = new Line({top: -69, left:0, right:0, height:30, active:true, 
+    		contents: [
+    			//new AdvancedButton(),
+		  	],	  	
     	}),
     	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
+    	tailButton = advancedButton = new Line({top: 6, left:0, right:0, height:30, active:true, 
+    		contents: [
+    			//new AdvancedButton(),
+		  	],	  	
+    	}),*/
+    	 	
+    	originalNav = new Line({top:148, bottom:0, left:0, right:0, height: 50, skin: graySkin,
     		contents:[
     			homeButton12,
     			profButton12,
@@ -892,72 +1104,6 @@ var mainColumnTrick1 = new Column({
     ]
 })
 
-//Trick 2   13
-var homeButton13 = new homeButtonTemplate({index: 13});
-var profButton13 = new profButtonTemplate({index: 13});
-var mapButton13 = new mapButtonTemplate({index: 13});
-var tutButton13 = new tutButtonTemplate({index: 13});
-var backButton13 = new backButtonTemplate({index:13});
-var mainColumnTrick2 = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton13,
-                 new Label({top: 10, left: 5,string: "BASIC", style: titleStyle})
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton13,
-    			profButton13,
-    			mapButton13,
-    			tutButton13
-    		]
-    	})
-   
-    ]
-})
-
-//Trick 3   14
-var homeButton14 = new homeButtonTemplate({index: 14});
-var profButton14 = new profButtonTemplate({index: 14});
-var mapButton14 = new mapButtonTemplate({index: 14});
-var tutButton14 = new tutButtonTemplate({index: 14});
-var backButton14 = new backButtonTemplate({index:14});
-var mainColumnTrick3 = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton14,
-                 new Label({top: 10, left: 5,string: "OLLIE", style: titleStyle})
-               
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton14,
-    			profButton14,
-    			mapButton14,
-    			tutButton14
-    		]
-    	})
-   
-    ]
-
-})
 
 
 //profile 15
