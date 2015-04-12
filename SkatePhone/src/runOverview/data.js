@@ -64,3 +64,11 @@ var user = {
 		},
 	]
 };
+
+var trickDictionary = {
+	"Kickflip": 1,
+	"Tailslide": 2,
+	"Ollie": 3,
+	"Nosegrind": 4,
+	"McTwist": 5,
+};

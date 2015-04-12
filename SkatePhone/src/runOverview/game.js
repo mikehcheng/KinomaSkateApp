@@ -8,6 +8,28 @@ var runTable;
 var boxSkin = new Skin({stroke: "black", borders: {top: 1, bottom: 1, right: 1, left: 1}});
 
 /*#########################################
+				HANDLERS
+#########################################*/
+
+Handler.bind("/trackRun", {
+	onInvoke: function(handler, message){
+		createActiveRun(JSON.parse(message.requestText));
+		application.add(activeRunCon);
+		application.remove(gameCon);
+	}
+});
+
+Handler.bind("/loadRun", {
+	onInvoke: function(handler, message){
+		createGame(JSON.parse(message.requestText));
+		application.add(gameCon);
+		application.remove(homeCon);
+	},
+	onComplete: function(handler, message, json){
+	}
+});
+
+/*#########################################
 			GENERIC CONSTRUCTORS
 #########################################*/
 
@@ -65,7 +87,9 @@ function createGame(game){
 				behavior: Object.create(Container.prototype, {
 					onTouchEnded: { value: function(content, id, x, y, ticks){
 						if (game.myTurn){
-							content.invoke(new Message("/trackRun"));
+							var newRunMsg = new Message("/trackRun");
+							newRunMsg.requestText = JSON.stringify(game);
+							content.invoke(newRunMsg);
 						}
 					}}
 				}),

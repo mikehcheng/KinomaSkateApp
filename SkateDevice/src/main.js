@@ -3,7 +3,7 @@
 // SENSORS
 var pinMessage = new MessageWithObject("pins:configure", {
 	sensorArray: {
-		require: "altTrickBLL",
+		require: "trickBLL",
 		pins: { sensors: {sda: 27, clock: 29}}
 		},
 	});
