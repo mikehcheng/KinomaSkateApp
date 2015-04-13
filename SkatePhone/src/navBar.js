@@ -27,6 +27,10 @@ var screenDictionary = {
 	15: "profileCon", //not implemented
 };
 
+var iconTemplate = Skin.template(function($) { return {
+	texture: new Texture($.source), bounds: {x:0, y:0, height:58, width:53}
+}});
+
 var homepic = new Texture('resources/homeIcon.png');
 var homepicSkin = new Skin.template(homepic, {x:0,y:0, height:58, width:53});
 var homeButtonTemplate = BUTTONS.Button.template(function($){ return{

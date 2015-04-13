@@ -59,7 +59,7 @@ var scrollContainer = Container.template(function($){return {
 	contents: [
    		SCROLLER.VerticalScroller(new Object(), {
    			contents: [
-          			new Column({ left: 0, right: 0, top: 0, name: 'menu',  skin: whiteSkin, contents: $.contents}),
+          			new Column({ left: 0, right: 0, top: 0,  skin: whiteSkin, contents: $.contents}),
           			SCROLLER.VerticalScrollbar(new Object(), { })
    		]})
    	]}});
@@ -87,10 +87,7 @@ Handler.bind("/createGame", {
   
 /*#########################################
 		HOME SCREEN INSTANTIATION
-#########################################*/
-  
-var myTurnTable = new Table({string: "Your Turn", left: 5, right:5, top: 5});
-var opTurnTable = new Table({string: "Opponent's Turn", left: 5, right:5, top: 35});  
+#########################################*/ 
 
 function homeTableBuilder(element, index, array) {
 	if (element.myTurn){
@@ -101,9 +98,12 @@ function homeTableBuilder(element, index, array) {
 }
 
 var homeCon;
+var myTurnTable;
+var opTurnTable;
 
 function createHome() {
-	user.games.forEach(homeTableBuilder); 
+	myTurnTable = new Table({string: "Your Turn", left: 5, right:5, top: 5});
+	opTurnTable = new Table({string: "Opponent's Turn", left: 5, right:5, top: 35}); 
 	homeCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
 		new scrollContainer({top: 50, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
 		new Container({top: 0, left: 0, right: 0, height: 50, skin:new Skin({fill: "black"})}),
@@ -122,6 +122,7 @@ function createHome() {
 		]}),
 		new navBar({index:2})
 	]});
+	user.games.forEach(homeTableBuilder); 
 	application.add(homeCon);
 }
 
