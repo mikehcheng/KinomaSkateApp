@@ -8,7 +8,10 @@ var blackSkin = new Skin({ fill: "black"});
 var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
-var titleStyle = new Style( { font: "bold 25px", color:"white"} );
+var titleStyle = new Style( { font: "bold 25px", color:"white"});
+
+include	("trickButtons.js");
+include	("inserts.js");
 
 deviceURL = "";
 var receivedTrick = undefined;
@@ -83,7 +86,8 @@ home - 2
 9maincolumnactiveoverview 
 10 maincolumnfinrun - finished run
 11 maincolumnactivegame2 
-12   maincolumntrick1 - trick main pg
+
+12 maincolumntrick1 - trick main pg
 13 trick2 - second trick screen
 14 trick 3 - third trick screen
 15 maincolumnprofile
@@ -204,11 +208,11 @@ var homeButtonTemplate = BUTTONS.Button.template(function($){ return{
         		application.add(mainColumnHome);
         	}
         	if (this.data.index == 13){
-        		application.remove(mainColumnTrick2);
+        		application.remove(mainColumnTrick1);
         		application.add(mainColumnHome);
         	}
         	if (this.data.index == 14){
-        		application.remove(mainColumnTrick3);
+        		application.remove(mainColumnTrick1);
         		application.add(mainColumnHome);	
         		
         	}
@@ -281,11 +285,11 @@ var profButtonTemplate = BUTTONS.Button.template(function($){ return{
         		application.add(mainColumnProfile);
         	}
         	if (this.data.index == 13){
-        		application.remove(mainColumnTrick2);
+        		application.remove(mainColumnTrick1);
         		application.add(mainColumnProfile);
         	}
         	if (this.data.index == 14){
-        		application.remove(mainColumnTrick3);
+        		application.remove(mainColumnTrick1);
         		application.add(mainColumnProfile);	
         	}
         	
@@ -353,11 +357,11 @@ var mapButtonTemplate = BUTTONS.Button.template(function($){ return{
         		application.add(mainColumnMap);
         	}
         	if (this.data.index == 13){
-        		application.remove(mainColumnTrick2);
+        		application.remove(mainColumnTrick1);
         		application.add(mainColumnMap);
         	}
         	if (this.data.index == 14){
-        		application.remove(mainColumnTrick3);
+        		application.remove(mainColumnTrick1);
         		application.add(mainColumnMap);	
         	}
         	if (this.data.index == 15){
@@ -428,11 +432,11 @@ var tutButtonTemplate = BUTTONS.Button.template(function($){ return{
         		application.add(mainColumnTrick1);
         	}
         	if (this.data.index == 13){
-        		application.remove(mainColumnTrick2);
+        		application.remove(mainColumnTrick1);
         		application.add(mainColumnTrick1);
         	}
         	if (this.data.index == 14){
-        		application.remove(mainColumnTrick3);
+        		application.remove(mainColumnTrick1);
         		application.add(mainColumnTrick1);	
         	}
         	if (this.data.index == 15){
@@ -858,28 +862,79 @@ var mainColumnActiveGame2 = new Column({
     ]
 })
 
+var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
+
+
 
 
 //Trick 1  12
 var homeButton12 = new homeButtonTemplate({index: 12});
+var secondHome = new homeButtonTemplate({index: 13});
+var thirdHome = new homeButtonTemplate({index: 14});
+
 var profButton12 = new profButtonTemplate({index: 12});
+var secondProf = new profButtonTemplate({index: 13});
+var thirdProf = new profButtonTemplate({index: 14});
+
 var mapButton12= new mapButtonTemplate({index: 12});
+var secondMap= new mapButtonTemplate({index: 13});
+var thirdMap= new mapButtonTemplate({index: 14});
+
 var tutButton12 = new tutButtonTemplate({index: 12});
+var secondTut = new tutButtonTemplate({index: 13});
+var thirdTut = new tutButtonTemplate({index: 14});
+
+
 var mainColumnTrick1 = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
+	   manualLabel = new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
-                 new Label({top: 10, left: 5,string: "TRICK MANUAL", style: titleStyle})
+                 new Label({top: 10, left: 5,string: "TRICK MANUAL", style: titleStyle}),
                 
 			]
 		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
+    	basicButton = new Line({left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new BasicButton(),
     			
+		  	],	  	
+    	}),
+    	intermediateButton = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new IntermediateButton(),
+		  	],	  	
+    	}),
+    	advancedButton = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new AdvancedButton(),
+		  	],	  	
+    	}),
+    	customButton = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    		contents: [
+    			new CustomButton(),
+		  	],	  	
+    	}),
+    	popularLabel = new Label({top: -60, left: 8,string: "Popular Tricks:", style: titleStyle}),
+    	
+    	fakieButton = new Line({top: 0, left:0, right:0, height:107, active:true,  
+    		contents: [
+    			new FakieButton(),
+		  	],	  	
+    	}),
+    	noseButton = new Line({top: -69, left:0, right:0, height:30, active:true, 
+    		contents: [
+    			new NoseSlideButton(),
+		  	],	  	
     	}),
     	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
+    	tailButton = new Line({top: 6, left:0, right:0, height:30, active:true, 
+    		contents: [
+    			new TailSlideButton(),
+		  	],	  	
+    	}),
+    	 	
+    	originalNav = new Line({top:148, bottom:0, left:0, right:0, height: 50, skin: graySkin,
     		contents:[
     			homeButton12,
     			profButton12,
@@ -891,72 +946,6 @@ var mainColumnTrick1 = new Column({
     ]
 })
 
-//Trick 2   13
-var homeButton13 = new homeButtonTemplate({index: 13});
-var profButton13 = new profButtonTemplate({index: 13});
-var mapButton13 = new mapButtonTemplate({index: 13});
-var tutButton13 = new tutButtonTemplate({index: 13});
-var backButton13 = new backButtonTemplate({index:13});
-var mainColumnTrick2 = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton13,
-                 new Label({top: 10, left: 5,string: "BASIC", style: titleStyle})
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton13,
-    			profButton13,
-    			mapButton13,
-    			tutButton13
-    		]
-    	})
-   
-    ]
-})
-
-//Trick 3   14
-var homeButton14 = new homeButtonTemplate({index: 14});
-var profButton14 = new profButtonTemplate({index: 14});
-var mapButton14 = new mapButtonTemplate({index: 14});
-var tutButton14 = new tutButtonTemplate({index: 14});
-var backButton14 = new backButtonTemplate({index:14});
-var mainColumnTrick3 = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton14,
-                 new Label({top: 10, left: 5,string: "OLLIE", style: titleStyle})
-               
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton14,
-    			profButton14,
-    			mapButton14,
-    			tutButton14
-    		]
-    	})
-   
-    ]
-
-})
 
 
 //profile 15
