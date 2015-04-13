@@ -2,11 +2,13 @@ var user = {
 	profile: {
 		pic: "resources/mike.jpg",
 		name: "Andrew",
-		won: 82,
+		won: 65,
 		lost: 19,
 		hScore: 421,
 		uniqueTricks: 53,
-		consistentTrick: {"Kickflip": 95},
+		cTrick: "Kickflip",
+		consistentTrick: {"Kickflip": "95%"},
+		dTrick: "360 Shove-it",
 		difficultTrick: {"360 Shove-it": 75} 
 	},
 	games: [
