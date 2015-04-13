@@ -106,8 +106,8 @@ var homeCon;
 function createHome() {
 	user.games.forEach(homeTableBuilder); 
 	homeCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
-		new scrollContainer({top: 55, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
-		new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
+		new scrollContainer({top: 50, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
+		new Container({top: 0, left: 0, right: 0, height: 50, skin:new Skin({fill: "black"})}),
 		new Container({bottom: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
 		new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteSkin, contents:[
 			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "green"}),

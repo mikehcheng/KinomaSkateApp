@@ -1,5 +1,4 @@
 var gameCon;
-var runTable;
 
 /*#########################################
 			SKINS & STYLES
@@ -36,6 +35,7 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 		]})
 	]
 }});
+
 /*#########################################
 				HANDLERS
 #########################################*/
@@ -48,6 +48,13 @@ Handler.bind("/trackRun", {
 	}
 });
 
+Handler.bind("/loadRun", {
+	onInvoke: function(handler, message){
+		trace("Loading Run: Please enter proper behavior here...\n")
+	},
+	onComplete: function(handler, message, json){
+	}
+});
 
 /*#########################################
 		GAME SCREEN INSTANTIATION
@@ -70,6 +77,7 @@ function createGame(game){
 				new playerScore({pic: game.opPic, name: game.opName, score: game.opScore, left: 0, right: 10})
 			]}),
 		]}),
+		new Container({bottom: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
 		new Container({left: 0, right:0, bottom: 55, height: 50, skin: whiteSkin, contents:[
 			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: buttonSkin,
 				behavior: Object.create(Container.prototype, {
