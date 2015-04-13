@@ -7,13 +7,12 @@ var THEME = require('themes/sample/theme');
 			SKINS & STYLES
 #########################################*/
 
-var titleStyle = new Style( { font: "bold 40px", color:"black" } );
-var labelStyle = new Style( { font: "20px", color:"black" } );
+var largeTitleStyle = new Style( { font: "bold 40px", color:"black" } );
 var smallLabelStyle = new Style( { font: "14px", color:"black" } );
 var infoStyle = new Style( { font: "16px", color:"blue" });
 
 var whiteSkin = new Skin( { fill:"white" });
-var graySkin = new Skin({fill: "#696969"});
+var lightGraySkin = new Skin({fill: "#696969"});
 var tableSkin = new Skin({borders: {top: 2, right: 2, left: 2, bottom: 2}, stroke: "black"});
 var rowSkin = new Skin({borders: {bottom: 1}, stroke: "black"});
 var separatorSkin = new Skin({ fill: 'blue',});
@@ -56,7 +55,7 @@ var homeTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 }});
  
 var scrollContainer = Container.template(function($){return {
-	left:0, right:0, top:$.top, bottom: $.bottom,  skin: whiteSkin,
+	left:0, right:0, top:$.top, bottom: $.bottom,  skin: (('skin' in $) ? $.skin : whiteSkin),
 	contents: [
    		SCROLLER.VerticalScroller(new Object(), {
    			contents: [

@@ -9,41 +9,23 @@ var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
 var titleStyle = new Style( { font: "bold 25px", color:"white"});
+var labelStyle = new Style( { font: "20px", color:"black" } );
 
 include	("trickButtons.js");
 include	("inserts.js");
+include ("data.js");
+include ("home.js");
+include ("runOverview/game.js");
+include	("runOverview/run.js");
 
 deviceURL = "";
 var receivedTrick = undefined;
-
-var labelStyle = new Style( { font: "20px", color:"black" } );
-
-Handler.bind("/startPolling", {
-    onInvoke: function(handler, message){
-    	trace("Attempting Poll\n");
-		handler.invoke(new Message(deviceURL + "getTrick"), Message.JSON);
-	},
-	onComplete: function(content, message, json){
-		if (json.trick != undefined)
-			trickOne.string = json.trick;
-     	application.invoke( new Message("/delay"));
-    }
-});
 
 Handler.bind("/forget", Behavior({
 	onInvoke: function(handler, message){
 		deviceURL = "";
 	}
 }));
-
-Handler.bind("/delay", {
-    onInvoke: function(handler, message){
-        handler.wait(500);
-    },
-    onComplete: function(handler, message){
-        handler.invoke(new Message("/startPolling"));
-    }
-});
 
 Handler.bind("/discover", Behavior({
 	onInvoke: function(handler, message){
@@ -53,24 +35,8 @@ Handler.bind("/discover", Behavior({
 	},
 }));
 
-var trickOne = new Label({left:0, right:0, height:30, string:"", style: labelStyle});
-
-var mainColumn = new Column({
-	left: 0, right: 0, top: 0, bottom: 0, active: true, skin: whiteSkin,
-	contents: [
-		new Label({left:0, right:0, height:40, string:"Skatey", style: titleStyle}),
-		new Picture({aspect: "fill", height:70, top: 15, width: 70, url: "resources/icon_skateboard.png"}),
-		new Label({left:0, right:0, height:10, top: 25, string:"Learn, Compete, Skate.", style: labelStyle}),
-		new Label({left:0, right:0, height:10, top: 45, string:"Previous Trick:", style: labelStyle}),
-		trickOne,
-	]
-});
-
-
 var map = new Texture('resources/map.png');
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
-
-
 
 
 /*
@@ -992,4 +958,5 @@ var ApplicationBehavior = Behavior.template({
 })
 
 application.behavior = new ApplicationBehavior();
-application.add(mainColumnMap);
+createHome();
+//application.add(mainColumnMap);
