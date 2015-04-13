@@ -1,7 +1,8 @@
 // PHONE MAIN
 
-include ("runOverview/data.js");
-include ("runOverview/home.js");
+include ("data.js");
+include ("home.js");
 include ("runOverview/game.js");
+include ("profile.js");
 
 createHome();

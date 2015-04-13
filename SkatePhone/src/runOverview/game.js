@@ -4,7 +4,7 @@ var gameCon;
 			SKINS & STYLES
 #########################################*/
 
-var boxSkin = new Skin({stroke: "black", borders: {top: 1, bottom: 1, right: 1, left: 1}});
+var boxSkin = new Skin({stroke: "black", borders: {top: 2, bottom: 2, right: 2, left: 2}});
 
 /*#########################################
 			GENERIC CONSTRUCTORS
@@ -67,18 +67,17 @@ function createGame(game){
 	var myRunsTable = new Table({string: "", left: 0, right: 0, top: 0, tableSkin: ((game.myTurn) ? customTableSkin : tableSkin)});
 	var opRunsTable = new Table({string: "", right: 0, left: 0, top: 0, tableSkin: ((game.myTurn) ? tableSkin : customTableSkin)});
 	
-	gameCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
-		new scrollContainer({top: 85, bottom: 105, contents: [new Line({left: 10, right: 10, top:0, bottom: 0, 
+	gameCon = new Container({left: 0, right: 0, bottom: 55, top: 0, contents: [
+		new scrollContainer({top: 85, bottom: 50, contents: [new Line({left: 10, right: 10, top:0, bottom: 0, 
 			contents: [myRunsTable, opRunsTable]})]}),
-		new Container({skin:new Skin({fill: "#D3D3D3"}), top: 0, left:0, right:0, height: 86, contents:[
+		new Container({skin:new Skin({fill: "#D3D3D3"}), top: 0, left:0, right:0, height: 85, contents:[
 			new Line({contents:[
 				new playerScore({pic: user.profile.pic, name: "You", score: game.myScore, left: 10, right: 0}),
 				new Label({left:10, right:10, width: labelStyle.measure("vs").width, string:"vs", style:labelStyle}),
 				new playerScore({pic: game.opPic, name: game.opName, score: game.opScore, left: 0, right: 10})
 			]}),
 		]}),
-		new Container({bottom: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
-		new Container({left: 0, right:0, bottom: 55, height: 50, skin: whiteSkin, contents:[
+		new Container({left: 0, right:0, bottom: 0, height: 50, skin: whiteSkin, contents:[
 			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: buttonSkin,
 				behavior: Object.create(Container.prototype, {
 					onTouchEnded: { value: function(content, id, x, y, ticks){
