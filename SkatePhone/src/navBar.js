@@ -295,3 +295,12 @@ var tutButtonTemplate = BUTTONS.Button.template(function($){ return{
        })
  }})
 
+var navBar = Line.template(function($) { return {
+	bottom:0, left:0, right:0, height: 55, skin: graySkin,
+	contents: [
+		homeButtonTemplate($,{index: $.index}),
+		profButtonTemplate($,{index: $.index}),
+		mapButtonTemplate($,{index: $.index}),
+		tutButtonTemplate($,{index: $.index}),
+	]
+}});

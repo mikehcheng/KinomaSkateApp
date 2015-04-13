@@ -152,11 +152,6 @@ var popup = new Container({top:240, bottom:70, left: 95, right:60, skin:blueSkin
 var popped = false;
 
 //map screen 1
-var homeButton1 = new homeButtonTemplate({index: 1});
-var profButton1 = new profButtonTemplate({index: 1});
-var mapButton1 = new mapButtonTemplate({index: 1});
-var tutButton1 = new tutButtonTemplate({index: 1});
-
 var mainColumnMap = new Column({
     left: 0, right: 0, top: 0, bottom: 0, active: true, skin: blackSkin,
     contents: [
@@ -196,26 +191,12 @@ var mainColumnMap = new Column({
   				}}
 			})
     	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton1,
-    			profButton1,
-    			mapButton1,
-    			tutButton1
-    		]
-    	}),
-   
+    	new navBar({index: 1})
     ]
  });
  
 
 //home screen - 2
-var homeButton2 = new homeButtonTemplate({index: 2});
-var profButton2 = new profButtonTemplate({index: 2});
-var mapButton2 = new mapButtonTemplate({index: 2});
-var tutButton2 = new tutButtonTemplate({index: 2});
 var mainColumnHome = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
@@ -228,26 +209,12 @@ var mainColumnHome = new Column({
     	new Line({top:3, left:0, right:0, height:430, active:true, 
     			
     	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton2,
-    			profButton2,
-    			mapButton2,
-    			tutButton2
-    		]
-    	})
-   
+    	new navBar({index: 2})
     ]
 	
 })
 
 // choose game type 3
-var homeButton3 = new homeButtonTemplate({index: 3});
-var profButton3 = new profButtonTemplate({index: 3});
-var mapButton3 = new mapButtonTemplate({index: 3});
-var tutButton3 = new tutButtonTemplate({index: 3});
 var backButton3 = new backButtonTemplate({index:3});
 var mainColumnChoose = new Column({
  	left: 0, right: 0, top: 0, bottom: 0, 
@@ -261,27 +228,13 @@ var mainColumnChoose = new Column({
     	new Line({top:3, left:0, right:0, height:430, active:true, 
     			
     	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton3,
-    			profButton3,
-    			mapButton3,
-    			tutButton3
-    		]
-    	})
-   
+    	new navBar({index: 3})
     ]
 })
 
 
 
 //choose opponent 4
-var homeButton4 = new homeButtonTemplate({index: 4});
-var profButton4 = new profButtonTemplate({index: 4});
-var mapButton4 = new mapButtonTemplate({index: 4});
-var tutButton4 = new tutButtonTemplate({index: 4});
 var backButton4 = new backButtonTemplate({index:4});
 var mainColumnOpp = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, 
@@ -296,24 +249,11 @@ var mainColumnOpp = new Column({
     			
     	}),
     	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton4,
-    			profButton4,
-    			mapButton4,
-    			tutButton4
-    		]
-    	})
-   
+    	new navBar({index: 4})
     ]
 })
 
 //Friends list 5
-var homeButton5 = new homeButtonTemplate({index: 5});
-var profButton5 = new profButtonTemplate({index: 5});
-var mapButton5 = new mapButtonTemplate({index: 5});
-var tutButton5 = new tutButtonTemplate({index: 5});
 var backButton5 = new backButtonTemplate({index:5});
 var mainColumnFriendList = new Column({
  left: 0, right: 0, top: 0, bottom: 0, 
@@ -329,24 +269,12 @@ var mainColumnFriendList = new Column({
     			
     	}),
     	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton5,
-    			profButton5,
-    			mapButton5,
-    			tutButton5
-    		]
-    	})
+    	new navBar({index: 5})
    
     ]
 })
 
 //Community List 6
-var homeButton6 = new homeButtonTemplate({index: 6});
-var profButton6 = new profButtonTemplate({index: 6});
-var mapButton6 = new mapButtonTemplate({index: 6});
-var tutButton6 = new tutButtonTemplate({index: 6});
 var backButton6 = new backButtonTemplate({index:6});
 var mainColumnCommList = new Column({
  left: 0, right: 0, top: 0, bottom: 0, 
@@ -362,197 +290,29 @@ var mainColumnCommList = new Column({
     			
     	}),
     	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton6,
-    			profButton6,
-    			mapButton6,
-    			tutButton6
-    		]
-    	})
+    	new navBar({index: 6})
    
     ]
 })
 
-//New Game 7
-var homeButton7 = new homeButtonTemplate({index: 7});
-var profButton7 = new profButtonTemplate({index: 7});
-var mapButton7 = new mapButtonTemplate({index: 7});
-var tutButton7 = new tutButtonTemplate({index: 7});
-var mainColumnNewGame = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-               
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton7,
-    			profButton7,
-    			mapButton7,
-    			tutButton7
-    		]
-    	})
-   
-    ]
-})
+// New Game 7
+// build with createHome()
 
-//midrun   8
-var homeButton8 = new homeButtonTemplate({index: 8});
-var profButton8 = new profButtonTemplate({index: 8});
-var mapButton8 = new mapButtonTemplate({index: 8});
-var tutButton8 = new tutButtonTemplate({index: 8});
-var mainColumnMidRun = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton8,
-    			profButton8,
-    			mapButton8,
-    			tutButton8
-    		]
-    	})
-   
-    ]
-})
+// Midrun 8
+// no variable associated, built dynamically
 
 //Active Game Overview List 9
-var homeButton9 = new homeButtonTemplate({index: 9});
-var profButton9 = new profButtonTemplate({index: 9});
-var mapButton9 = new mapButtonTemplate({index: 9});
-var tutButton9 = new tutButtonTemplate({index: 9});
-var mainColumnActiveOverview = new Column({
- left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton9,
-    			profButton9,
-    			mapButton9,
-    			tutButton9
-    		]
-    	})
-   
-    ]
-})
+// no variable associated, built dynamically
 
 //Finished Run 10
-var homeButton10 = new homeButtonTemplate({index: 10});
-var profButton10 = new profButtonTemplate({index: 10});
-var mapButton10 = new mapButtonTemplate({index: 10});
-var tutButton10 = new tutButtonTemplate({index: 10});
-var mainColumnFinRun = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton10,
-    			profButton10,
-    			mapButton10,
-    			tutButton10
-    		]
-    	})
-   
-    ]
-})
+// no variable associated, built dynamically
 
 //Active Game my Run2 11
-var homeButton11= new homeButtonTemplate({index: 11});
-var profButton11 = new profButtonTemplate({index: 11});
-var mapButton11 = new mapButtonTemplate({index: 11});
-var tutButton11 = new tutButtonTemplate({index: 11});
-var mainColumnActiveGame2 = new Column({
- left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton11,
-    			profButton11,
-    			mapButton11,
-    			tutButton11
-    		]
-    	})
-   
-    ]
-})
+// no variable associated, built dynamically
 
 var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
 
-
-
-
 //Trick 1  12
-var homeButton12 = new homeButtonTemplate({index: 12});
-var secondHome = new homeButtonTemplate({index: 13});
-var thirdHome = new homeButtonTemplate({index: 14});
-
-var profButton12 = new profButtonTemplate({index: 12});
-var secondProf = new profButtonTemplate({index: 13});
-var thirdProf = new profButtonTemplate({index: 14});
-
-var mapButton12= new mapButtonTemplate({index: 12});
-var secondMap= new mapButtonTemplate({index: 13});
-var thirdMap= new mapButtonTemplate({index: 14});
-
-var tutButton12 = new tutButtonTemplate({index: 12});
-var secondTut = new tutButtonTemplate({index: 13});
-var thirdTut = new tutButtonTemplate({index: 14});
-
-
 var mainColumnTrick1 = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
@@ -602,51 +362,13 @@ var mainColumnTrick1 = new Column({
 		  	],	  	
     	}),
     	 	
-    	originalNav = new Line({top:148, bottom:0, left:0, right:0, height: 50, skin: graySkin,
-    		contents:[
-    			homeButton12,
-    			profButton12,
-    			mapButton12,
-    			tutButton12
-    		]
-    	})
+    	originalNav = new navBar({index:12})
    
     ]
 })
 
-
-
-//profile 15
-var homeButton15 = new homeButtonTemplate({index: 15});
-var profButton15 = new profButtonTemplate({index: 15});
-var mapButton15 = new mapButtonTemplate({index: 15});
-var tutButton15 = new tutButtonTemplate({index: 15});
-
-var mainColumnProfile = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                 new Label({top: 10, left: 5,string: "PROFILE", style: titleStyle})
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton15,
-    			profButton15,
-    			mapButton15,
-    			tutButton15
-    		]
-    	})
-   
-    ]
-})
+// profile 15
+// create with createProfile()
 
 
 
@@ -660,7 +382,5 @@ var ApplicationBehavior = Behavior.template({
 })
 
 application.behavior = new ApplicationBehavior();
-application.add(mainColumnTrick1);
-for (var check in application) {
-	trace(check.toString() + " is " + application[check].toString() + "\n");
-}
+createHome();
+
