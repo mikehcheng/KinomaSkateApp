@@ -4,6 +4,7 @@ var inactiveRunCon;
 var trickTable;
 var scoreField;
 var currentRun;
+var currentGame;
 
 var maxTimerValue = 15;
 
@@ -91,6 +92,7 @@ var timerBehavior = Behavior.template({
 			container.style = finishedStyle;
 		if (timerValue == 0) {
 			container.stop();
+			currentGame.myTurn = 0;
 			//activeRunCon.backButton.visible = true; //when implemented
 		}
 		container.string = timeString(timerValue);
@@ -112,6 +114,7 @@ function createActiveRun(game) {
 	trickTable = new noLabelTable({left: 10, right:10, top: 10, bottom: 10});
 	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:0})
 	currentRun = {score:0, moves: [], video: ""};
+	currentGame = game;
 	game.myRuns.push(currentRun);
 	
 	activeRunCon = new Container({
