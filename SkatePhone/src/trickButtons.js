@@ -121,7 +121,7 @@ var TailSlideButton = BUTTONS.Button.template(function($){ return{
 
 
 ////////////Basic Buttons////////////
-var olliePic = new Picture({aspect: "fill", height:100, top: 15, width: 180, url: "ollie.png"}),
+var olliePic = new Picture({aspect: "fill", height:100, top: 15, width: 180, url: "resources/ollie.png"}),
 
 
 var OllieButton = BUTTONS.Button.template(function($){ return{

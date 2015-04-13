@@ -59,7 +59,7 @@ var mainColumn = new Column({
 	left: 0, right: 0, top: 0, bottom: 0, active: true, skin: whiteSkin,
 	contents: [
 		new Label({left:0, right:0, height:40, string:"Skatey", style: titleStyle}),
-		new Picture({aspect: "fill", height:70, top: 15, width: 70, url: "icon_skateboard.png"}),
+		new Picture({aspect: "fill", height:70, top: 15, width: 70, url: "resources/icon_skateboard.png"}),
 		new Label({left:0, right:0, height:10, top: 25, string:"Learn, Compete, Skate.", style: labelStyle}),
 		new Label({left:0, right:0, height:10, top: 45, string:"Previous Trick:", style: labelStyle}),
 		trickOne,
@@ -67,7 +67,7 @@ var mainColumn = new Column({
 });
 
 
-var map = new Texture('map.png');
+var map = new Texture('resources/map.png');
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
 
 
@@ -93,7 +93,7 @@ home - 2
 15 maincolumnprofile
 */
 
-var backpic = new Texture('back.png');
+var backpic = new Texture('resources/back.png');
 var backpicSkin = new Skin(backpic, {x:0,y:0,height:58,width:53});
 var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
 	index: $.index,
@@ -152,7 +152,7 @@ var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
      })
  }})
 
-var homepic = new Texture('homeIcon.png');
+var homepic = new Texture('resources/homeIcon.png');
 var homepicSkin = new Skin(homepic, {x:0,y:0, height:58, width:53});
 var homeButtonTemplate = BUTTONS.Button.template(function($){ return{
 	index: $.index,
@@ -225,7 +225,7 @@ var homeButtonTemplate = BUTTONS.Button.template(function($){ return{
  }})
  
  
-var profpic = new Texture('proficon.png');
+var profpic = new Texture('resources/proficon.png');
 var profpicSkin = new Skin(profpic, {x:0,y:0, height:58, width:53});
 var profButtonTemplate = BUTTONS.Button.template(function($){ return{
 	index: $.index,
@@ -300,7 +300,7 @@ var profButtonTemplate = BUTTONS.Button.template(function($){ return{
  
  
  
-var mappic = new Texture('mapicon.png');
+var mappic = new Texture('resources/mapicon.png');
 var mappicSkin = new Skin(mappic, {x:0,y:0, height:58, width:53});
 var mapButtonTemplate = BUTTONS.Button.template(function($){ return{
 	index: $.index,
@@ -375,7 +375,7 @@ var mapButtonTemplate = BUTTONS.Button.template(function($){ return{
  
  
  
-var tutpic = new Texture('bookicon.png');
+var tutpic = new Texture('resources/bookicon.png');
 var tutpicSkin = new Skin(tutpic, {x:0,y:0, height:58, width:53});
 var tutButtonTemplate = BUTTONS.Button.template(function($){ return{
 	index: $.index,
