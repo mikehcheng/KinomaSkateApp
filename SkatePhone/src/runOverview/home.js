@@ -56,7 +56,7 @@ var homeTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 }});
  
 var scrollContainer = Container.template(function($){return {
-	left:0, right:0, top:$.top, bottom: $.bottom,  skin: whiteSkin,
+	left:0, right:0, top:$.top, bottom: $.bottom,  skin: (('skin' in $) ? $.skin : whiteSkin),
 	contents: [
    		SCROLLER.VerticalScroller(new Object(), {
    			contents: [

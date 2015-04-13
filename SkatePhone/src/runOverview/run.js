@@ -3,6 +3,7 @@ var inactiveRunCon;
 
 var trickTable;
 var scoreField;
+var currentRun;
 
 var maxTimerValue = 15;
 
@@ -17,9 +18,11 @@ Handler.bind("/readTrick", {
 		handler.invoke(new Message(deviceURL + "getTrick"), Message.JSON);
 	},
 	onComplete: function(handler, message, json){
-		if (json.trick != undefined) {
+		if ('trick' in json) {
+			currentRun.moves.push(json.trick);
+			currentRun.score += trickDictionary[json.trick]
 			trickTable.last.add(new trickRow({trick: json.trick}));
-			scoreField.score.string = (parseInt(scoreField.score.string) + trickDictionary[json.trick]).toString();
+			scoreField.score.string = currentRun.score.toString();
 		}
 		handler.invoke(new Message("/delay"));
 	}
@@ -108,23 +111,93 @@ function createActiveRun(game) {
 	var runNumber = game.myRuns.length + 1;
 	trickTable = new noLabelTable({left: 10, right:10, top: 10, bottom: 10});
 	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:0})
+	currentRun = {score:0, moves: [], video: ""};
+	game.myRuns.push(currentRun);
 	
 	activeRunCon = new Container({
-		top:0, bottom:0, left:0, right:0, contents: [
-			new scrollContainer({left:30, right:30, top: 130, bottom: 55, contents: [trickTable]}),
-			new Column({left:0, right:0, top:105, height:25, skin: whiteSkin, contents: [
+		top:0, bottom:0, left:0, right:0, skin: whiteSkin, contents: [
+			// list of tricks
+			new scrollContainer({left:0, right:0, top:135, bottom: 55, contents: [trickTable]}),
+			
+			// box around list of tricks
+			new Column({left:0, right:0, top:135, bottom: 55, contents: [
+				new Container({left:9, right:9, top:0, height:10, 
+					skin: new Skin({fill: "white", borders: {bottom: 2}, stroke: "black"})}),
+				new Line({left:0, right:0, height:145, contents: [
+					new Container({left:0, height:145, width: 10, 
+						skin: new Skin({fill: "white", borders: {right: 2}, stroke: "black"})}),
+					new Container({left:10, right:10}),
+					new Container({right:0, height:145, width: 10, 
+						skin: new Skin({fill: "white", borders: {left: 2}, stroke: "black"})}),
+				]}),
+				new Container({left:9, right:9, bottom: 0, height:10, 
+					skin: new Skin({fill: "white", borders: {top: 2}, stroke: "black"}) })
+			]}),
+			
+			// label above list of tricks
+			new Column({left:0, right:0, top:105, height:30, skin: whiteSkin, contents: [
 				new Label({left:10, top:10, style: labelStyle, string:"Tricks Completed"}),
 			]}),
+			
+			// label for information
 			new Line({left:0, right:0, top:55, height:50, contents:[
 				new timerColumn({left:0, right:0, top:0, bottom:0}),
 				scoreField
 			]}),
+			
+			// video below
 			new videoContainer(),
+			
+			// placeholder for top bar
 			new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
 		]
 	})
 }
 
 function createInactiveRun(game) {
+	trickTable = new noLabelTable({left: 10, right:10, top: 10, bottom: 10});
+	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:0})
+	scoreField.score.string = game.score.toString();
+	var titleString = game.player +	" Run " + game.index.toString();
+	trace("Header: " + titleString + "\n");
 	
+	inactiveRunCon = new Container({
+		top:0, bottom:0, left:0, right:0, skin: whiteSkin, contents: [
+			// list of tricks
+			new scrollContainer({left:0, right:0, top:135, bottom: 55, contents: [trickTable]}),
+			
+			// box around list of tricks
+			new Column({left:0, right:0, top:135, bottom: 55, contents: [
+				new Container({left:9, right:9, top:0, height:10, 
+					skin: new Skin({fill: "white", borders: {bottom: 2}, stroke: "black"})}),
+				new Line({left:0, right:0, height:145, contents: [
+					new Container({left:0, height:145, width: 10, 
+						skin: new Skin({fill: "white", borders: {right: 2}, stroke: "black"})}),
+					new Container({left:10, right:10}),
+					new Container({right:0, height:145, width: 10, 
+						skin: new Skin({fill: "white", borders: {left: 2}, stroke: "black"})}),
+				]}),
+				new Container({left:9, right:9, bottom: 0, height:10, 
+					skin: new Skin({fill: "white", borders: {top: 2}, stroke: "black"}) })
+			]}),
+			
+			// label above list of tricks
+			new Column({left:0, right:0, top:105, height:30, skin: whiteSkin, contents: [
+				new Label({left:10, top:10, style: labelStyle, string:"Tricks Completed"}),
+			]}),
+			
+			// label for information
+			new Line({left:0, right:0, top:55, height:50, contents:[
+				scoreField
+			]}),
+			
+			// video below
+			new videoContainer(),
+			
+			// placeholder for top bar
+			new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
+		]
+	})
+	
+	game.moves.forEach(function(move) { trickTable.last.add(new trickRow({trick: move}))});
 }

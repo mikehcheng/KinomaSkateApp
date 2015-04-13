@@ -12,14 +12,14 @@ var user = {
 			myRuns: [
 				{
 					score: 10,
-					moves: [],
+					moves: ["Ollie","Tailslide","McTwist"],
 					video: ""
 				}
 			],
 			opRuns: [
 				{
 					score: 20,
-					moves: [],
+					moves: ["Ollie","Tailslide","McTwist","Ollie","Tailslide","McTwist"],
 					video: ""
 				}
 			],
@@ -30,8 +30,20 @@ var user = {
 			myScore: 14,
 			opScore: 7,
 			myTurn: 1,
-			myRuns: [],
-			opRuns: [],
+			myRuns: [
+				{
+					score: 14,
+					moves: ["Ollie","Tailslide","McTwist","Nosegrind"],
+					video: ""
+				},
+			],
+			opRuns: [
+				{
+					score: 7,
+					moves: ["Ollie","Nosegrind"],
+					video: ""
+				}
+			],
 		},
 		{
 			opName: "Rahul",
@@ -39,25 +51,54 @@ var user = {
 			myScore: 31,
 			opScore: 16,
 			myTurn: 0,
-			myRuns: [],
-			opRuns: [],
+			myRuns: [
+				{
+					score: 15,
+					moves: ["Ollie","Tailslide","McTwist","Nosegrind", "Kickflip"],
+					video: ""
+				},
+				{
+					score: 16,
+					moves: ["Ollie","Tailslide","McTwist","Kickflip","Nosegrind", "Kickflip"],
+					video: ""
+				}
+			],
+			opRuns: [
+				{
+					score: 16,
+					moves: ["Ollie","Ollie","Ollie","Ollie","Ollie","Kickflip"],
+					video: ""
+				}
+			],
 		},
 		{
 			opName: "Mike",
 			opPic: "resources/mike.jpg",
-			myScore: 13,
-			opScore: 21,
+			myScore: 8,
+			opScore: 0,
 			myTurn: 0,
-			myRuns: [],
+			myRuns: [
+				{
+					score: 8,
+					moves: ["Ollie","Mctwist"],
+					video: ""
+				}
+			],
 			opRuns: [],
 		},
 		{
 			opName: "Sean",
 			opPic: "resources/mike.jpg",
 			myScore: 10,
-			opScore: 3,
+			opScore: 0,
 			myTurn: 0,
-			myRuns: [],
+			myRuns: [
+				{
+					score: 10,
+					moves: ["Ollie","Mctwist", "Tailslide"],
+					video: ""
+				}
+			],
 			opRuns: [],
 		},
 	]

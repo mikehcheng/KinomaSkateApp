@@ -21,12 +21,10 @@ Handler.bind("/trackRun", {
 
 Handler.bind("/loadRun", {
 	onInvoke: function(handler, message){
-		createGame(JSON.parse(message.requestText));
-		application.add(gameCon);
-		application.remove(homeCon);
+		createInactiveRun(JSON.parse(message.requestText));
+		application.add(inactiveRunCon);
+		application.remove(gameCon);
 	},
-	onComplete: function(handler, message, json){
-	}
 });
 
 /*#########################################
@@ -48,6 +46,12 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 		onTouchEnded: {value: function(container, id, x,  y, ticks) {
 			var msg = new Message("/loadRun");
 		    msg.requestText = JSON.stringify($);
+		    trace(msg.requestText +	"\n");
+		    trace(container.toString() + "\n");
+		    trace(id.toString() + "\n");
+		    trace(x.toString() + "\n");
+		    trace(y.toString() + "\n");
+		    trace(ticks.toString() + "\n");
 		    container.invoke(msg, Message.JSON);
 		}}
 	}),
@@ -98,6 +102,6 @@ function createGame(game){
 		]})
 	]});
 
-	game.myRuns.forEach(function(e, i){e["index"] = i+1; myRunsTable.last.add(new gameTableRow(e))});
-	game.opRuns.forEach(function(e, i){e["index"] = i+1; opRunsTable.last.add(new gameTableRow(e))});
+	game.myRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = "My"; myRunsTable.last.add(new gameTableRow(e))});
+	game.opRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = game.opName + "\'s"; opRunsTable.last.add(new gameTableRow(e))});
 }
