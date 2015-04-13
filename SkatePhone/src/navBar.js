@@ -24,11 +24,11 @@ var screenDictionary = {
 	8: "activeRunCon",
 	10: "inactiveRunCon",
 	12: "mainColumnTrick1",
-	// 15: profileCon, //not implemented
+	15: "profileCon", //not implemented
 };
 
 var homepic = new Texture('resources/homeIcon.png');
-var homepicSkin = new Skin(homepic, {x:0,y:0, height:58, width:53});
+var homepicSkin = new Skin.template(homepic, {x:0,y:0, height:58, width:53});
 var homeButtonTemplate = BUTTONS.Button.template(function($){ return{
     top:2, bottom:2, left: 5,  right: 5, height:50, skin: whiteSkin,
     contents: [
@@ -37,8 +37,10 @@ var homeButtonTemplate = BUTTONS.Button.template(function($){ return{
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	screenIndex: $.screenIndex,
      	onTap: {value : function(button){
-     		createHome();
-     		application.remove(eval(screenDictionary[$.screenIndex]));
+     		if($.screenIndex != 2) {
+     			createHome();
+     			application.remove(eval(screenDictionary[$.screenIndex]));
+     		}
         }}	
      })
  }})
@@ -54,8 +56,10 @@ var profButtonTemplate = BUTTONS.Button.template(function($){ return{
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	screenIndex: $.screenIndex,
      	onTap: {value : function(button){
-     		createProfile();
-     		application.remove(eval(screenDictionary[$.screenIndex]));
+     		if($.screenIndex != 15) {
+     			createProfile();
+     			application.remove(eval(screenDictionary[$.screenIndex]));
+     		}
         }}	
      })
  }})
@@ -72,8 +76,10 @@ var mapButtonTemplate = BUTTONS.Button.template(function($){ return{
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	screenIndex: $.screenIndex,
      	onTap: {value : function(button){
-     		application.add(mainColumnMap);
-     		application.remove(eval(screenDictionary[$.screenIndex]));
+     		if($.screenIndex != 1) {
+     			application.add(mainColumnMap);
+     			application.remove(eval(screenDictionary[$.screenIndex]));
+     		}
         }}	
 	})
 }})
@@ -90,8 +96,10 @@ var tutButtonTemplate = BUTTONS.Button.template(function($){ return{
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	screenIndex: $.screenIndex,
      	onTap: {value : function(button){
-     		application.add(mainColumnTrick1);
-     		application.remove(eval(screenDictionary[$.screenIndex]));
+     		if($.screenIndex != 12) {
+     			application.add(mainColumnTrick1);
+     			application.remove(eval(screenDictionary[$.screenIndex]));
+     		}
         }}	
 	})
 }})

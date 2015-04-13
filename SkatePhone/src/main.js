@@ -16,6 +16,7 @@ include	("trickButtons.js");
 include	("inserts.js");
 include ("data.js");
 include ("home.js");
+include ("profile.js");
 include ("runOverview/game.js");
 include	("runOverview/run.js");
 include	("navBar.js");

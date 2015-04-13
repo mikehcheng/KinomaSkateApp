@@ -28,7 +28,7 @@ var infoBox = Container.template(function($){ return {skin: boxSkin, width: 145,
 
 function createProfile(){
 	var profile = user.profile;
-	profileCon = new Column({left: 0, right: 0, bottom: 55, top: 0, skin: whiteSkin, contents: [
+	profileCon = new Column({left: 0, right: 0, bottom: 0, top: 0, skin: whiteSkin, contents: [
 		new Container({top: 0, left: 0, right: 0, height: 50, skin:new Skin({fill: "black"})}),
 		new Thumbnail({top: 10, width: 60, height: 60, aspect: 'fit', url: profile.pic }),
 		new Label({style: labelStyle, string: profile.name}),
@@ -63,6 +63,8 @@ function createProfile(){
 					]})
 				]})
 		]}),
+		new Container({bottom: 55, left:0, right:0, skin: whiteSkin, height:25}),
+		new navBar({index: 15})
 	]});
 	
 	application.add(profileCon);
