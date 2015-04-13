@@ -120,7 +120,7 @@ function createHome() {
 	   			]})
 			]})
 		]}),
-		new navBar({index:7})
+		new navBar({index:2})
 	]});
 	application.add(homeCon);
 }

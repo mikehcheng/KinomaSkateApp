@@ -10,14 +10,15 @@ var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
 var titleStyle = new Style( { font: "bold 25px", color:"white"});
 var labelStyle = new Style( { font: "20px", color:"black" } );
+var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
 
 include	("trickButtons.js");
 include	("inserts.js");
 include ("data.js");
 include ("home.js");
-include	("navbar.js");
 include ("runOverview/game.js");
 include	("runOverview/run.js");
+include	("navBar.js");
 
 deviceURL = "";
 var receivedTrick = undefined;
@@ -39,26 +40,6 @@ Handler.bind("/discover", Behavior({
 var map = new Texture('resources/map.png');
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
 
-
-/*
-INDEXES FOR THE SCREENS (for buttons)
-1 map
-home - 2
-3 choose game
-4 maincolumnopp - opponent 
-5 maincolumnfriendLIST - friend list
-6 maincolumncommlist - community list
-7 maincolumnewgame
-8maincolumnmidrun
-9maincolumnactiveoverview 
-10 maincolumnfinrun - finished run
-11 maincolumnactivegame2 
-
-12 maincolumntrick1 - trick main pg
-13 trick2 - second trick screen
-14 trick 3 - third trick screen
-15 maincolumnprofile
-*/
 
 var backpic = new Texture('resources/back.png');
 var backpicSkin = new Skin(backpic, {x:0,y:0,height:58,width:53});
@@ -196,23 +177,8 @@ var mainColumnMap = new Column({
  });
  
 
-//home screen - 2
-var mainColumnHome = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                 new Label({top: 10, left: 80,string: "ACTIVE GAMES", style: titleStyle})
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	new navBar({index: 2})
-    ]
-	
-})
+// home screen - 2
+// createHome()
 
 // choose game type 3
 var backButton3 = new backButtonTemplate({index:3});
@@ -296,21 +262,19 @@ var mainColumnCommList = new Column({
 })
 
 // New Game 7
-// build with createHome()
+// reference with gameCon
 
 // Midrun 8
-// no variable associated, built dynamically
+// reference with activeRunCon, built dynamically
 
 //Active Game Overview List 9
-// no variable associated, built dynamically
+// see 7
 
 //Finished Run 10
-// no variable associated, built dynamically
+// reference with inactiveGameCon, built dynamically
 
-//Active Game my Run2 11
-// no variable associated, built dynamically
-
-var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
+// Active Game my Run2 11
+// see 9
 
 //Trick 1  12
 var mainColumnTrick1 = new Column({
@@ -369,8 +333,6 @@ var mainColumnTrick1 = new Column({
 
 // profile 15
 // create with createProfile()
-
-
 
 var ApplicationBehavior = Behavior.template({
 	onDisplayed: function(application) {
