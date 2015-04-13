@@ -3,7 +3,7 @@
 // SENSORS
 var pinMessage = new MessageWithObject("pins:configure", {
 	sensorArray: {
-		require: "altTrickBLL",
+		require: "trickBLL",
 		pins: { sensors: {sda: 27, clock: 29}}
 		},
 	});
@@ -12,8 +12,6 @@ var lastTrickPerformed = undefined;
 
 Handler.bind("/readSensors", {
 	onInvoke: function(handler, message) {
-		trace("Reading from sensors\n");
-		trace(JSON.stringify(message.requestObject) + "\n");
 		if (message.requestObject != undefined)
 			lastTrickPerformed = message.requestObject;
 	}
@@ -22,8 +20,6 @@ Handler.bind("/readSensors", {
 // PHONE INTERACTION 
 Handler.bind("/getTrick", {
 	onInvoke: function(handler, message) {
-		trace("Request for trick received\n");
-		
 		message.status = 200;
 		message.responseText = JSON.stringify( { "trick" : lastTrickPerformed } );
 		lastTrickPerformed = undefined;

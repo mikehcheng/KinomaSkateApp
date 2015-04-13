@@ -7,6 +7,24 @@ var gameCon;
 var boxSkin = new Skin({stroke: "black", borders: {top: 2, bottom: 2, right: 2, left: 2}});
 
 /*#########################################
+				HANDLERS
+#########################################*/
+
+Handler.bind("/trackRun", {
+	onInvoke: function(handler, message){
+		createActiveRun(JSON.parse(message.requestText));
+		application.remove(gameCon);
+	}
+});
+
+Handler.bind("/loadRun", {
+	onInvoke: function(handler, message){
+		createInactiveRun(JSON.parse(message.requestText));
+		application.remove(gameCon);
+	},
+});
+
+/*#########################################
 			GENERIC CONSTRUCTORS
 #########################################*/
 
@@ -25,6 +43,12 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 		onTouchEnded: {value: function(container, id, x,  y, ticks) {
 			var msg = new Message("/loadRun");
 		    msg.requestText = JSON.stringify($);
+		    trace(msg.requestText +	"\n");
+		    trace(container.toString() + "\n");
+		    trace(id.toString() + "\n");
+		    trace(x.toString() + "\n");
+		    trace(y.toString() + "\n");
+		    trace(ticks.toString() + "\n");
 		    container.invoke(msg, Message.JSON);
 		}}
 	}),
@@ -35,26 +59,6 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 		]})
 	]
 }});
-
-/*#########################################
-				HANDLERS
-#########################################*/
-
-Handler.bind("/trackRun", {
-	onInvoke: function(handler, message){
-		trace("Tracking Run: Please enter proper behavior here...\n")
-	},
-	onComplete: function(handler, message, json){
-	}
-});
-
-Handler.bind("/loadRun", {
-	onInvoke: function(handler, message){
-		trace("Loading Run: Please enter proper behavior here...\n")
-	},
-	onComplete: function(handler, message, json){
-	}
-});
 
 /*#########################################
 		GAME SCREEN INSTANTIATION
@@ -82,7 +86,9 @@ function createGame(game){
 				behavior: Object.create(Container.prototype, {
 					onTouchEnded: { value: function(content, id, x, y, ticks){
 						if (game.myTurn){
-							content.invoke(new Message("/trackRun"));
+							var newRunMsg = new Message("/trackRun");
+							newRunMsg.requestText = JSON.stringify(game);
+							content.invoke(newRunMsg);
 						}
 					}}
 				}),
@@ -93,8 +99,8 @@ function createGame(game){
 		]})
 	]});
 
-	game.myRuns.forEach(function(e, i){e["index"] = i+1; myRunsTable.last.add(new gameTableRow(e))});
-	game.opRuns.forEach(function(e, i){e["index"] = i+1; opRunsTable.last.add(new gameTableRow(e))});
+	game.myRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = "My"; myRunsTable.last.add(new gameTableRow(e))});
+	game.opRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = game.opName + "\'s"; opRunsTable.last.add(new gameTableRow(e))});
 	
 	application.add(gameCon);
 }

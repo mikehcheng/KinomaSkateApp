@@ -7,13 +7,12 @@ var THEME = require('themes/sample/theme');
 			SKINS & STYLES
 #########################################*/
 
-var titleStyle = new Style( { font: "bold 40px", color:"black" } );
-var labelStyle = new Style( { font: "20px", color:"black" } );
+var largeTitleStyle = new Style( { font: "bold 40px", color:"black" } );
 var smallLabelStyle = new Style( { font: "14px", color:"black" } );
 var infoStyle = new Style( { font: "16px", color:"blue" });
 
 var whiteSkin = new Skin( { fill:"white" });
-var graySkin = new Skin({fill: "#696969"});
+var lightGraySkin = new Skin({fill: "#696969"});
 var tableSkin = new Skin({borders: {top: 2, right: 2, left: 2, bottom: 2}, stroke: "black"});
 var rowSkin = new Skin({borders: {bottom: 1}, stroke: "black"});
 var separatorSkin = new Skin({ fill: 'blue',});
@@ -56,7 +55,7 @@ var homeTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 }});
  
 var scrollContainer = Container.template(function($){return {
-	left:0, right:0, top:$.top, bottom: $.bottom,  skin: whiteSkin,
+	left:0, right:0, top:$.top, bottom: $.bottom,  skin: (('skin' in $) ? $.skin : whiteSkin),
 	contents: [
    		SCROLLER.VerticalScroller(new Object(), {
    			contents: [
@@ -105,10 +104,10 @@ var homeCon;
 
 function createHome() {
 	user.games.forEach(homeTableBuilder); 
-	homeCon = new Container({left: 0, right: 0, bottom: 55, top: 0, contents: [
-		new scrollContainer({top: 50, bottom: 70, contents: [ myTurnTable, opTurnTable ]}),
+	homeCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
+		new scrollContainer({top: 50, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
 		new Container({top: 0, left: 0, right: 0, height: 50, skin:new Skin({fill: "black"})}),
-		new Container({left: 0, right:0, bottom: 0, height: 70, skin: whiteSkin, contents:[
+		new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteSkin, contents:[
 			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "green"}),
 				behavior: Object.create(Container.prototype, {
 					onTouchEnded: { value: function(content, id, x, y, ticks){
@@ -120,7 +119,8 @@ function createHome() {
 	   				new Label({style: labelStyle, width: labelStyle.measure("Create Game").width, string: "Create Game", left: 10})
 	   			]})
 			]})
-		]})
+		]}),
+		new navBar({index:7})
 	]});
 	application.add(homeCon);
 }
