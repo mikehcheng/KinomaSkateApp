@@ -1,4 +1,6 @@
 //@program
+
+
 var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
 var THEME = require("themes/flat/theme");
@@ -9,6 +11,8 @@ var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
 var titleStyle = new Style( { font: "bold 25px", color:"white"} );
+var miniTitleStyle = new Style( { font: "bold 28px", color:"black"} );
+var textStyle = new Style( { font: "bold 25px", color:"blue"} );
 
 deviceURL = "";
 var receivedTrick = undefined;
@@ -66,8 +70,6 @@ var mainColumn = new Column({
 
 var map = new Texture('map.png');
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
-
-
 
 
 /*
@@ -449,7 +451,7 @@ var tutButtonTemplate = BUTTONS.Button.template(function($){ return{
 
 
 //map screen which you go to if you click on the map button
-
+/**??
 var buttonText = new Style({font:"bold 15px", color:"#333333"});
 var checkins = "50";
 var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
@@ -476,7 +478,7 @@ var popup = new Container({top:240, bottom:70, left: 95, right:60, skin:blueSkin
 		new Label({top:35,left:5, height:15, name: "checkinnum", string: "Hot- " + checkins + " check-ins", style: popupStyle}),
 		checkbutton
 	]
-})
+})*/
 
 var popped = false;
 
@@ -572,137 +574,8 @@ var mainColumnHome = new Column({
 	
 })
 
-// choose game type 3
-var homeButton3 = new homeButtonTemplate({index: 3});
-var profButton3 = new profButtonTemplate({index: 3});
-var mapButton3 = new mapButtonTemplate({index: 3});
-var tutButton3 = new tutButtonTemplate({index: 3});
-var backButton3 = new backButtonTemplate({index:3});
-var mainColumnChoose = new Column({
- 	left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton3,
-                 new Label({top: 10, left: 5,string: "CHOOSE GAME", style: titleStyle})
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton3,
-    			profButton3,
-    			mapButton3,
-    			tutButton3
-    		]
-    	})
-   
-    ]
-})
-
-
-
-//choose opponent 4
-var homeButton4 = new homeButtonTemplate({index: 4});
-var profButton4 = new profButtonTemplate({index: 4});
-var mapButton4 = new mapButtonTemplate({index: 4});
-var tutButton4 = new tutButtonTemplate({index: 4});
-var backButton4 = new backButtonTemplate({index:4});
-var mainColumnOpp = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton4,
-                 new Label({top: 10, left: 5,string: "CHOOSE OPPONENT", style: titleStyle})
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton4,
-    			profButton4,
-    			mapButton4,
-    			tutButton4
-    		]
-    	})
-   
-    ]
-})
-
-//Friends list 5
-var homeButton5 = new homeButtonTemplate({index: 5});
-var profButton5 = new profButtonTemplate({index: 5});
-var mapButton5 = new mapButtonTemplate({index: 5});
-var tutButton5 = new tutButtonTemplate({index: 5});
-var backButton5 = new backButtonTemplate({index:5});
-var mainColumnFriendList = new Column({
- left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton5,
-                 new Label({top: 10, left: 5,string: "FRIENDS", style: titleStyle})
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton5,
-    			profButton5,
-    			mapButton5,
-    			tutButton5
-    		]
-    	})
-   
-    ]
-})
-
-//Community List 6
-var homeButton6 = new homeButtonTemplate({index: 6});
-var profButton6 = new profButtonTemplate({index: 6});
-var mapButton6 = new mapButtonTemplate({index: 6});
-var tutButton6 = new tutButtonTemplate({index: 6});
-var backButton6 = new backButtonTemplate({index:6});
-var mainColumnCommList = new Column({
- left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton6,
-                 new Label({top: 10, left: 5,string: "COMMUNITY", style: titleStyle})
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton6,
-    			profButton6,
-    			mapButton6,
-    			tutButton6
-    		]
-    	})
-   
-    ]
-})
+include ("gameOpponentOverview/createGameOpponent.js");
+include ("gameOpponentOverview/opponentLists.js");
 
 //New Game 7
 var homeButton7 = new homeButtonTemplate({index: 7});
@@ -1004,4 +877,4 @@ var ApplicationBehavior = Behavior.template({
 })
 
 application.behavior = new ApplicationBehavior();
-application.add(mainColumnMap);
+application.add(mainColumnFriendList);
