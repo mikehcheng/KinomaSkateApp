@@ -8,23 +8,19 @@ var profileCon;
 			GENERIC CONSTRUCTORS
 #########################################*/
 
-var infoBox = Container.template(function($){ return {skin: boxSkin, contents:[
-	Column($, {left: 5, top: 5, bottom: 5, right: 5, contents: [
-		Label($, {top: 0, style: (("titleStyle" in $) ? $.titleStyle : labelStyle), string: $.title}),
-	].concat(("contents" in $) ? $.contents : [])})
-]}});
+var infoBox = Container.template(function($){ return {skin: boxSkin, width: 145, top: $.top, left: $.left, right: $.right,
+	contents:[
+		Column($, {left: 5, top: 5, bottom: 5, right: 5, contents: [
+			Text($, {top: 0, left:0, right:0, height: $.titleHeight,
+				style: $.titleStyle, string: $.title}),
+		].concat(("contents" in $) ? $.contents : [])})
+	]
+}});
 
 /*#########################################
 				HANDLERS
 #########################################*/
 
-Handler.bind("/trackRun", {
-	onInvoke: function(handler, message){
-		trace("Tracking Run: Please enter proper behavior here...\n")
-	},
-	onComplete: function(handler, message, json){
-	}
-});
 
 /*#########################################
 		GAME SCREEN INSTANTIATION
@@ -36,10 +32,36 @@ function createProfile(){
 		new Container({top: 0, left: 0, right: 0, height: 50, skin:new Skin({fill: "black"})}),
 		new Thumbnail({top: 10, width: 60, height: 60, aspect: 'fit', url: profile.pic }),
 		new Label({style: labelStyle, string: profile.name}),
-		new Container({left: 10, right: 10, top: 10, contents: [
+		new Container({left: 10, name:"bar", width: 300, top: 0, contents: [
 			new Label({string: "Won", style: labelStyle, top: 0, left: 10}),
 			new Label({string: "Lost", style: labelStyle, top: 0, right: 10}),
-			new Container({top: 20, left: 10, right:10, height: 20, skin: boxSkin, contents:[]}),
+			new Container({top: 20, left: 10, right:10, height: 20, skin: boxSkin, contents:[
+				new Container({name:"greenbar", left: 2, top: 2, width: 300*(profile.won/(profile.won + profile.lost)), bottom: 2, skin: new Skin({fill: "green"})})
+			]})
+		]}),
+		new Line({top: 10, left: 20, right: 20, contents: [
+			new infoBox({left: 0, right: 10, top: 0, titleHeight:25, titleStyle: new Style({font: "20px", horizontal: "center", color:"black" }),
+				title: "Highest Score", contents: [new Label({top: 10, style: infoStyle, string: profile.hScore})]}),
+			new infoBox({right: 0, left: 0, top: 0, titleHeight:25, title: "Most Consistent Trick",
+				titleStyle: new Style({font: "16px", color:"black", horizontal: "center" }),
+				contents: [
+					new Container({left: 2, right:2, top:10, contents: [
+						new Label({left: 0, style: infoStyle, string: profile.cTrick}),
+						new Label({right: 0, style: infoStyle, string: profile.consistentTrick[profile.cTrick]})
+					]})
+				]})
+		]}),
+		new Line({top: 10, left: 20, right: 20, contents: [
+			new infoBox({left: 0, right: 10, top: 0, titleHeight:25, titleStyle: new Style({font: "20px", horizontal: "center", color:"black" }),
+				title: "Unique Tricks", contents: [new Label({top: 10, style: infoStyle, string: profile.uniqueTricks})]}),
+			new infoBox({right: 0, left: 0, top: 0, titleHeight:25, title: "Most Difficult Trick",
+				titleStyle: new Style({font: "16px", color:"black", horizontal: "center" }),
+				contents: [
+					new Container({left: 2, right:2, top:10, contents: [
+						new Label({left: 0, style: infoStyle, string: profile.dTrick}),
+						new Label({right: 0, style: infoStyle, string: profile.difficultTrick[profile.dTrick]})
+					]})
+				]})
 		]}),
 	]});
 	
