@@ -71,9 +71,8 @@ var scrollContainer = Container.template(function($){return {
   
 Handler.bind("/loadGame", {
 	onInvoke: function(handler, message){
-		createGame(JSON.parse(message.requestText));
-		application.add(gameCon);
 		application.remove(homeCon);
+		createGame(JSON.parse(message.requestText));
 	},
 	onComplete: function(handler, message, json){
 	}
@@ -94,25 +93,6 @@ Handler.bind("/createGame", {
 var myTurnTable = new Table({string: "Your Turn", left: 5, right:5, top: 5});
 var opTurnTable = new Table({string: "Opponent's Turn", left: 5, right:5, top: 35});  
 
-var homeCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
-	new scrollContainer({top: 55, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
-	new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
-	new Container({bottom: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
-	new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteSkin, contents:[
-		new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "green"}),
-			behavior: Object.create(Container.prototype, {
-				onTouchEnded: { value: function(content, id, x, y, ticks){
-					content.invoke(new Message("/createGame"));
-				}}
-			}),
-			contents:[ new Line({contents: [
-   				new Thumbnail({width: 20, height: 20, aspect: 'fit', url: "resources/add.png" }),
-   				new Label({style: labelStyle, width: labelStyle.measure("Create Game").width, string: "Create Game", left: 10})
-   			]})
-		]})
-	]})
-]});
-
 function homeTableBuilder(element, index, array) {
 	if (element.myTurn){
 		myTurnTable.last.add(new homeTableRow(element));
@@ -121,8 +101,28 @@ function homeTableBuilder(element, index, array) {
 	}
 }
 
-function createHome(application) {
-	user.games.forEach(homeTableBuilder);
+var homeCon;
+
+function createHome() {
+	user.games.forEach(homeTableBuilder); 
+	homeCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
+		new scrollContainer({top: 55, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
+		new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
+		new Container({bottom: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
+		new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteSkin, contents:[
+			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "green"}),
+				behavior: Object.create(Container.prototype, {
+					onTouchEnded: { value: function(content, id, x, y, ticks){
+						content.invoke(new Message("/createGame"));
+					}}
+				}),
+				contents:[ new Line({contents: [
+	   				new Thumbnail({width: 20, height: 20, aspect: 'fit', url: "resources/add.png" }),
+	   				new Label({style: labelStyle, width: labelStyle.measure("Create Game").width, string: "Create Game", left: 10})
+	   			]})
+			]})
+		]})
+	]});
 	application.add(homeCon);
 }
 

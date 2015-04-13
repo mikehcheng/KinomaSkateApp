@@ -36,6 +36,18 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 		]})
 	]
 }});
+/*#########################################
+				HANDLERS
+#########################################*/
+
+Handler.bind("/trackRun", {
+	onInvoke: function(handler, message){
+		trace("Tracking Run: Please enter proper behavior here...\n")
+	},
+	onComplete: function(handler, message, json){
+	}
+});
+
 
 /*#########################################
 		GAME SCREEN INSTANTIATION
@@ -76,4 +88,6 @@ function createGame(game){
 
 	game.myRuns.forEach(function(e, i){e["index"] = i+1; myRunsTable.last.add(new gameTableRow(e))});
 	game.opRuns.forEach(function(e, i){e["index"] = i+1; opRunsTable.last.add(new gameTableRow(e))});
+	
+	application.add(gameCon);
 }
