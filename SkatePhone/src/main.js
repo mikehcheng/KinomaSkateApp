@@ -42,66 +42,6 @@ include	("runOverview/run.js");
 
 var map = new Texture('resources/map.png');
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
-
-
-var backpic = new Texture('resources/back.png');
-var backpicSkin = new Skin(backpic, {x:0,y:0,height:58,width:53});
-var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
-	index: $.index,
-    top:2, bottom:2, left: 5,  right: 5, height:50, skin: whiteSkin,
-    contents: [
-        new Label({left:0, right:0, height:45, skin: backpicSkin})
-    ],
-     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-     	onTap: {value : function(button){
-     		
-        	if (this.data.index == 3){
-        		application.remove(mainColumnChoose);
-        		application.add(mainColumnHome);
-        	}
-        	if (this.data.index == 4){
-        		application.remove(mainColumnOpp);
-        		application.add(mainColumnChoose);
-        	}
-        	if (this.data.index == 5){
-        		application.remove(mainColumnFriendList);
-        		application.add(mainColumnOpp);
-        	}
-        	if (this.data.index == 6){
-        		application.remove(mainColumnCommList);
-        		application.add(mainColumnOpp);
-        	}
-        	/*if (this.data.index == 7){
-        		application.remove(mainColumnNewGame);
-        		application.add(mainColumnHome);
-        	}*/
-        	
-        	/*if (this.data.index == 9){
-        		application.remove(mainColumnActiveOverview);
-        		application.add(mainColumnHome);
-        	}*/
-        	/*if (this.data.index == 10){
-        		application.remove(mainColumnFinRun);
-        		application.add(mainColumnHome);
-        	}*/
-        	/*if (this.data.index == 11){
-        		application.remove(mainColumnActiveGame2);
-        		application.add(mainColumnHome);
-        	
-        	}*/
-        	
-        	if (this.data.index == 13){
-        		application.remove(mainColumnTrick2);
-        		application.add(mainColumnTrick1);
-        	}
-        	if (this.data.index == 14){
-        		application.remove(mainColumnTrick3);
-        		application.add(mainColumnTrick2);	
-        	}
-        	
-        }}
-     })
- }})
  
 include ("gameOpponentOverview/createGameOpponent.js");
 include ("gameOpponentOverview/opponentLists.js");
@@ -142,13 +82,7 @@ var popped = false;
 var mainColumnMap = new Column({
     left: 0, right: 0, top: 0, bottom: 0, active: true, skin: blackSkin,
     contents: [
-        new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                
-                new Label({top: 10 ,string: "NEAREST SKATE PARKS", style: titleStyle})
-                
-			]
-		}),    	
+        new headerBarTemplate({header:"NEAREST SKATE PARKS"}),
     	new Line({top:3, left:0, right:0, height:430, skin: mapSkin, active:true, name: "map",
     		/*contents:[
     			n

@@ -31,6 +31,59 @@ var screenDictionary = {
 	15: "profileCon",
 };
 
+var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
+	index: $.index,
+    top:0, bottom:0, height:50, width: 30,
+    contents: [
+        new Label({left:0, right:0, top:0, bottom:0, skin: graySkin, style:titleStyle, string:"<"})
+    ],
+     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+     	onTap: {value : function(button){
+        	if (this.data.index == 3){
+        		application.remove(mainColumnChoose);
+        		createHome();
+        	}
+        	if (this.data.index == 4){
+        		application.remove(mainColumnOpp);
+        		application.add(mainColumnChoose);
+        	}
+        	if (this.data.index == 5){
+        		application.remove(mainColumnFriendList);
+        		application.add(mainColumnOpp);
+        	}
+        	if (this.data.index == 6){
+        		application.remove(mainColumnCommList);
+        		application.add(mainColumnOpp);
+        	}
+        	if (this.data.index == 7){
+        		application.remove(gameCon);
+        		createHome();
+        	}
+        	if (this.data.index == 8){
+        		application.remove(activeRunCon);
+        		createGame(this.data.game);
+        	}
+        	if (this.data.index == 10){
+        		application.remove(inactiveRunCon);
+        		createGame(this.data.game);
+        	}
+        }}
+    })
+}})
+
+var headerBarTemplateWithBack = Line.template(function($) { return {
+	top:0, left:0, right:0, height:50, contents: [
+		new backButtonTemplate({index: $.index, game: (('game' in $) ? $.game : undefined)}),
+		new Label({skin: graySkin, top:0, bottom:0,left:0, right:0, style: titleStyle, string: $.header})
+	]
+}});
+
+var headerBarTemplate = Line.template(function($) { return {
+	top:0, left:0, right:0, height:50, contents: [
+		new Label({skin: graySkin, top:0, bottom:0, left:0, right:0, style: titleStyle, string: $.header})
+	]
+}});
+
 var homepic = new Texture('resources/homeIcon.png');
 var homepicSkin = new Skin(homepic, {x:0,y:0, height:58, width:53});
 var homepicselected = new Texture('resources/homeIconSelected.png');

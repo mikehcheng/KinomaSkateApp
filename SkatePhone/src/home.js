@@ -103,7 +103,7 @@ function createHome() {
 	opTurnTable = new Table({string: "Opponent's Turn", left: 5, right:5, top: 35}); 
 	homeCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
 		new scrollContainer({top: 50, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
-		new Container({top: 0, left: 0, right: 0, height: 50, skin:new Skin({fill: "black"})}),
+		new headerBarTemplate({header:"ACTIVE GAMES"}),
 		new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteSkin, contents:[
 			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "green"}),
 				behavior: Object.create(Container.prototype, {
