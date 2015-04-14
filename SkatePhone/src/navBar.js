@@ -20,6 +20,10 @@ INDEXES FOR THE SCREENS (for buttons)
 var screenDictionary = {
 	1: "mainColumnMap",
 	2: "homeCon",
+	3: "mainColumnChoose",
+	4: "mainColumnOpp",
+	5: "mainColumnFriendList",
+	6: "mainColumnCommList",
 	7: "gameCon",
 	8: "activeRunCon",
 	10: "inactiveRunCon",

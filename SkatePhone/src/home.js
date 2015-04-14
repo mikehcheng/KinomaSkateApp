@@ -73,16 +73,13 @@ Handler.bind("/loadGame", {
 		application.remove(homeCon);
 		createGame(JSON.parse(message.requestText));
 	},
-	onComplete: function(handler, message, json){
-	}
 });
 
 Handler.bind("/createGame", {
 	onInvoke: function(handler, message){
-		trace("Creating Game: Please enter proper behavior here...\n")
+		application.remove(homeCon);
+		application.add(mainColumnChoose);
 	},
-	onComplete: function(handler, message, json){
-	}
 });
   
 /*#########################################

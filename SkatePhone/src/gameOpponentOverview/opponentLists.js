@@ -52,15 +52,11 @@ var cathyButtonTemplate = BUTTONS.Button.template(function($){ return{
 //Friends list 5
 var dropDown = new Line({top:20, left:0, right:0, height:50, skin:whiteSkin, active:true, 
 			contents:[	
-				new Picture({aspect: "fill", height:25, width: 90, top: 12, left: 110, url: "dropDown.png"}),
+				new Picture({aspect: "fill", height:25, width: 90, top: 12, left: 110, url: "resources/dropDown.png"}),
 				//menuButton
 			]	
     	}),   
 var cathyButton = new cathyButtonTemplate({index: 5});
-var homeButton5 = new homeButtonTemplate({index: 5});
-var profButton5 = new profButtonTemplate({index: 5});
-var mapButton5 = new mapButtonTemplate({index: 5});
-var tutButton5 = new tutButtonTemplate({index: 5});
 var backButton5 = new backButtonTemplate({index:5});
 var mainColumnFriendList = new Column({
  left: 0, right: 0, top: 0, bottom: 0, 
@@ -127,16 +123,7 @@ var mainColumnFriendList = new Column({
     		]
     	}),
     	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton5,
-    			profButton5,
-    			mapButton5,
-    			tutButton5
-    		]
-    	})
-   
+    	new navBar({index:5})
     ]
 })
   
@@ -145,7 +132,7 @@ var mainColumnFriendList = new Column({
 //Community List 6
 var dropDownComm = new Line({top:20, left:0, right:0, height:50, skin:whiteSkin, active:true, 
 			contents:[	
-				new Picture({aspect: "fill", height:25, width: 90, top: 12, left: 110, url: "dropDown.png"}),
+				new Picture({aspect: "fill", height:25, width: 90, top: 12, left: 110, url: "resources/dropDown.png"}),
 				//menuButton
 			]	
     	}),  
@@ -220,16 +207,7 @@ var mainColumnCommList = new Column({
     		]
     	}),
     	
-    	
-    	  	
-    	new Line({top:3, bottom:0, left:0, right:0, height: 57, skin: graySkin,
-    		contents:[
-    			homeButton6,
-    			profButton6,
-    			mapButton6,
-    			tutButton6
-    		]
-    	})
+    	new navBar({index:6})
    
     ]
 })
