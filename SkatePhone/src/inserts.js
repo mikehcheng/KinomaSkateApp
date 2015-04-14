@@ -20,8 +20,7 @@ function clearBasics() {
 			mainColumnTrick1.remove(grindInsert);		
 			mainColumnTrick1.remove(boardInsert);	
 			mainColumnTrick1.remove(manualInsert);	
-			mainColumnTrick1.remove(second);	
-			
+			mainColumnTrick1.remove(originalNav);
 }
 
 var basicLabel = new Line({top: 40, left: 0, right:0, height: 50, skin: graySkin,

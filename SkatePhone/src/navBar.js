@@ -27,16 +27,14 @@ var screenDictionary = {
 	15: "profileCon",
 };
 
-var iconTemplate = Skin.template(function($) { return {
-	texture: new Texture($.source), bounds: {x:0, y:0, height:58, width:53}
-}});
-
 var homepic = new Texture('resources/homeIcon.png');
 var homepicSkin = new Skin(homepic, {x:0,y:0, height:58, width:53});
+var homepicselected = new Texture('resources/homeIconSelected.png');
+var homepicSkinSelected = new Skin(homepicselected, {x:0,y:0, height:58, width:53});
 var homeButtonTemplate = BUTTONS.Button.template(function($){ return{
     top:2, bottom:2, left: 5,  right: 5, height:50, skin: whiteSkin,
     contents: [
-        new Label({left:0, right:0, height:45, skin: homepicSkin})
+        new Label({left:0, right:0, height:45, skin: (($.screenIndex == 2)? homepicSkinSelected : homepicSkin)})
     ],
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	screenIndex: $.screenIndex,
@@ -52,10 +50,12 @@ var homeButtonTemplate = BUTTONS.Button.template(function($){ return{
  
 var profpic = new Texture('resources/proficon.png');
 var profpicSkin = new Skin(profpic, {x:0,y:0, height:58, width:53});
+var profpicselected = new Texture('resources/proficonSelected.png');
+var profpicSkinSelected = new Skin(profpicselected, {x:0,y:0, height:58, width:53});
 var profButtonTemplate = BUTTONS.Button.template(function($){ return{
     top:2, bottom:2, left: 5,  right: 5, height:50, skin: whiteSkin,
     contents: [
-        new Label({left:0, right:0, bottom:3, height:42, skin: profpicSkin})
+        new Label({left:0, right:0, bottom:3, height:42, skin: (($.screenIndex == 15)? profpicSkinSelected : profpicSkin)})
     ],
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	screenIndex: $.screenIndex,
@@ -72,10 +72,12 @@ var profButtonTemplate = BUTTONS.Button.template(function($){ return{
  
 var mappic = new Texture('resources/mapicon.png');
 var mappicSkin = new Skin(mappic, {x:0,y:0, height:58, width:53});
+var mappicselected = new Texture('resources/mapiconSelected.png');
+var mappicSkinSelected = new Skin(mappicselected, {x:0,y:0, height:58, width:53});
 var mapButtonTemplate = BUTTONS.Button.template(function($){ return{
     top:2, bottom:2, left: 5,  right: 5, height:50, skin: whiteSkin,
     contents: [
-        new Label({left:0, right:0, height:45, skin: mappicSkin})
+        new Label({left:0, right:0, height:45, skin: (($.screenIndex == 1)? mappicSkinSelected : mappicSkin)})
     ],
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	screenIndex: $.screenIndex,
@@ -92,10 +94,12 @@ var mapButtonTemplate = BUTTONS.Button.template(function($){ return{
  
 var tutpic = new Texture('resources/bookicon.png');
 var tutpicSkin = new Skin(tutpic, {x:0,y:0, height:58, width:53});
+var tutpicselected = new Texture('resources/bookiconSelected.png');
+var tutpicSkinSelected = new Skin(tutpicselected, {x:0,y:0, height:58, width:53});
 var tutButtonTemplate = BUTTONS.Button.template(function($){ return{
     top:2, bottom:2, left: 8,  right: 8, height:50, skin: whiteSkin,
     contents: [
-        new Label({left:0, right:0, top:7, bottom: 1,height:52, skin: tutpicSkin})
+        new Label({left:0, right:0, top:7, bottom: 1,height:52, skin: (($.screenIndex == 12)? tutpicSkinSelected : tutpicSkin)})
     ],
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	screenIndex: $.screenIndex,
