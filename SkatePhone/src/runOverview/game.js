@@ -116,8 +116,9 @@ function createGame(game){
 		new navBar({index: 7})
 	]});
 
-	game.myRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = "My"; myRunsTable.last.add(new gameTableRow(e))});
-	game.opRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = game.opName + "\'s"; opRunsTable.last.add(new gameTableRow(e))});
+	trace(JSON.stringify(game));
+	game.myRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = "My"; e["gameIndex"] = game.gameIndex; myRunsTable.last.add(new gameTableRow(e))});
+	game.opRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = game.opName + "\'s"; e["gameIndex"] = game.gameIndex; opRunsTable.last.add(new gameTableRow(e))});
 	
 	application.add(gameCon);
 }

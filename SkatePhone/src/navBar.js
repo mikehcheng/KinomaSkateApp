@@ -61,11 +61,11 @@ var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
         	}
         	if (this.data.index == 8){
         		application.remove(activeRunCon);
-        		createGame(this.data.game);
+        		createGame(user.games[this.data.game]);
         	}
         	if (this.data.index == 10){
         		application.remove(inactiveRunCon);
-        		createGame(this.data.game);
+        		createGame(user.games[this.data.game]);
         	}
         }}
     })

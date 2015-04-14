@@ -93,8 +93,11 @@ var timerBehavior = Behavior.template({
 			container.style = finishedStyle;
 		if (timerValue == 0) {
 			container.stop();
-			currentGame.myTurn = 0;
-			//activeRunCon.backButton.visible = true; //when implemented
+			user.games[currentGame.gameIndex].myTurn = 0;
+			user.games[currentGame.gameIndex].myRuns.push(currentRun);
+			user.games[currentGame.gameIndex].myScore += currentRun.score;
+			headerLabel.string = "Run " + runNumber.toString() + " Finished";
+			runBackButton.visible = true; //when implemented
 		}
 		container.string = timeString(timerValue);
 	},
@@ -109,17 +112,22 @@ function timeString(time) {
 }
 
 // BUILDING RUNS
+var runBackButton;
+var headerLabel;
+var runNumber;
 
 function createActiveRun(game) {
-	var runNumber = game.myRuns.length + 1;
+	runNumber = game.myRuns.length + 1;
 	trickTable = new noLabelTable({left: 10, right:10, top: 10, bottom: 10});
 	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:0})
 	currentRun = {score:0, moves: [], video: ""};
 	currentGame = game;
-	game.myRuns.push(currentRun);
-	var titleString = "Tracking Run " + runNumber.toString();
-	var headerBar = new headerBarTemplateWithBack({index:8, game: game, header: titleString, 
+	var titleString = "Tracking Run " + runNumber.toString() + "...";
+	var headerBar = new headerBarTemplateWithBack({index:8, game: game.gameIndex, header: titleString, 
 		tStyle: new Style({ font: "bold 25px", color:"white", horizontal:"center"}) });
+	runBackButton = headerBar.first;
+	runBackButton.visible = false;
+	headerLabel = headerBar[1];
 	
 	activeRunCon = new Container({
 		top:0, bottom:0, left:0, right:0, skin: whiteSkin, contents: [
@@ -168,7 +176,7 @@ function createInactiveRun(game) {
 	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:0})
 	scoreField.score.string = game.score.toString();
 	var titleString = game.player +	" Run " + game.index.toString();
-	var headerBar = new headerBarTemplateWithBack({index:10, game: game, header: titleString, 
+	var headerBar = new headerBarTemplateWithBack({index:10, game: game.gameIndex, header: titleString, 
 		tStyle: new Style({ font: "bold 25px", color:"white", horizontal:"center"}) });
 	
 	inactiveRunCon = new Container({

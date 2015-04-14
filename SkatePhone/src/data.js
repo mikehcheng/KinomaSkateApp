@@ -13,6 +13,7 @@ var user = {
 	},
 	games: [
 		{
+			gameIndex: 0,
 			opName: "Michael",
 			opPic: "resources/mike.jpg",
 			myScore: 10,
@@ -34,6 +35,7 @@ var user = {
 			],
 		},
 		{
+			gameIndex: 1,
 			opName: "Mark",
 			opPic: "resources/mike.jpg",
 			myScore: 14,
@@ -55,6 +57,7 @@ var user = {
 			],
 		},
 		{
+			gameIndex: 2,
 			opName: "Rahul",
 			opPic: "resources/mike.jpg",
 			myScore: 31,
@@ -81,6 +84,7 @@ var user = {
 			],
 		},
 		{
+			gameIndex: 3,
 			opName: "Mike",
 			opPic: "resources/mike.jpg",
 			myScore: 8,
@@ -96,6 +100,7 @@ var user = {
 			opRuns: [],
 		},
 		{
+			gameIndex: 4,
 			opName: "Sean",
 			opPic: "resources/mike.jpg",
 			myScore: 10,
