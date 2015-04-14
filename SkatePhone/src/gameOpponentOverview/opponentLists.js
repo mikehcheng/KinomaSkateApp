@@ -1,6 +1,5 @@
 var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
-var THEME = require("themes/flat/theme");
 var BUTTONS = require("controls/buttons");
 var SLIDERS = require('controls/sliders'); 
 

@@ -11,15 +11,8 @@ var blueSkin = new Skin({ fill: "#4169E1"});
 var titleStyle = new Style( { font: "bold 25px", color:"white", horizontal:"center"});
 var labelStyle = new Style( { font: "20px", color:"black" } );
 var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
-
-include	("trickButtons.js");
-include	("inserts.js");
-include ("data.js");
-include ("home.js");
-include ("profile.js");
-include ("runOverview/game.js");
-include	("runOverview/run.js");
-include	("navBar.js");
+var miniTitleStyle = new Style( { font: "bold 28px", color:"black"} );
+var textStyle = new Style( { font: "bold 25px", color:"blue"} );
 
 deviceURL = "";
 var receivedTrick = undefined;
@@ -37,6 +30,15 @@ Handler.bind("/discover", Behavior({
 		handler.invoke(new Message("/startPolling"));
 	},
 }));
+
+include	("navBar.js");
+include	("trickButtons.js");
+include	("inserts.js");
+include ("data.js");
+include ("home.js");
+include ("profile.js");
+include ("runOverview/game.js");
+include	("runOverview/run.js");
 
 var map = new Texture('resources/map.png');
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
@@ -100,6 +102,9 @@ var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
         }}
      })
  }})
+ 
+include ("gameOpponentOverview/createGameOpponent.js");
+include ("gameOpponentOverview/opponentLists.js");
 
 //map screen which you go to if you click on the map button
 
@@ -182,85 +187,16 @@ var mainColumnMap = new Column({
 // createHome()
 
 // choose game type 3
-var backButton3 = new backButtonTemplate({index:3});
-var mainColumnChoose = new Column({
- 	left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton3,
-                 new Label({top: 10, left: 5,string: "CHOOSE GAME", style: titleStyle})
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	new navBar({index: 3})
-    ]
-})
-
-
+// in createGameOpponent.js
 
 //choose opponent 4
-var backButton4 = new backButtonTemplate({index:4});
-var mainColumnOpp = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton4,
-                 new Label({top: 10, left: 5,string: "CHOOSE OPPONENT", style: titleStyle})
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	new navBar({index: 4})
-    ]
-})
+// in createGameOpponent.js
 
 //Friends list 5
-var backButton5 = new backButtonTemplate({index:5});
-var mainColumnFriendList = new Column({
- left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton5,
-                 new Label({top: 10, left: 5,string: "FRIENDS", style: titleStyle})
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	new navBar({index: 5})
-   
-    ]
-})
+// in opponentLists.js
 
 //Community List 6
-var backButton6 = new backButtonTemplate({index:6});
-var mainColumnCommList = new Column({
- left: 0, right: 0, top: 0, bottom: 0, 
-	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton6,
-                 new Label({top: 10, left: 5,string: "COMMUNITY", style: titleStyle})
-                
-			]
-		}),    	
-    	new Line({top:3, left:0, right:0, height:430, active:true, 
-    			
-    	}),
-    	
-    	new navBar({index: 6})
-   
-    ]
-})
+// in opponentLists.js
 
 // New Game 7
 // reference with gameCon

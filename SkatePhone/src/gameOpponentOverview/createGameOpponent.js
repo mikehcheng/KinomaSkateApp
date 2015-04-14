@@ -1,6 +1,5 @@
 var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
-var THEME = require("themes/flat/theme");
 var BUTTONS = require("controls/buttons");
 var SLIDERS = require('controls/sliders'); 
 
@@ -55,12 +54,12 @@ var backButton3 = new backButtonTemplate({index:3});
 var mainColumnChoose = new Column({
  	left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
+	    new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
                 backButton3,
                  new Label({top: 10, left: 5,string: "CHOOSE GAME", style: titleStyle})
 			]
-		}),    	
+		}), 	
     	new Line({top:3, left:0, right:0, height:142, active:true, 
     		contents:[
     			trickContestGameType,
@@ -76,9 +75,7 @@ var mainColumnChoose = new Column({
     			battleRoyaleGameType,
     		]
     	}),
-    	
-    	new navBar({index:3})
-   
+        new navBar({index:3})
     ]
 })
 
