@@ -60,13 +60,7 @@ var backButton5 = new backButtonTemplate({index:5});
 var mainColumnFriendList = new Column({
  left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
-	  	new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton5,
-                 new Label({top: 10, left: 5,string: "FRIENDS", style: titleStyle})
-                
-			]
-		}),    	
+	  	new headerBarTemplateWithBack({header:"FRIENDS", index:5}),   	
     	dropDown,     	
     	new Line({top:3, left:0, right:0, height:40, skin:whiteSkin, active:true, 
     		contents:[
@@ -143,13 +137,7 @@ var backButton6 = new backButtonTemplate({index:6});
 var mainColumnCommList = new Column({
  left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton6,
-                 new Label({top: 10, left: 5,string: "COMMUNITY", style: titleStyle})
-                
-			]
-		}),
+	  	new headerBarTemplateWithBack({header:"COMMUNITY", index:6}), 
 		dropDownComm,    	
     	new Line({top:3, left:0, right:0, height:40, skin:whiteSkin, active:true, 
     		contents:[

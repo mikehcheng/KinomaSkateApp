@@ -50,16 +50,10 @@ var skateGameTemplate = BUTTONS.Button.template(function($){ return{
 var trickContestGameType = new trickContestTemplate({index: 3});
 var skateGameType = new skateGameTemplate({index: 3});
 var battleRoyaleGameType = new battleRoyaleTemplate({index: 3});
-var backButton3 = new backButtonTemplate({index:3});
 var mainColumnChoose = new Column({
  	left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
-	    new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton3,
-                 new Label({top: 10, left: 5,string: "CHOOSE GAME", style: titleStyle})
-			]
-		}), 	
+	    new headerBarTemplateWithBack({header:"CHOOSE GAME", index:3}),	
     	new Line({top:3, left:0, right:0, height:142, active:true, 
     		contents:[
     			trickContestGameType,
@@ -116,12 +110,7 @@ var backButton4 = new backButtonTemplate({index:4});
 var mainColumnOpp = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
-	  new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                backButton4,
-                 new Label({top: 10, left: 5,string: "CHOOSE OPPONENT", style: titleStyle})
-			]
-		}),    	
+	  	new headerBarTemplateWithBack({header:"OPPONENTS", index:4}), 	
     	new Line({top:3, left:0, right:0, height:212, active:true, 
     		contents:[
     			//new friendsButtonTemplate({index: 4}),

@@ -117,6 +117,9 @@ function createActiveRun(game) {
 	currentRun = {score:0, moves: [], video: ""};
 	currentGame = game;
 	game.myRuns.push(currentRun);
+	var titleString = "Tracking Run " + runNumber.toString();
+	var headerBar = new headerBarTemplateWithBack({index:8, game: game, header: titleString, 
+		tStyle: new Style({ font: "bold 25px", color:"white", horizontal:"center"}) });
 	
 	activeRunCon = new Container({
 		top:0, bottom:0, left:0, right:0, skin: whiteSkin, contents: [
@@ -153,7 +156,7 @@ function createActiveRun(game) {
 			new videoContainer(),
 			
 			// placeholder for top bar
-			new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
+			headerBar,
 		]
 	})
 	
@@ -165,7 +168,8 @@ function createInactiveRun(game) {
 	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:0})
 	scoreField.score.string = game.score.toString();
 	var titleString = game.player +	" Run " + game.index.toString();
-	trace("Header: " + titleString + "\n");
+	var headerBar = new headerBarTemplateWithBack({index:10, game: game, header: titleString, 
+		tStyle: new Style({ font: "bold 25px", color:"white", horizontal:"center"}) });
 	
 	inactiveRunCon = new Container({
 		top:0, bottom:0, left:0, right:0, skin: whiteSkin, contents: [
@@ -201,7 +205,7 @@ function createInactiveRun(game) {
 			new videoContainer(),
 			
 			// placeholder for top bar
-			new Container({top: 0, left: 0, right: 0, height: 55, skin:new Skin({fill: "black"})}),
+			headerBar,
 		]
 	})
 	

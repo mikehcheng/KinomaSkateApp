@@ -64,6 +64,20 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 		GAME SCREEN INSTANTIATION
 #########################################*/
 
+var specializedBackButton = BUTTONS.Button.template(function($){ return{
+    left:0,top:0, bottom:0, height:85, width: 20,
+    contents: [
+        new Label({left:0, right:0, top:0, bottom:0, skin: new Skin({fill: "#D3D3D3"}), 
+            style: new Style( {font: "bold 25px", color:"white", horizontal:"left"} ) , string:"<"})
+    ],
+    behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+     	onTap: {value : function(button) {
+        	application.remove(gameCon);
+        	createHome();
+  		}}
+  	})
+}})
+
 function createGame(game){
 	var buttonString = (game.myTurn) ? "Track Your Run" : "Wating for Opponent";
 	var buttonSkin = (game.myTurn) ? new Skin({fill: "green"}) : new Skin({fill: "gray"});
@@ -76,9 +90,11 @@ function createGame(game){
 			contents: [myRunsTable, opRunsTable]})]}),
 		new Container({skin:new Skin({fill: "#D3D3D3"}), top: 0, left:0, right:0, height: 85, contents:[
 			new Line({contents:[
+				new specializedBackButton(),
 				new playerScore({pic: user.profile.pic, name: "You", score: game.myScore, left: 10, right: 0}),
 				new Label({left:10, right:10, width: labelStyle.measure("vs").width, string:"vs", style:labelStyle}),
-				new playerScore({pic: game.opPic, name: game.opName, score: game.opScore, left: 0, right: 10})
+				new playerScore({pic: game.opPic, name: game.opName, score: game.opScore, left: 0, right: 10}),
+				new Container({right:0, top:0, bottom:0, width:20})
 			]}),
 		]}),
 		new Container({left: 0, right:0, bottom: 65, height: 50, skin: whiteSkin, contents:[

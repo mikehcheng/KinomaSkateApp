@@ -33,9 +33,9 @@ var screenDictionary = {
 
 var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
 	index: $.index,
-    top:0, bottom:0, height:50, width: 30,
+    left:0,top:0, bottom:0, height:50, width: 20,
     contents: [
-        new Label({left:0, right:0, top:0, bottom:0, skin: graySkin, style:titleStyle, string:"<"})
+        new Label({left:0, right:0, top:0, bottom:0, skin: graySkin, style:backButtonStyle, string:"<"})
     ],
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	onTap: {value : function(button){
@@ -72,15 +72,16 @@ var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
 }})
 
 var headerBarTemplateWithBack = Line.template(function($) { return {
-	top:0, left:0, right:0, height:50, contents: [
+	top:0, left:0, right:0, height:50, skin: graySkin, contents: [
 		new backButtonTemplate({index: $.index, game: (('game' in $) ? $.game : undefined)}),
-		new Label({skin: graySkin, top:0, bottom:0,left:0, right:0, style: titleStyle, string: $.header})
+		new Label({top:0, bottom:0,left:50, right:50, style: (('tStyle' in $) ? $.tStyle : titleStyle), string: $.header}),
+		new Container({right:0, top:0, bottom:0, width:20})
 	]
 }});
 
 var headerBarTemplate = Line.template(function($) { return {
-	top:0, left:0, right:0, height:50, contents: [
-		new Label({skin: graySkin, top:0, bottom:0, left:0, right:0, style: titleStyle, string: $.header})
+	top:0, left:0, right:0, height:50, skin: graySkin, contents: [
+		new Label({top:0, bottom:0, left:0, right:0, style: titleStyle, string: $.header})
 	]
 }});
 

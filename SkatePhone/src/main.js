@@ -13,6 +13,7 @@ var labelStyle = new Style( { font: "20px", color:"black" } );
 var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
 var miniTitleStyle = new Style( { font: "bold 28px", color:"black"} );
 var textStyle = new Style( { font: "bold 25px", color:"blue"} );
+var backButtonStyle = new Style( {font: "bold 25px", color:"white", horizontal:"right"} );
 
 deviceURL = "";
 var receivedTrick = undefined;
