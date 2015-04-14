@@ -24,7 +24,7 @@ var screenDictionary = {
 	8: "activeRunCon",
 	10: "inactiveRunCon",
 	12: "mainColumnTrick1",
-	15: "profileCon", //not implemented
+	15: "profileCon",
 };
 
 var iconTemplate = Skin.template(function($) { return {
@@ -32,7 +32,7 @@ var iconTemplate = Skin.template(function($) { return {
 }});
 
 var homepic = new Texture('resources/homeIcon.png');
-var homepicSkin = new Skin.template(homepic, {x:0,y:0, height:58, width:53});
+var homepicSkin = new Skin(homepic, {x:0,y:0, height:58, width:53});
 var homeButtonTemplate = BUTTONS.Button.template(function($){ return{
     top:2, bottom:2, left: 5,  right: 5, height:50, skin: whiteSkin,
     contents: [

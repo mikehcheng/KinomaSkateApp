@@ -27,10 +27,7 @@ var BasicButton = BUTTONS.Button.template(function($){ return{
 			mainColumnTrick1.add(boardInsert);	
 			mainColumnTrick1.add(manualInsert);	
 			mainColumnTrick1.add(second);	
-			second.add(secondHome);	
-			second.add(secondProf);	
-			second.add(secondMap);	
-			second.add(secondTut);	
+			mainColumnTrick1.add(originalNav);
 					}},
 	})
 }});
@@ -145,11 +142,7 @@ var OllieButton = BUTTONS.Button.template(function($){ return{
 				mainColumnTrick1.add(ollieText4);
 				mainColumnTrick1.add(ollieText5);
 				mainColumnTrick1.add(ollieText6);
-				mainColumnTrick1.add(third);
-				third.add(thirdHome);	
-				third.add(thirdProf);	
-				third.add(thirdMap);	
-				third.add(thirdTut);				
+				mainColumnTrick1.add(originalNav);			
 		}},
 	})
 }});

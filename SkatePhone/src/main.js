@@ -8,7 +8,7 @@ var blackSkin = new Skin({ fill: "black"});
 var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
-var titleStyle = new Style( { font: "bold 25px", color:"white"});
+var titleStyle = new Style( { font: "bold 25px", color:"white", horizontal:"center"});
 var labelStyle = new Style( { font: "20px", color:"black" } );
 var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
 
@@ -140,7 +140,7 @@ var mainColumnMap = new Column({
         new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
                 
-                new Label({top: 10, left: 35,string: "NEAREST SKATE PARKS", style: titleStyle})
+                new Label({top: 10 ,string: "NEAREST SKATE PARKS", style: titleStyle})
                 
 			]
 		}),    	
