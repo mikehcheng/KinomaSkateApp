@@ -21,7 +21,7 @@ var separatorSkin = new Skin({ fill: 'blue',});
 			GENERIC CONSTRUCTORS
 #########################################*/
 
-var Table = Column.template(function($) { return { left: $.left, right: $.right, top: $.top, 
+var Table = Column.template(function($) { return { left: $.left, right: $.right, top: $.top, width: (('width' in $) ? $.width : undefined),
 	contents: [
 		Label($, {left: 0, bottom: 10, style: labelStyle, string: $.string}),
 		Column($, {left: 0, right: 0, top: 0, skin: (("tableSkin" in $) ? $.tableSkin: tableSkin), contents: []})

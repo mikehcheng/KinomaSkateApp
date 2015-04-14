@@ -76,12 +76,15 @@ function createGame(game){
 	var buttonString = (game.myTurn) ? "Track Your Run" : "Wating for Opponent";
 	var buttonSkin = (game.myTurn) ? new Skin({fill: "green"}) : new Skin({fill: "gray"});
 	var customTableSkin = new Skin({stroke:"black", borders: {top: 2, bottom: 2, left: ((game.myTurn) ? 2 : 0), right: ((game.myTurn) ? 0 : 2)}});
-	var myRunsTable = new Table({string: "", left: 0, right: 0, top: 0, tableSkin: ((game.myTurn) ? customTableSkin : tableSkin)});
-	var opRunsTable = new Table({string: "", right: 0, left: 0, top: 0, tableSkin: ((game.myTurn) ? tableSkin : customTableSkin)});
+	var myRunsTable = new Table({string: "", width: 152, left: 0, top: 0, tableSkin: ((game.myTurn) ? customTableSkin : tableSkin)});
+	var opRunsTable = new Table({string: "", width: 151, left: 0, top: 0, tableSkin: ((game.myTurn) ? tableSkin : customTableSkin)});
 	
 	gameCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
 		new scrollContainer({top: 85, bottom: 50, contents: [new Line({left: 10, right: 10, top:0, bottom: 0, 
-			contents: [myRunsTable, opRunsTable]})]}),
+			contents: [
+				myRunsTable, 
+				//new Container({left:0, right:0}),
+				opRunsTable]})]}),
 		new Container({skin:new Skin({fill: "#D3D3D3"}), top: 0, left:0, right:0, height: 85, contents:[
 			new Line({contents:[
 				new specializedBackButton(),
@@ -109,8 +112,7 @@ function createGame(game){
 		]}),
 		new navBar({index: 7})
 	]});
-
-	trace(JSON.stringify(game));
+	
 	game.myRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = "My"; e["gameIndex"] = game.gameIndex; myRunsTable.last.add(new gameTableRow(e))});
 	game.opRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = game.opName + "\'s"; e["gameIndex"] = game.gameIndex; opRunsTable.last.add(new gameTableRow(e))});
 	

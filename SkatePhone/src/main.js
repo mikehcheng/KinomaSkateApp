@@ -49,10 +49,10 @@ include ("gameOpponentOverview/opponentLists.js");
 
 //map screen which you go to if you click on the map button
 
-var buttonText = new Style({font:"bold 15px", color:"#333333"});
+var buttonText = new Style({font:"bold 15px", color:"white"});
 var checkins = "50";
 var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
-  top:55, bottom:5, left:5, right:5, height:16,
+  top:55, bottom:15, left:15, right:15, skin: new Skin({fill:"#7FB27F"}),
   contents:[
     new Label({left:0, right:0, height:15, string:$.textForLabel, style:buttonText})
   ],
@@ -60,8 +60,8 @@ var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
     onTap: { value:  function(button){
       trace("Button was tapped.\n");
       checkins = (parseInt(checkins) + 1).toString();
-      popup.checkinnum.string = "Hot- " + checkins + " check-ins";
-    }}
+      popup.checkinnum.string = "Hot! - " + checkins + " check-ins";
+    }},
   })
 }});
 
