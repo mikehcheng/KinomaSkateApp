@@ -63,7 +63,7 @@ function createProfile(){
 					]})
 				]})
 		]}),
-		new Container({bottom: 55, left:0, right:0, skin: whiteSkin, height:25}),
+		new Container({height:101, bottom: 55, left:0, right:0, skin: whiteSkin}),
 		new navBar({index: 15})
 	]});
 	

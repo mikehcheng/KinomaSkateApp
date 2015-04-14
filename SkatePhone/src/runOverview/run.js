@@ -40,14 +40,15 @@ Handler.bind("/delay", {
 
 // RUN SCREEN ELEMENTS
 var noLabelTable = Column.template(function($) { return { left: $.left, right: $.right, top: $.top,
-	skin: new Skin({stroke: "black", borders: {top: 2, bottom: 2, right: 2, left: 2}}),
+	skin: whiteSkin,
 	contents: [
-		Column($, {left: 0, right: 0, top: 0, skin: (("tableSkin" in $) ? $.tableSkin: tableSkin), contents: []})
+		Column($, {left: 0, right: 0, top: 0, contents: []})
 	]
 }});
 
+var trickRowSkin = new Skin({stroke:"black", borders: {bottom:1}})
 var trickRow = Line.template(function($) { return {
-	top:0, bottom:0, left:0, right:0, height: 30, skin: boxSkin, contents: [
+	top:0, bottom:0, left:0, right:0, height: 30, skin: trickRowSkin, contents: [
 		Label($, {top:7, left: 5, width:280, skin:whiteSkin, style: smallLabelStyle, string: $.trick}),
 		Label($, {top:7, right: 5, width:10, skin:whiteSkin, style: infoStyle, string: trickDictionary[$.trick]})
 	]
@@ -124,16 +125,16 @@ function createActiveRun(game) {
 			
 			// box around list of tricks
 			new Column({left:0, right:0, top:135, bottom: 55, contents: [
-				new Container({left:9, right:9, top:0, height:10, 
+				new Container({left:8, right:8, top:0, height:10, 
 					skin: new Skin({fill: "white", borders: {bottom: 2}, stroke: "black"})}),
-				new Line({left:0, right:0, height:145, contents: [
-					new Container({left:0, height:145, width: 10, 
+				new Line({left:0, right:0, height:210, contents: [
+					new Container({left:0, height:210, width: 10, 
 						skin: new Skin({fill: "white", borders: {right: 2}, stroke: "black"})}),
 					new Container({left:10, right:10}),
-					new Container({right:0, height:145, width: 10, 
+					new Container({right:0, height:210, width: 10, 
 						skin: new Skin({fill: "white", borders: {left: 2}, stroke: "black"})}),
 				]}),
-				new Container({left:9, right:9, bottom: 0, height:10, 
+				new Container({left:8, right:8, bottom: 0, height:30, 
 					skin: new Skin({fill: "white", borders: {top: 2}, stroke: "black"}) })
 			]}),
 			
@@ -175,14 +176,14 @@ function createInactiveRun(game) {
 			new Column({left:0, right:0, top:135, bottom: 55, contents: [
 				new Container({left:9, right:9, top:0, height:10, 
 					skin: new Skin({fill: "white", borders: {bottom: 2}, stroke: "black"})}),
-				new Line({left:0, right:0, height:145, contents: [
-					new Container({left:0, height:145, width: 10, 
+				new Line({left:0, right:0, height:210, contents: [
+					new Container({left:0, height:210, width: 10, 
 						skin: new Skin({fill: "white", borders: {right: 2}, stroke: "black"})}),
 					new Container({left:10, right:10}),
-					new Container({right:0, height:145, width: 10, 
+					new Container({right:0, height:210, width: 10, 
 						skin: new Skin({fill: "white", borders: {left: 2}, stroke: "black"})}),
 				]}),
-				new Container({left:9, right:9, bottom: 0, height:10, 
+				new Container({left:9, right:9, bottom: 0, height:30, 
 					skin: new Skin({fill: "white", borders: {top: 2}, stroke: "black"}) })
 			]}),
 			

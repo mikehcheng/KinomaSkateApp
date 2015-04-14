@@ -156,7 +156,7 @@ var mainColumnMap = new Column({
     		behavior:  Object.create(Behavior.prototype, {
  			 	onTouchEnded: {value:  function(line, id, x, y, ticks){
    					 trace("You touched at: " + x + ", " + y + "\n");
-   					 if (x > 764 && x < 814 && y > 459 && y < 501 ) {
+   					 if (x > 340 && x < 388 && y > 541 && y < 589 ) {
    					 	if (popped == false){
    					 		mainColumnMap.map.add(popup);
    					 		popped = true;
