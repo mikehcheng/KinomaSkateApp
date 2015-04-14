@@ -43,12 +43,6 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 		onTouchEnded: {value: function(container, id, x,  y, ticks) {
 			var msg = new Message("/loadRun");
 		    msg.requestText = JSON.stringify($);
-		    trace(msg.requestText +	"\n");
-		    trace(container.toString() + "\n");
-		    trace(id.toString() + "\n");
-		    trace(x.toString() + "\n");
-		    trace(y.toString() + "\n");
-		    trace(ticks.toString() + "\n");
 		    container.invoke(msg, Message.JSON);
 		}}
 	}),

@@ -43,7 +43,20 @@ var cathyButtonTemplate = BUTTONS.Button.template(function($){ return{
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	onTap: {value : function(button){
     		application.remove(mainColumnFriendList);
-    		application.add(mainColumnNewGame);
+    		var newGame = {
+				gameIndex: user.games.length,
+				opName: "Cathy",
+				opPic: "resources/mike.jpg",
+				myScore: 0,
+				opScore: 0,
+				myTurn: 1,
+				myRuns: [
+				],
+				opRuns: [
+				],
+			};
+    		user.games.push(newGame);
+    		createGame(newGame);
         }}
      })
  }})

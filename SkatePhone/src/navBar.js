@@ -28,6 +28,8 @@ var screenDictionary = {
 	8: "activeRunCon",
 	10: "inactiveRunCon",
 	12: "mainColumnTrick1",
+	13: "mainColumnTrick2",
+	14: "mainColumnTrick3",
 	15: "profileCon",
 };
 
@@ -66,6 +68,14 @@ var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
         	if (this.data.index == 10){
         		application.remove(inactiveRunCon);
         		createGame(user.games[this.data.game]);
+        	}
+        	if (this.data.index == 13){
+        		application.remove(mainColumnTrick2);
+        		application.add(mainColumnTrick1);
+        	}
+        	if (this.data.index == 14){
+				application.remove(mainColumnTrick3);
+        		application.add(mainColumnTrick2);
         	}
         }}
     })

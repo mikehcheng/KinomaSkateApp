@@ -1,28 +1,4 @@
 // KPR Script file
-
-function clearPage() {
-		//trick manual
-		mainColumnTrick1.remove(manualLabel);
-		mainColumnTrick1.remove(basicButton);	
-		mainColumnTrick1.remove(intermediateButton);
-		mainColumnTrick1.remove(advancedButton);
-		mainColumnTrick1.remove(customButton);
-		mainColumnTrick1.remove(popularLabel);
-		mainColumnTrick1.remove(fakieButton);
-		mainColumnTrick1.remove(tailButton);
-		mainColumnTrick1.remove(originalNav);		
-}
-
-function clearBasics() {
-			mainColumnTrick1.remove(basicLabel);
-			mainColumnTrick1.remove(ollieInsert);		
-			mainColumnTrick1.remove(kickInsert);		
-			mainColumnTrick1.remove(grindInsert);		
-			mainColumnTrick1.remove(boardInsert);	
-			mainColumnTrick1.remove(manualInsert);	
-			mainColumnTrick1.remove(originalNav);
-}
-
 var basicLabel = new Line({top: 40, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
                  new Label({top: 10, left: 5,string: "BASICS", style: titleStyle}),
@@ -71,13 +47,31 @@ var manualInsert = new Line({top: -70, left:0, right:0, height:107, active:true,
     		contents: [
     			new ManualsButton(),
 		  	],	  	
-    	});  
-
-var second = new Line({top:180, bottom:0, left:0, right:0, height: 50, skin: graySkin,
-    		contents:[
-    		]
     	});
-var third = new Line({top:78, bottom:0, left:0, right:0, height: 50, skin: graySkin,
-    		contents:[
-    		]
-    	});
+    	
+var mainColumnTrick2 = new Column({
+	 left: 0, right: 0, top: 0, bottom: 0, contents:[
+	 	new headerBarTemplateWithBack({header: "BASICS", index:13}),
+		ollieInsert,		
+		kickInsert,		
+		grindInsert,		
+		boardInsert,	
+		manualInsert,
+		new Container({top:7, bottom:55}),
+		new navBar({index:13})
+	 ]});
+	 
+var mainColumnTrick3 =  new Column({
+	 left: 0, right: 0, top: 0, bottom: 0, contents:[
+	 	new headerBarTemplateWithBack({header: "OLLIE", index:14}),
+	 	olliePic,
+	 	steps,
+	 	ollieText,
+	 	ollieText2,
+	 	ollieText3,
+	 	ollieText4,
+	 	ollieText5,
+	 	ollieText6,
+	 	new Container({top:7, bottom:55}),
+	 	new navBar({index:14})
+	 ]});

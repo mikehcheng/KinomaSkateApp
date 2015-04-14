@@ -152,12 +152,7 @@ var mainColumnMap = new Column({
 var mainColumnTrick1 = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, 
 	 contents: [
-	   manualLabel = new Line({top: 0, left: 0, right:0, height: 50, skin: graySkin,
-            contents:[
-                 new Label({top: 10, left: 5,string: "TRICK MANUAL", style: titleStyle}),
-                
-			]
-		}),    	
+	    manualLabel = new headerBarTemplate({header:"TRICK MANUAL"}),
     	basicButton = new Line({left:0, right:0, height:107, active:true, 
     		contents: [
     			new BasicButton(),
@@ -197,9 +192,8 @@ var mainColumnTrick1 = new Column({
     			new TailSlideButton(),
 		  	],	  	
     	}),
-    	 	
+    	new Container({top:7, bottom:55}),
     	originalNav = new navBar({index:12})
-   
     ]
 })
 

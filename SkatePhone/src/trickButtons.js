@@ -19,16 +19,9 @@ var BasicButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			clearPage(); 
-			mainColumnTrick1.add(basicLabel);
-			mainColumnTrick1.add(ollieInsert);		
-			mainColumnTrick1.add(kickInsert);		
-			mainColumnTrick1.add(grindInsert);		
-			mainColumnTrick1.add(boardInsert);	
-			mainColumnTrick1.add(manualInsert);	
-			mainColumnTrick1.add(second);	
-			mainColumnTrick1.add(originalNav);
-					}},
+			application.add(mainColumnTrick2);
+			application.remove(mainColumnTrick1);
+		}},
 	})
 }});
 
@@ -41,7 +34,7 @@ var IntermediateButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -55,7 +48,7 @@ var AdvancedButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -69,7 +62,7 @@ var CustomButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked custom");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -83,7 +76,7 @@ var FakieButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked fakie");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -97,7 +90,7 @@ var NoseSlideButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked nose");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -111,7 +104,7 @@ var TailSlideButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked tail");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -131,18 +124,8 @@ var OllieButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked");
-				clearBasics();
-				mainColumnTrick1.add(ollieLabel);	
-				mainColumnTrick1.add(olliePic);
-				mainColumnTrick1.add(steps);		
-				mainColumnTrick1.add(ollieText);
-				mainColumnTrick1.add(ollieText2);
-				mainColumnTrick1.add(ollieText3);
-				mainColumnTrick1.add(ollieText4);
-				mainColumnTrick1.add(ollieText5);
-				mainColumnTrick1.add(ollieText6);
-				mainColumnTrick1.add(originalNav);			
+			application.add(mainColumnTrick3);
+			application.remove(mainColumnTrick2);	
 		}},
 	})
 }});
@@ -156,7 +139,7 @@ var KickTurnButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -170,7 +153,7 @@ var GrindButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -184,7 +167,7 @@ var BoardSlideButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -198,7 +181,7 @@ var ManualsButton = BUTTONS.Button.template(function($){ return{
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
 			//content.invoke(new Message(deviceURL + "foodRefill"), Message.JSON);
-			trace("clicked");
+			trace("Not implemented.");
 		}},
 	})
 }});
@@ -214,4 +197,3 @@ var grindInsert = new Line({top: -70, left:0, right:0, height:107, active:true,
     			new AdvancedButton(),
 		  	],	  	
     	});
-   
