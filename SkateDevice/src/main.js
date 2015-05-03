@@ -28,13 +28,24 @@ Handler.bind("/getTrick", {
 
 Handler.bind("/colorBoard", {
 	onInvoke: function(handler, message) {
-		
+		colorDict = JSON.parse(message.requestText)
+		for (var i = 0; i < parts.length; i++) {
+			var part = parts[i];
+			if (!(part in colorDict)) {
+				pictures[part].url = BASE_SKATE[part];
+			} else if (colorDict[part] == 'yellow') {
+				pictures[part].url = YELLOW_SKATE[part];
+			} else {
+				pictures[part].url = GREEN_SKATE[part];
+			}
+		}
 	}
 });
 
-Handler.bind("resetBoard", {
+Handler.bind("/resetBoard", {
 	onInvoke: function(handler, message) {
-		for (var part in parts) {
+		for (var i = 0; i < parts.length; i++) {
+			var part = parts[i];
 			pictures[part].url = BASE_SKATE[part];
 		}
 	}
@@ -43,6 +54,11 @@ Handler.bind("resetBoard", {
 // APP LOGIC
 var parts = ['tlc', 'tl', 'tr', 'trc', 'blc', 'bl', 'br', 'brc'];
 var pictures = {};
+
+for (var i = 0; i < parts.length; i++) {
+	var part = parts[i];
+	pictures[part] = new Picture({name:part, height: 46, width: 80, aspect: 'fit'});
+}
 
 var BASE_SKATE = {
 	'tlc': 'resources/skatetlc.png',
@@ -77,13 +93,8 @@ var YELLOW_SKATE = {
 	'brc': 'resources/skatebrc_yellow.png',
 };
 
-
-for (var part in parts) {
-	pictures[part] = new Picture({name:part, height: 146, width: 250});
-}
-
 var skateboardImageFrame = new Column({
-	top:0, bottom:0, left:0, right:0, height:292, width: 1000, contents: [
+	top:66, left:0, right:0, height:92, width: 320, contents: [
 		new Line({name:'topboard', contents: [
 			pictures['tlc'], pictures['tl'], pictures['tr'], pictures['trc']
 		]}),
@@ -92,6 +103,13 @@ var skateboardImageFrame = new Column({
 		]})
 	]
 });
+
+var mainColumn = new Column({
+	top:0, bottom:0, left:0, right:0, skin: new Skin({fill:'white'}), 
+	contents:[
+		skateboardImageFrame
+	]
+})
 
 var ApplicationBehavior = Behavior.template({
 	onLaunch: function(application) {
@@ -106,3 +124,6 @@ var ApplicationBehavior = Behavior.template({
 application.invoke(pinMessage);
 application.invoke(new MessageWithObject("pins:/sensorArray/read?repeat=on&interval=100&callback=/readSensors"));
 application.behavior = new ApplicationBehavior();
+
+application.add(mainColumn);	
+application.invoke(new Message("/resetBoard"));
