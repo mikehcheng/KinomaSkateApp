@@ -1,4 +1,4 @@
-var gameCon;
+var gameCon, preRunCon;
 
 /*#########################################
 			SKINS & STYLES
@@ -10,10 +10,17 @@ var boxSkin = new Skin({stroke: "black", borders: {top: 2, bottom: 2, right: 2, 
 				HANDLERS
 #########################################*/
 
+Handler.bind("/preRun", {
+	onInvoke: function(handler, message){
+		createPreRun(JSON.parse(message.requestText));
+		application.remove(gameCon);
+	}
+});
+
 Handler.bind("/trackRun", {
 	onInvoke: function(handler, message){
 		createActiveRun(JSON.parse(message.requestText));
-		application.remove(gameCon);
+		application.remove(preRunCon);
 	}
 });
 
@@ -99,7 +106,7 @@ function createGame(game){
 				behavior: Object.create(Container.prototype, {
 					onTouchEnded: { value: function(content, id, x, y, ticks){
 						if (game.myTurn){
-							var newRunMsg = new Message("/trackRun");
+							var newRunMsg = new Message("/preRun");
 							newRunMsg.requestText = JSON.stringify(game);
 							content.invoke(newRunMsg);
 						}
@@ -117,4 +124,34 @@ function createGame(game){
 	game.opRuns.forEach(function(e, i){e["index"] = i+1; e["player"] = game.opName + "\'s"; e["gameIndex"] = game.gameIndex; opRunsTable.last.add(new gameTableRow(e))});
 	
 	application.add(gameCon);
+}
+
+var timing = 10;
+var countdownBehavior = Behavior.template({
+	onCreate: function(container, data){
+		container.interval = 1000;
+		container.start()
+	},
+	onTimeChanged: function(container) {
+		timing--;
+		trace ("hi");
+		if (timing == 0) {
+			container.stop();
+			/*var newRunMsg = new Message("/trackRun");
+			newRunMsg.requestText = JSON.stringify(container.game);
+			container.invoke(newRunMsg);*/
+		}
+		container.string = timing.toString() + " secs";
+	},
+});
+
+function createPreRun(game){
+	preRunCon = new Column({left: 0, right: 0, bottom: 0, top: 0, skin: whiteSkin, contents: [
+		new Label({style: largeTitleStyle, top: 100, string: game.gameType}),
+		new Text({style: new Style({ font: "20px", color:"black", horizontalAlignment: "justify"}), left: 20, right: 20, top: 10, string:"Perform as many tricks as you can within the given time. Tougher tricks are awarded more points."}),
+		new Label({style: labelStyle, string: "YOUR RUN BEGINS IN:", top: 30}),
+		new Label({style: new Style({font: "20px", color:"blue"}), name: "timer", string: "10 secs", behavior: Object.create(countdownBehavior), top: 10})
+	]});
+	application.add(preRunCon);
+	//preRunCon.timer.start()
 }
