@@ -13,9 +13,14 @@ var infoStyle = new Style( { font: "16px", color:"blue" });
 
 var whiteSkin = new Skin( { fill:"white" });
 var lightGraySkin = new Skin({fill: "#696969"});
-var tableSkin = new Skin({borders: {top: 2, right: 2, left: 2, bottom: 2}, stroke: "black"});
-var rowSkin = new Skin({borders: {bottom: 1}, stroke: "black"});
+var tableSkin = new Skin({fill: "white"});
+var rowSkin = new Skin({borders: {bottom: 1}, stroke: "#A9A9A9"});
 var separatorSkin = new Skin({ fill: 'blue',});
+
+
+var royalBlueSkin = new Skin({ fill: "#3598DB"}); //#4169E1
+var turSkin = new Skin({fill: "#2ED07B"});
+var steelBlueSkin = new Skin({fill:"#F2CA3C"}); //#4682B4
 
 /*#########################################
 			GENERIC CONSTRUCTORS
@@ -23,7 +28,7 @@ var separatorSkin = new Skin({ fill: 'blue',});
 
 var Table = Column.template(function($) { return { left: $.left, right: $.right, top: $.top, width: (('width' in $) ? $.width : undefined),
 	contents: [
-		Label($, {left: 0, bottom: 10, style: labelStyle, string: $.string}),
+		Label($, {left: 0, bottom: 0, width: 310, style: labelStyle, string: $.string, skin: royalBlueSkin}),
 		Column($, {left: 0, right: 0, top: 0, skin: (("tableSkin" in $) ? $.tableSkin: tableSkin), contents: []})
 	]
 }});

@@ -3,6 +3,8 @@ var KEYBOARD = require('mobile/keyboard');
 var BUTTONS = require("controls/buttons");
 var SLIDERS = require('controls/sliders'); 
 
+
+
 /**
 var TOOL = require('mobile/tool');
 var MODEL = require('mobile/model');
@@ -152,7 +154,7 @@ var mainColumnCommList = new Column({
 	 contents: [
 	  	new headerBarTemplateWithBack({header:"COMMUNITY", index:6}), 
 		dropDownComm,    	
-    	new Line({top:3, left:0, right:0, height:40, skin:whiteSkin, active:true, 
+    	new Line({top:3, left:0, right:0, height:40, skin: turSkin, active:true, 
     		contents:[
     			new Label({top: 10, left: 15,string: "Name", style: miniTitleStyle}),
     			new Label({top: 10, left: 100,string: "Avg Score", style: miniTitleStyle}),	
