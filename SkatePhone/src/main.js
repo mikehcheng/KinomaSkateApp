@@ -9,7 +9,9 @@ var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
 var titleStyle = new Style( { font: "bold 25px", color:"black", horizontal:"center"});
+var title2Style = new Style( { font: "20px", color:"black", horizontal:"center"});
 var labelStyle = new Style( { font: "20px", color:"black" } );
+var label2Style = new Style( { font: "bold 20px", color:"black" } );
 var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
 var miniTitleStyle = new Style( { font: "bold 28px", color:"black"} );
 var textStyle = new Style( { font: "bold 25px", color:"blue"} );
@@ -41,10 +43,13 @@ include ("profile.js");
 include ("runOverview/game.js");
 include	("runOverview/run.js");
 
-var map = new Texture('resources/map.png');
+var map = new Texture('resources/map2.png');
 var medlocation = new Texture('resources/medlocation.png');
+medlocation.effect = new Effect("white",0);
+var medSkin = new Skin({texture:medlocation});
 //var medCircle = 
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
+var medlocLabel = new Label({skin:medSkin, left:30, top:30,  height:100, width:50});
  
 include ("gameOpponentOverview/createGameOpponent.js");
 include ("gameOpponentOverview/opponentLists.js");
@@ -81,15 +86,10 @@ var popup = new Container({top:240, bottom:70, left: 95, right:60, skin:blueSkin
 
 var popped = false;
 
-//map screen 1
-var mainColumnMap = new Column({
-    left: 0, right: 0, top: 0, bottom: 0, active: true, skin: whiteSkin,
-    contents: [
-        new headerBarTemplate({header:"NEAREST SKATE PARKS"}),
-    	new Line({top:3, left:0, right:0, height:430, skin: mapSkin, active:true, name: "map",
-    		/*contents:[
-    			n
-    		],*/
+var mapline = new Line({top:3, left:7, right:7, height:430, skin: mapSkin, active:true, name: "map",
+    		  contents:[
+    			medlocLabel,
+    		  ],
     		behavior:  Object.create(Behavior.prototype, {
  			 	onTouchEnded: {value:  function(line, id, x, y, ticks){
    					 trace("You touched at: " + x + ", " + y + "\n");
@@ -114,7 +114,19 @@ var mainColumnMap = new Column({
    					}
   				}}
 			})
-    	}),
+    	});
+
+var m =  new Column({left:0,right:0,top:0,bottom:0, active:true, skin:royalBlueSkin,contents:[
+        	mapline,
+        ]
+       });
+
+//map screen 1
+var mainColumnMap = new Column({
+    left: 0, right: 0, top: 0, bottom: 0, active: true, skin: whiteSkin,
+    contents: [
+        new headerBarTemplate({header:"NEAREST SKATE PARKS"}),
+       	m,
     	new navBar({index: 1})
     ]
  });
@@ -152,44 +164,46 @@ var mainColumnMap = new Column({
 
 //Trick 1  12
 var mainColumnTrick1 = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, 
+	 left: 0, right: 0, top: 0, bottom: 0, skin:whiteSkin,
 	 contents: [
 	    manualLabel = new headerBarTemplate({header:"TRICK MANUAL"}),
-    	basicButton = new Line({left:0, right:0, height:107, active:true, 
+	    popularLabel = new Label({top: 5, left: 8,string: "Levels:", style: label2Style}),
+    	
+    	basicButton = new Line({left:0, right:0, height:53, active:true, 
     		contents: [
     			new BasicButton(),
     			
 		  	],	  	
     	}),
-    	intermediateButton = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    	intermediateButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
     		contents: [
     			new IntermediateButton(),
 		  	],	  	
     	}),
-    	advancedButton = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    	advancedButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
     		contents: [
     			new AdvancedButton(),
 		  	],	  	
     	}),
-    	customButton = new Line({top: -70, left:0, right:0, height:107, active:true, 
+    	customButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
     		contents: [
     			new CustomButton(),
 		  	],	  	
     	}),
-    	popularLabel = new Label({top: -60, left: 8,string: "Popular Tricks:", style: titleStyle}),
+    	popularLabel = new Label({top: 20, left: 8,string: "Popular Tricks:", style: label2Style}),
     	
-    	fakieButton = new Line({top: 0, left:0, right:0, height:107, active:true,  
+    	fakieButton = new Line({top: 0, left:0, right:0, height:53, active:true,  
     		contents: [
     			new FakieButton(),
 		  	],	  	
     	}),
-    	noseButton = new Line({top: -69, left:0, right:0, height:30, active:true, 
+    	noseButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
     		contents: [
     			new NoseSlideButton(),
 		  	],	  	
     	}),
     	
-    	tailButton = new Line({top: 6, left:0, right:0, height:30, active:true, 
+    	tailButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
     		contents: [
     			new TailSlideButton(),
 		  	],	  	

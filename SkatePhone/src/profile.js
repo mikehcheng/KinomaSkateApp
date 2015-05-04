@@ -36,10 +36,10 @@ function createProfile(){
 			new Label({string: "Won", style: labelStyle, top: 0, left: 10}),
 			new Label({string: "Lost", style: labelStyle, top: 0, right: 10}),
 			new Container({top: 20, left: 10, right:10, height: 20, skin: boxSkin, contents:[
-				new Container({name:"greenbar", left: 2, top: 2, width: 300*(profile.won/(profile.won + profile.lost)), bottom: 2, skin: new Skin({fill: "green"})})
+				new Container({name:"greenbar", left: 2, top: 2, width: 300*(profile.won/(profile.won + profile.lost)), bottom: 2, skin: new Skin({fill: "#2ED07B"})})
 			]})
 		]}),
-		new Line({top: 10, left: 20, right: 20, contents: [
+		new Line({top: 10, left: 20, right: 20, skin: royalBlueSkin, contents: [
 			new infoBox({left: 0, right: 10, top: 0, titleHeight:25, titleStyle: new Style({font: "20px", horizontal: "center", color:"black" }),
 				title: "Highest Score", contents: [new Label({top: 10, style: infoStyle, string: profile.hScore})]}),
 			new infoBox({right: 0, left: 0, top: 0, titleHeight:25, title: "Most Consistent Trick",

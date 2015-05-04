@@ -14,13 +14,13 @@ var infoStyle = new Style( { font: "16px", color:"blue" });
 var whiteSkin = new Skin( { fill:"white" });
 var lightGraySkin = new Skin({fill: "#696969"});
 var tableSkin = new Skin({fill: "white"});
-var rowSkin = new Skin({borders: {bottom: 1}, stroke: "#A9A9A9"});
+var rowSkin = new Skin({borders: {bottom: 1}, stroke: "#F2CA3C"});
 var separatorSkin = new Skin({ fill: 'blue',});
 
 
 var royalBlueSkin = new Skin({ fill: "#3598DB"}); //#4169E1
-var turSkin = new Skin({fill: "#2ED07B"});
-var steelBlueSkin = new Skin({fill:"#F2CA3C"}); //#4682B4
+var greenSkin = new Skin({fill: "#2ED07B"});
+var yellowSkin = new Skin({fill:"#F2CA3C"}); //#4682B4
 
 /*#########################################
 			GENERIC CONSTRUCTORS
@@ -28,7 +28,7 @@ var steelBlueSkin = new Skin({fill:"#F2CA3C"}); //#4682B4
 
 var Table = Column.template(function($) { return { left: $.left, right: $.right, top: $.top, width: (('width' in $) ? $.width : undefined),
 	contents: [
-		Label($, {left: 0, bottom: 0, width: 310, style: labelStyle, string: $.string, skin: royalBlueSkin}),
+		Label($, {left: 0, bottom: 0, width: 310, style: labelStyle, string: $.string, skin: whiteSkin}),
 		Column($, {left: 0, right: 0, top: 0, skin: (("tableSkin" in $) ? $.tableSkin: tableSkin), contents: []})
 	]
 }});
@@ -110,7 +110,7 @@ function createHome() {
 		new scrollContainer({top: 50, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
 		new headerBarTemplate({header:"ACTIVE GAMES"}),
 		new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteSkin, contents:[
-			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "green"}),
+			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "#2ED07B"}),
 				behavior: Object.create(Container.prototype, {
 					onTouchEnded: { value: function(content, id, x, y, ticks){
 						content.invoke(new Message("/createGame"));
