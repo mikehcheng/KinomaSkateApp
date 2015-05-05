@@ -1,6 +1,6 @@
 // KPR Script file
-var royalBlueSkin = new Skin({ fill: "#3598DB"});
-var yellowSkin = new Skin({fill:"#F2CA3C"}); 
+var royalBlueSkin = new Skin({ fill: "#66FFCC"});
+var yellowSkin = new Skin({fill:"#ECF0F1"}); 
 var basicLabel = new Line({top: 40, left: 0, right:0, height: 50, skin: graySkin,
             contents:[
                  new Label({top: 10, left: 5,string: "BASICS", style: titleStyle}),

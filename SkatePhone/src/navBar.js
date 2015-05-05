@@ -17,6 +17,9 @@ INDEXES FOR THE SCREENS (for buttons)
 15 maincolumnprofile
 */
 
+var cloudSkin = new Skin({fill:"#ECF0F1"});
+var pbBlueSkin = new Skin({fill:"#3498db"});
+
 var screenDictionary = {
 	1: "mainColumnMap",
 	2: "homeCon",
@@ -37,7 +40,7 @@ var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
 	index: $.index,
     left:0,top:0, bottom:0, height:50, width: 20,
     contents: [
-        new Label({left:0, right:0, top:0, bottom:0, skin: whiteSkin, style:backButtonStyle, string:"<"})
+        new Label({left:0, right:0, top:0, bottom:0, skin: pbBlueSkin, style:backButtonStyle, string:"<"})
     ],
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	onTap: {value : function(button){
@@ -82,7 +85,7 @@ var backButtonTemplate =  BUTTONS.Button.template(function($){ return{
 }})
 
 var headerBarTemplateWithBack = Line.template(function($) { return {
-	top:0, left:0, right:0, height:50, skin: whiteSkin, contents: [
+	top:0, left:0, right:0, height:50, skin: pbBlueSkin, contents: [
 		new backButtonTemplate({index: $.index, game: (('game' in $) ? $.game : undefined)}),
 		new Label({top:0, bottom:0,left:50, right:50, style: (('tStyle' in $) ? $.tStyle : titleStyle), string: $.header}),
 		new Container({right:0, top:0, bottom:0, width:20})
@@ -90,7 +93,7 @@ var headerBarTemplateWithBack = Line.template(function($) { return {
 }});
 
 var headerBarTemplate = Line.template(function($) { return {
-	top:0, left:0, right:0, height:50, skin: whiteSkin, contents: [
+	top:0, left:0, right:0, height:50, skin: pbBlueSkin, contents: [
 		new Label({top:0, bottom:0, left:0, right:0, style: titleStyle, string: $.header})
 	]
 }});
