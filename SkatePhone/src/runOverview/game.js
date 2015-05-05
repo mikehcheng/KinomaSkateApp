@@ -4,7 +4,8 @@ var gameCon;
 			SKINS & STYLES
 #########################################*/
 
-var boxSkin = new Skin({stroke: "black", borders: {top: 2, bottom: 2, right: 2, left: 2}});
+//var boxSkin = new Skin({stroke: "black", borders: {top: 2, bottom: 2, right: 2, left: 2}});
+var boxSkin = new Skin({fill:"white", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
 
 /*#########################################
 				HANDLERS

@@ -28,8 +28,8 @@ var infoBox = Container.template(function($){ return {skin: boxSkin, width: 145,
 
 function createProfile(){
 	var profile = user.profile;
-	profileCon = new Column({left: 0, right: 0, bottom: 0, top: 0, skin: whiteSkin, contents: [
-		new headerBarTemplate({header:"PROFILE"}), 
+	profileCon = new Column({left: 0, right: 0, bottom: 0, top: 0, skin: cloudSkin, contents: [
+		new headerBarTemplate({header:"Profile"}), 
 		new Thumbnail({top: 10, width: 60, height: 60, aspect: 'fit', url: profile.pic }),
 		new Label({style: labelStyle, string: profile.name}),
 		new Container({left: 10, name:"bar", width: 300, top: 0, contents: [
@@ -39,7 +39,7 @@ function createProfile(){
 				new Container({name:"greenbar", left: 2, top: 2, width: 300*(profile.won/(profile.won + profile.lost)), bottom: 2, skin: new Skin({fill: "#2ED07B"})})
 			]})
 		]}),
-		new Line({top: 10, left: 20, right: 20, skin: royalBlueSkin, contents: [
+		new Line({top: 10, left: 20, right: 20, skin: cloudSkin, contents: [
 			new infoBox({left: 0, right: 10, top: 0, titleHeight:25, titleStyle: new Style({font: "20px", horizontal: "center", color:"black" }),
 				title: "Highest Score", contents: [new Label({top: 10, style: infoStyle, string: profile.hScore})]}),
 			new infoBox({right: 0, left: 0, top: 0, titleHeight:25, title: "Most Consistent Trick",
@@ -63,7 +63,7 @@ function createProfile(){
 					]})
 				]})
 		]}),
-		new Container({height:101, bottom: 55, left:0, right:0, skin: whiteSkin}),
+		new Container({height:101, bottom: 55, left:0, right:0, skin: cloudSkin}),
 		new navBar({index: 15})
 	]});
 	

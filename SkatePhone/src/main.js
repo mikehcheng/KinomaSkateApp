@@ -72,7 +72,7 @@ var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
   })
 }});
 
-var checkbutton = new checkButtonTemplate({textForLabel:"CHECK IN"});
+var checkbutton = new checkButtonTemplate({textForLabel:"Check In"});
 
 var popupStyle = new Style( { font: "15px", color:"black"} );
 var popup = new Container({top:240, bottom:70, left: 95, right:60, skin:blueSkin,
@@ -86,7 +86,7 @@ var popup = new Container({top:240, bottom:70, left: 95, right:60, skin:blueSkin
 
 var popped = false;
 
-var mapline = new Line({top:3, left:7, right:7, height:430, skin: mapSkin, active:true, name: "map",
+var mapline = new Line({top:5, bottom:5, left:15, right:15, height:400, skin: mapSkin, active:true, name: "map",
     		  contents:[
     			medlocLabel,
     		  ],
@@ -116,16 +116,16 @@ var mapline = new Line({top:3, left:7, right:7, height:430, skin: mapSkin, activ
 			})
     	});
 
-var m =  new Column({left:0,right:0,top:0,bottom:0, active:true, skin:royalBlueSkin,contents:[
+var m =  new Column({left:5,right:5,top:5,bottom:5, active:true, skin:blueBorderSkin,contents:[
         	mapline,
         ]
        });
 
 //map screen 1
 var mainColumnMap = new Column({
-    left: 0, right: 0, top: 0, bottom: 0, active: true, skin: whiteSkin,
+    left: 0, right: 0, top: 0, bottom: 0, active: true, skin: cloudSkin,
     contents: [
-        new headerBarTemplate({header:"NEAREST SKATE PARKS"}),
+        new headerBarTemplate({header:"Nearest Skate Parks"}),
        	m,
     	new navBar({index: 1})
     ]
@@ -164,9 +164,9 @@ var mainColumnMap = new Column({
 
 //Trick 1  12
 var mainColumnTrick1 = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, skin:whiteSkin,
+	 left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin,
 	 contents: [
-	    manualLabel = new headerBarTemplate({header:"TRICK MANUAL"}),
+	    manualLabel = new headerBarTemplate({header:"Trick Manual"}),
 	    popularLabel = new Label({top: 5, left: 8,string: "Levels:", style: label2Style}),
     	
     	basicButton = new Line({left:0, right:0, height:53, active:true, 
@@ -190,7 +190,7 @@ var mainColumnTrick1 = new Column({
     			new CustomButton(),
 		  	],	  	
     	}),
-    	popularLabel = new Label({top: 20, left: 8,string: "Popular Tricks:", style: label2Style}),
+    	popularLabel = new Label({top: 10, left: 8,string: "Popular Tricks:", style: label2Style}),
     	
     	fakieButton = new Line({top: 0, left:0, right:0, height:53, active:true,  
     		contents: [

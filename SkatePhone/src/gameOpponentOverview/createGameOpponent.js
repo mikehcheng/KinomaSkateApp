@@ -121,7 +121,7 @@ var backButton4 = new backButtonTemplate({index:4});
 var mainColumnOpp = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, skin: cloudSkin,
 	 contents: [
-	  	new headerBarTemplateWithBack({header:"OPPONENTS", index:4}), 	
+	  	new headerBarTemplateWithBack({header:"Opponents", index:4}), 	
     	new Line({top:3, left:0, right:0, height:212, active:true, 
     		contents:[
     			//new friendsButtonTemplate({index: 4}),

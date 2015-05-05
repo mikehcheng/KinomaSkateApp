@@ -2,7 +2,7 @@ var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
 var BUTTONS = require("controls/buttons");
 var SLIDERS = require('controls/sliders'); 
-
+var textStyle = new Style( { font: "bold 25px", color:"#3498db"} );
 
 
 /**
@@ -75,7 +75,7 @@ var backButton5 = new backButtonTemplate({index:5});
 var mainColumnFriendList = new Column({
  left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin,
 	 contents: [
-	  	new headerBarTemplateWithBack({header:"FRIENDS", index:5}),   	
+	  	new headerBarTemplateWithBack({header:"Friends", index:5}),   	
     	//dropDown,     	
     	new Line({top:7, left:0, right:0, height:40, skin:cloudSkin, active:true, 
     		contents:[
@@ -124,11 +124,13 @@ var mainColumnFriendList = new Column({
     			new Label({top: 6, left: 184,string: "35", style: textStyle}),	
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
+    	new Line({top:3, bottom:0, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
     		contents:[
     			new Label({top: 5, left: 15,string: "Sarah", style: textStyle}),
     			new Label({top: 5, left: 160,string: "55", style: textStyle}),	
     		]
+    	}),
+    	new Line({top:3, bottom:25, left:0, right:0, height:36, skin: cloudSkin, active:true, 
     	}),
     	
     	new navBar({index:5})
@@ -150,63 +152,69 @@ var mapButton6 = new mapButtonTemplate({index: 6});
 var tutButton6 = new tutButtonTemplate({index: 6});
 var backButton6 = new backButtonTemplate({index:6});
 var mainColumnCommList = new Column({
- left: 0, right: 0, top: 0, bottom: 0, 
+ left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin,
 	 contents: [
-	  	new headerBarTemplateWithBack({header:"COMMUNITY", index:6}), 
+	  	new headerBarTemplateWithBack({header:"Community", index:6}), 
 		//dropDownComm,    	
-    	new Line({top:3, left:0, right:0, height:40, skin: turSkin, active:true, 
+    	new Line({top:7, left:0, right:0, height:40, skin: cloudSkin, active:true, 
     		contents:[
     			new Label({top: 10, left: 15,string: "Name", style: miniTitleStyle}),
     			new Label({top: 10, left: 100,string: "Avg Score", style: miniTitleStyle}),	
     		]
     	}),    	
-    	new Line({top:3, left:0, right:0, height:37, skin:whiteSkin, active:true, 
+    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
     		contents:[
     			new Label({top: 6, left: 15,string: "Kevin", style: textStyle}),
     			new Label({top: 6, left: 156,string: "10", style: textStyle}),	
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:37, skin:whiteSkin, active:true, 
+    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
     		contents:[
     			new Label({top: 6, left: 15,string: "Natalea", style: textStyle}),
     			new Label({top: 6, left: 138,string: "11", style: textStyle}),	
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:37, skin:whiteSkin, active:true, 
+    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
     		contents:[
     			new Label({top: 6, left: 15,string: "Joe", style: textStyle}),
     			new Label({top: 6, left: 178,string: "15", style: textStyle}),	
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:37, skin:whiteSkin, active:true, 
+    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
     		contents:[
     			new Label({top: 6, left: 15,string: "Jennifer", style: textStyle}),
     			new Label({top: 6, left: 131,string: "15", style: textStyle}),	
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:whiteSkin, active:true, 
+    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
     		contents:[
     			new Label({top: 6, left: 15,string: "Helen", style: textStyle}),
     			new Label({top: 6, left: 157,string: "16", style: textStyle}),	
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:whiteSkin, active:true, 
+    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
     		contents:[
     			new Label({top: 6, left: 15,string: "Bob", style: textStyle}),
     			new Label({top: 6, left: 175,string: "24", style: textStyle}),	
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:whiteSkin, active:true, 
+    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
     		contents:[
     			new Label({top: 6, left: 15,string: "Sue", style: textStyle}),
     			new Label({top: 6, left: 178,string: "35", style: textStyle}),	
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:whiteSkin, active:true, 
+    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
     		contents:[
     			new Label({top: 5, left: 15,string: "Julie", style: textStyle}),
     			new Label({top: 5, left: 167,string: "55", style: textStyle}),	
     		]
+    	}),
+    	new Line({top:3, left:0, right:0, height:36, skin:cloudSkin, active:true, 
+    		
+    	}),
+    	new Line({top:3, left:0, right:0, height:30, skin:cloudSkin, active:true, 
+    		
     	}),
     	
     	new navBar({index:6})
