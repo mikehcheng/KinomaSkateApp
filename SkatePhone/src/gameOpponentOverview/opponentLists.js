@@ -4,40 +4,41 @@ var BUTTONS = require("controls/buttons");
 var SLIDERS = require('controls/sliders'); 
 var textStyle = new Style( { font: "bold 25px", color:"#3498db"} );
 
+function createGameData(player) {
+	return {
+		gameIndex: user.games.length,
+		opName: player,
+		opPic: "resources/mike.jpg",
+		gameType: "Trick Contest",
+		myScore: 0,
+		opScore: 0,
+		myTurn: 1,
+		myRuns: [
+		],
+		opRuns: [
+		],
+	}
+}
 
-/**
-var TOOL = require('mobile/tool');
-var MODEL = require('mobile/model');
-var graySkin = new Skin({ fill: 'gray',});
-//var Background = Content.template(function($) { return { left: 0, right: 0, top: 0, bottom: 0, skin: graySkin, }});
-var MyMenuButton = TOOL.MenuButton.template(function($) { return { left: 0, top: 0, }});
-var standardsMenuData = {
-			action: "/selectStandard?standard=",
-			items: [
-				{ title: "Top Rated", value: "top_rated" },
-				{ title: "Top Favorites", value: "top_favorites" },
-				{ title: "Most Popular", value: "most_popular" },
-				{ title: "Most Discussed", value: "most_discussed" },
-				{ title: "Most Responded", value: "most_responded" },
-			],
-			selection: 0,
-		};
-//var background = new Background();
-//application.add( background );
-var menuButton = new MyMenuButton( standardsMenuData ); 
-*/
-
-
-/**Handler.bind("/selectStandard", Object.create(MODEL.CommandBehavior.prototype, {
-	onQuery: { value: function(handler, query) {
-				var selection = query.standard;
-				trace( "\n selected: " + selection );
-			}}
-}));*/
+var opponentButtonTemplate = BUTTONS.Button.template(function($){ return{
+	left: 0,  right: 0, height:40, skin:blueBorderSkin,
+	contents: [
+		new Label({top:6, left:15, string: $.player, style: textStyle}),
+		new Label({top:6, left:237, string: $.score, style:textStyle})
+	],
+	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+     	onTap: {value : function(button){
+    		application.remove(eval($.screen));
+    		var newGame = createGameData($.player);
+    		user.games.push(newGame);
+    		createGame(newGame);
+        }}
+     })
+ }})
 
 var cathyButtonTemplate = BUTTONS.Button.template(function($){ return{
 	index: $.index,
-    top:2, bottom:2, left: 5,  right: 5, height:50, skin: whiteSkin,
+    top:2, bottom:2, left: 5,  right: 5, height:36, skin:blueBorderSkin,
     contents: [
 		new Label({top: 6, left: 9,string: "Cathy", style: textStyle}),
 		new Label({top: 6, left: 234,string: "16", style: textStyle}),
@@ -63,76 +64,25 @@ var cathyButtonTemplate = BUTTONS.Button.template(function($){ return{
      })
  }})
 
-//Friends list 5
-var /*dropDown = new Line({top:20, left:0, right:0, height:50, skin:whiteSkin, active:true, 
-			contents:[	
-				new Picture({aspect: "fill", height:25, width: 90, top: 12, left: 110, url: "resources/dropDown.png"}),
-				//menuButton
-			]	
-    	}),   */
-var cathyButton = new cathyButtonTemplate({index: 5});
-var backButton5 = new backButtonTemplate({index:5});
 var mainColumnFriendList = new Column({
  left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin,
 	 contents: [
-	  	new headerBarTemplateWithBack({header:"Friends", index:5}),   	
-    	//dropDown,     	
+	  	new headerBarTemplateWithBack({header:"Friends", index:5}),   	  	
     	new Line({top:7, left:0, right:0, height:40, skin:cloudSkin, active:true, 
     		contents:[
     			new Label({top: 10, left: 15,string: "Name", style: miniTitleStyle}),
     			new Label({top: 10, left: 100,string: "Avg Score", style: miniTitleStyle}),	
     		]
     	}),    	
-    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Rahul", style: textStyle}),
-    			new Label({top: 6, left: 160,string: "10", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Angelica", style: textStyle}),
-    			new Label({top: 6, left: 131,string: "11", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Sam", style: textStyle}),
-    			new Label({top: 6, left: 176,string: "15", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 14,string: "Michael", style: textStyle}),
-    			new Label({top: 6, left: 143,string: "15", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			cathyButton,	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Tom", style: textStyle}),
-    			new Label({top: 6, left: 178,string: "24", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Joe", style: textStyle}),
-    			new Label({top: 6, left: 184,string: "35", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, bottom:0, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 5, left: 15,string: "Sarah", style: textStyle}),
-    			new Label({top: 5, left: 160,string: "55", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, bottom:25, left:0, right:0, height:36, skin: cloudSkin, active:true, 
-    	}),
-    	
+    	new opponentButtonTemplate({player: "Rahul", score: "10", screen: "mainColumnFriendList"}),
+    	new opponentButtonTemplate({player: "Angelica", score: "11", screen: "mainColumnFriendList"}),
+    	new opponentButtonTemplate({player: "Sam", score: "15", screen: "mainColumnFriendList"}),
+    	new opponentButtonTemplate({player: "Michael", score: "15", screen: "mainColumnFriendList"}),
+    	new opponentButtonTemplate({player: "Cathy", score: "16", screen: "mainColumnFriendList"}),
+    	new opponentButtonTemplate({player: "Tom", score: "24", screen: "mainColumnFriendList"}),
+    	new opponentButtonTemplate({player: "Joe", score: "35", screen: "mainColumnFriendList"}),
+    	new opponentButtonTemplate({player: "Sarah", score: "55", screen: "mainColumnFriendList"}),
+    	new Line({top:10, left:0, right:0, height:53, skin: cloudSkin,}),
     	new navBar({index:5})
     ]
 })
@@ -140,84 +90,25 @@ var mainColumnFriendList = new Column({
 
 
 //Community List 6
-/*var dropDownComm = new Line({top:20, left:0, right:0, height:50, skin:cloudSkin, active:true, 
-			contents:[	
-				new Picture({aspect: "fill", height:25, width: 90, top: 12, left: 110, url: "resources/dropDown.png"}),
-				//menuButton
-			]	
-    	}),  */
-var homeButton6 = new homeButtonTemplate({index: 6});
-var profButton6 = new profButtonTemplate({index: 6});
-var mapButton6 = new mapButtonTemplate({index: 6});
-var tutButton6 = new tutButtonTemplate({index: 6});
-var backButton6 = new backButtonTemplate({index:6});
 var mainColumnCommList = new Column({
  left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin,
 	 contents: [
-	  	new headerBarTemplateWithBack({header:"Community", index:6}), 
-		//dropDownComm,    	
+	  	new headerBarTemplateWithBack({header:"Community", index:6}),   	
     	new Line({top:7, left:0, right:0, height:40, skin: cloudSkin, active:true, 
     		contents:[
     			new Label({top: 10, left: 15,string: "Name", style: miniTitleStyle}),
     			new Label({top: 10, left: 100,string: "Avg Score", style: miniTitleStyle}),	
     		]
     	}),    	
-    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Kevin", style: textStyle}),
-    			new Label({top: 6, left: 156,string: "10", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Natalea", style: textStyle}),
-    			new Label({top: 6, left: 138,string: "11", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Joe", style: textStyle}),
-    			new Label({top: 6, left: 178,string: "15", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:37, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Jennifer", style: textStyle}),
-    			new Label({top: 6, left: 131,string: "15", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Helen", style: textStyle}),
-    			new Label({top: 6, left: 157,string: "16", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Bob", style: textStyle}),
-    			new Label({top: 6, left: 175,string: "24", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 6, left: 15,string: "Sue", style: textStyle}),
-    			new Label({top: 6, left: 178,string: "35", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:blueBorderSkin, active:true, 
-    		contents:[
-    			new Label({top: 5, left: 15,string: "Julie", style: textStyle}),
-    			new Label({top: 5, left: 167,string: "55", style: textStyle}),	
-    		]
-    	}),
-    	new Line({top:3, left:0, right:0, height:36, skin:cloudSkin, active:true, 
-    		
-    	}),
-    	new Line({top:3, left:0, right:0, height:30, skin:cloudSkin, active:true, 
-    		
-    	}),
-    	
+    	new opponentButtonTemplate({player: "Kevin", score: "11", screen: "mainColumnCommList"}),
+		new opponentButtonTemplate({player: "Natalea", score: "14", screen: "mainColumnCommList"}),
+		new opponentButtonTemplate({player: "Jennifer", score: "17", screen: "mainColumnCommList"}),
+		new opponentButtonTemplate({player: "Joe", score: "18", screen: "mainColumnCommList"}),
+		new opponentButtonTemplate({player: "Helen", score: "23", screen: "mainColumnCommList"}),
+		new opponentButtonTemplate({player: "Bob", score: "27", screen: "mainColumnCommList"}),
+		new opponentButtonTemplate({player: "Sue", score: "36", screen: "mainColumnCommList"}),
+		new opponentButtonTemplate({player: "Julie", score: "41", screen: "mainColumnCommList"}),
+    	new Line({top:10, left:0, right:0, height:53, skin: cloudSkin,}),
     	new navBar({index:6})
-   
     ]
 })

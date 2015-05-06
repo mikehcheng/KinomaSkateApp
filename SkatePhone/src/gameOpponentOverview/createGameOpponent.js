@@ -117,7 +117,6 @@ var communityButtonTemplate = BUTTONS.Button.template(function($){ return{
 //choose opponent 4
 var friendsButton = new friendsButtonTemplate({index: 4});
 var communityButton = new communityButtonTemplate({index: 4});
-var backButton4 = new backButtonTemplate({index:4});
 var mainColumnOpp = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, skin: cloudSkin,
 	 contents: [
@@ -135,7 +134,6 @@ var mainColumnOpp = new Column({
     			communityButton,
     		]
     	}),
-    	
     	new navBar({index: 4})
    
     ]
