@@ -125,5 +125,5 @@ application.invoke(pinMessage);
 application.invoke(new MessageWithObject("pins:/sensorArray/read?repeat=on&interval=100&callback=/readSensors"));
 application.behavior = new ApplicationBehavior();
 
-application.add(mainColumnFriendList);	
+application.add(mainColumn);	
 application.invoke(new Message("/resetBoard"));

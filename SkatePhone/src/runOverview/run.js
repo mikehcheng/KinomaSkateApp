@@ -57,8 +57,9 @@ var trickRow = Line.template(function($) { return {
 }});
 
 var videoContainer = Container.template(function($) { return {
+
 	left:0, right:0, bottom: 0, height:160, skin: cloudSkin, contents: [
-		
+
 	]
 }});
 
