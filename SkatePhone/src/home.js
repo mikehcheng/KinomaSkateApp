@@ -34,11 +34,11 @@ var cloudSkin = new Skin({fill:"#ECF0F1"});
 var Table = Column.template(function($) { return { left: $.left, right: $.right, top: $.top, width: (('width' in $) ? $.width : undefined),
 	contents: [
 		Label($, {left: 0, bottom: 0, width: 310, style: labelStyle, string: $.string, skin: whiteGreenSkin}),
-		Column($, {left: 0, right: 0, top: 0, skin: (("tableSkin" in $) ? $.tableSkin: tableSkin), contents: []})
+		Column($, {left: 0, right: 0, top: 0, bottom: 0, skin: (("tableSkin" in $) ? $.tableSkin: tableSkin), contents: []})
 	]
 }});
 
-var homeTableRow = Line.template(function($) { return { left: 0, right: 0, height: 60, active: true, skin: rowSkin,
+var homeTableRow = Line.template(function($) { return { left: 2, right: 2, height: 60, active: true, skin: rowSkin,
 	behavior: Object.create(Behavior.prototype, {
 		onTouchEnded: {value: function(container, id, x,  y, ticks) {
 			var msg = new Message("/loadGame");
