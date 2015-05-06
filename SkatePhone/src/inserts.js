@@ -13,9 +13,9 @@ function setColors(colorDict) {
 var shadedBlueBorderSkin = new Skin({fill:"#663498db", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
 var selectedIndex = -1;
 var colorTextButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, skin: blueBorderSkin,
+	left: 5, right:5, top: 10, skin: blueBorderSkin,
 	contents: [
-		new Text({string: $.text, left:0, right:0})
+		new Text({string: $.text, left:0, right:0, top:3, bottom: 3})
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: {value : function(button) {
@@ -23,9 +23,10 @@ var colorTextButton = BUTTONS.Button.template(function($){ return{
 				if (selectedIndex != -1) { button.container[selectedIndex].skin = blueBorderSkin; }
 				button.skin = shadedBlueBorderSkin;
 				selectedIndex = button.index;
-				trace("Attempting to color");
+				trace("Attempting to color\n");
 				setColors($.colorDict);
 			} else {
+				trace("Resetting color\n");
 				button.skin = blueBorderSkin;
 				resetColors();
 				selectedIndex = -1;
@@ -38,14 +39,14 @@ ollieSteps = [
 	"1. Position your back foot near the tail of the board, and your front foot near the middle.",
 	"2. Jump first with your front foot.",
 	"3. Immediately after, jump with your back foot.",
-	"4. Kick down on back of board and land both feet.",
+	"4. Push down on the front of the board to level it.",
 ]
 
 ollieColors = [
 	{'tl': 'green', 'bl': 'green', 'trc': 'green', 'brc': 'green'},
 	{'tl': 'yellow', 'bl': 'yellow', 'trc': 'green', 'brc': 'green'},
 	{'trc': 'yellow', 'brc': 'yellow'},
-	{'tl': 'green', 'bl': 'green', 'trc': 'green', 'brc': 'green'},
+	{'tlc': 'green', 'blc': 'green'},
 ]
 
 
@@ -71,15 +72,6 @@ var ollieInsert = new Line({left:0, right:0, height:107, active:true,
     			
 		  	],	  	
     	});
-    	
-    	//10,10,5,20,5,5,5
-var steps = new Label({top: 5, left: 5,string: "Steps:", style: titleStyle});
-var ollieText = new Label({top: 5, left: 5,string: "1. Place your back foot on", style: title2Style, skin: whiteSkin});
-var ollieText2 = new Label({top: 5, left: 5,string: "the tail of the board.", style: title2Style, skin: whiteSkin});
-var ollieText3 = new Label({top: 5, left: 5,string: "2. Put your front foot", style: title2Style, skin: whiteSkin});
-var ollieText4 = new Label({top: 5, left: 5,string: "between the middle and", style: title2Style, skin: whiteSkin});
-var ollieText5 = new Label({top: 5, left: 5,string: "front trucks of your", style: title2Style, skin: whiteSkin});
-var ollieText6 = new Label({top: 5, left: 5,string: "skateboard.", style: title2Style, skin: whiteSkin});
 
 var kickInsert = new Line({top: -70, left:0, right:0, height:107, active:true, 
     		contents: [
@@ -114,59 +106,17 @@ var mainColumnTrick2 = new Column({
 		new navBar({index:13})
 	 ]});
 
-/**	 
-var mainColumnTrick3 =  new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin, contents:[
-	 	new headerBarTemplateWithBack({header: "Ollie", index:14}),
-	 	new Column({top:10, left:10, right:10, height:400, skin: blueBorderSkin, contents:[
-	 		olliePic,
-	 	
-	 	new Line({top:20, left: 10, right:10, height:0, skin: whiteSkin,contents:[
-	 		steps,
-	 	]
-	 	}),
-	 	new Line({top:40, left: 10, right:10, height:0, skin: whiteSkin,contents:[
-	 	ollieText,
-	 	]
-	 	}),
-	 	new Line({top:23, left: 10, right:10, height:0, skin: whiteSkin,contents:[
-	 	ollieText2,
-	 	]
-	 	}),
-	 	new Line({top:23, left: 10, right:10, height:0, skin: whiteSkin,contents:[
-	 	ollieText3,
-	 	]
-	 	}),
-	 	new Line({top:23, left: 10, right:10, height:0, skin: whiteSkin,contents:[
-	 	ollieText4,
-	 	]
-	 	}),
-	 	new Line({top:23, left: 10, right:10, height:0, skin: whiteSkin,contents:[
-	 	ollieText5,
-	 	]
-	 	}),
-	 	new Line({top:23, left: 10, right:10, height:0, skin: whiteSkin,contents:[
-	 	ollieText6,
-	 	]
-	 	}),
-	 	]
-	 	}),
-	 	
-	 	new Container({top:7, bottom:55}),
-	 	new navBar({index:14})
-	 ]});
-**/
-
 var mainColumnTrick3 =  new Column({
 	left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin, contents:[
 	 	new headerBarTemplateWithBack({header: "Ollie", index:14}),
-	 	new Column({top:10, left:10, right:10, height:400, skin: blueBorderSkin, contents:[
+	 	new Column({top:0, left:0, right:0, skin: whiteSkin, contents:[
 	 		olliePic,
-	 		steps,
+	 		new Label({top: 5, left: 5, string: "Steps:", style: miniTitleStyle}),
 	 		new colorTextButton({text: ollieSteps[0], colorDict: ollieColors[0]}),
 	 		new colorTextButton({text: ollieSteps[1], colorDict: ollieColors[1]}),
 	 		new colorTextButton({text: ollieSteps[2], colorDict: ollieColors[2]}),
 	 		new colorTextButton({text: ollieSteps[3], colorDict: ollieColors[3]}),
 	 	]}),
+	 	new Container({top:7, bottom:55}),
 	 	new navBar({index:14})
 	]});

@@ -28,7 +28,6 @@ Handler.bind("/getTrick", {
 
 Handler.bind("/colorBoard", {
 	onInvoke: function(handler, message) {
-		trace("Received coloring message");
 		colorDict = JSON.parse(message.requestText)
 		for (var i = 0; i < parts.length; i++) {
 			var part = parts[i];
