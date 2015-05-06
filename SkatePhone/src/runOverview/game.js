@@ -126,32 +126,33 @@ function createGame(game){
 	application.add(gameCon);
 }
 
-var timing = 10;
-var countdownBehavior = Behavior.template({
-	onCreate: function(container, data){
-		container.interval = 1000;
-		container.start()
-	},
-	onTimeChanged: function(container) {
-		timing--;
-		trace ("hi");
-		if (timing == 0) {
-			container.stop();
-			/*var newRunMsg = new Message("/trackRun");
-			newRunMsg.requestText = JSON.stringify(container.game);
-			container.invoke(newRunMsg);*/
-		}
-		container.string = timing.toString() + " secs";
-	},
-});
-
 function createPreRun(game){
+
+	var countdownBehavior = Behavior.template({
+		onCreate: function(container, data){
+			this.timing = 10;
+			container.interval = 1000;
+			container.string = this.timing.toString() + " secs";
+			container.start();
+		},
+		onTimeChanged: function(container) {
+			this.timing--;
+			trace ("hi");
+			if (this.timing == 0) {
+				container.stop();
+				var newRunMsg = new Message("/trackRun");
+				newRunMsg.requestText = JSON.stringify(game);
+				container.invoke(newRunMsg);
+			}
+			container.string = this.timing.toString() + " secs";
+		},
+	});
+
 	preRunCon = new Column({left: 0, right: 0, bottom: 0, top: 0, skin: whiteSkin, contents: [
 		new Label({style: largeTitleStyle, top: 100, string: game.gameType}),
 		new Text({style: new Style({ font: "20px", color:"black", horizontalAlignment: "justify"}), left: 20, right: 20, top: 10, string:"Perform as many tricks as you can within the given time. Tougher tricks are awarded more points."}),
 		new Label({style: labelStyle, string: "YOUR RUN BEGINS IN:", top: 30}),
-		new Label({style: new Style({font: "20px", color:"blue"}), name: "timer", string: "10 secs", behavior: Object.create(countdownBehavior), top: 10})
+		new Label({style: new Style({font: "20px", color:"blue"}), name: "timer", behavior: Object.create(countdownBehavior.prototype, {game: game}), top: 10})
 	]});
 	application.add(preRunCon);
-	//preRunCon.timer.start()
 }
