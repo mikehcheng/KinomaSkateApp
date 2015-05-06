@@ -5,7 +5,6 @@ var THEME = require("themes/flat/theme");
 var BUTTONS = require("controls/buttons");
 var SLIDERS = require('controls/sliders'); 
 
-
 var blackSkin = new Skin({ fill: "black"});
 var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});

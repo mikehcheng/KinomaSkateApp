@@ -132,7 +132,7 @@ function createPreRun(game){
 
 	var countdownBehavior = Behavior.template({
 		onCreate: function(container, data){
-			this.timing = 10;
+			this.timing = 5;
 			container.interval = 1000;
 			container.string = timeString(this.timing.toString());
 			container.start();
@@ -153,7 +153,7 @@ function createPreRun(game){
 		new Label({style: new Style({font: "bold 40px", color:"#348adb"}), top: 150, string: game.gameType}),
 		new Text({style: new Style({ font: "20px", color:"#348adb", horizontalAlignment: "justify"}), left: 20, right: 20, top: 10, string:"Perform as many tricks as you can within the given time. Tougher tricks are awarded more points."}),
 		new Label({style: new Style({font: "20px", color:"#348adb"}), string: "YOUR RUN BEGINS IN:", top: 30}),
-		new Label({style: new Style({font: "20px", color:"blue"}), name: "timer", behavior: Object.create(countdownBehavior.prototype, {game: game}), top: 10})
+		new Label({style: new Style({font: "bold 30px", color:"#348adb"}), name: "timer", behavior: Object.create(countdownBehavior.prototype, {game: game}), top: 10})
 	]});
 	application.add(preRunCon);
 }
