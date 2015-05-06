@@ -4,9 +4,7 @@ var gameCon;
 			SKINS & STYLES
 #########################################*/
 
-//var boxSkin = new Skin({stroke: "black", borders: {top: 2, bottom: 2, right: 2, left: 2}});
-var boxSkin = new Skin({fill:"white", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
-var boxCloudSkin = new Skin({fill:"#ECF0F1", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
+var boxSkin = new Skin({stroke: "black", borders: {top: 2, bottom: 2, right: 2, left: 2}});
 
 /*#########################################
 				HANDLERS
@@ -30,7 +28,7 @@ Handler.bind("/loadRun", {
 			GENERIC CONSTRUCTORS
 #########################################*/
 
-var playerScore = Container.template(function($){ return {skin: boxCloudSkin, contents:[
+var playerScore = Container.template(function($){ return {skin: boxSkin, contents:[
 	Line($, {left: 5, top: 5, bottom: 5, right: 5, contents: [
 		Column($, {width: 60, contents: [
 			Thumbnail($, {width: 50, height: 50, aspect: 'fit', url: $.pic }),
@@ -63,7 +61,7 @@ var gameTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 var specializedBackButton = BUTTONS.Button.template(function($){ return{
     left:0,top:0, bottom:0, height:85, width: 20,
     contents: [
-        new Label({left:0, right:0, top:0, bottom:0, skin: new Skin({fill: "#3498db"}), 
+        new Label({left:0, right:0, top:0, bottom:0, skin: new Skin({fill: "#D3D3D3"}), 
             style: new Style( {font: "bold 25px", color:"white", horizontal:"left"} ) , string:"<"})
     ],
     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
@@ -75,9 +73,9 @@ var specializedBackButton = BUTTONS.Button.template(function($){ return{
 }})
 
 function createGame(game){
-	var buttonString = (game.myTurn) ? "Track Your Run" : "Waiting for Opponent";
-	var buttonSkin = (game.myTurn) ? new Skin({fill: "#3498db"}) : new Skin({fill: "#3498db"});
-	var customTableSkin = new Skin({stroke:"#3498db", fill: "white", borders: {top: 2, bottom: 2, left: ((game.myTurn) ? 2 : 0), right: ((game.myTurn) ? 0 : 2)}});
+	var buttonString = (game.myTurn) ? "Track Your Run" : "Wating for Opponent";
+	var buttonSkin = (game.myTurn) ? new Skin({fill: "green"}) : new Skin({fill: "gray"});
+	var customTableSkin = new Skin({stroke:"black", borders: {top: 2, bottom: 2, left: ((game.myTurn) ? 2 : 0), right: ((game.myTurn) ? 0 : 2)}});
 	var myRunsTable = new Table({string: "", width: 152, left: 0, top: 0, tableSkin: ((game.myTurn) ? customTableSkin : tableSkin)});
 	var opRunsTable = new Table({string: "", width: 151, left: 0, top: 0, tableSkin: ((game.myTurn) ? tableSkin : customTableSkin)});
 	
@@ -87,7 +85,7 @@ function createGame(game){
 				myRunsTable, 
 				//new Container({left:0, right:0}),
 				opRunsTable]})]}),
-		new Container({skin:new Skin({fill: "#3498db"}), top: 0, left:0, right:0, height: 85, contents:[
+		new Container({skin:new Skin({fill: "#D3D3D3"}), top: 0, left:0, right:0, height: 85, contents:[
 			new Line({contents:[
 				new specializedBackButton(),
 				new playerScore({pic: user.profile.pic, name: "You", score: game.myScore, left: 10, right: 0}),
@@ -96,7 +94,7 @@ function createGame(game){
 				new Container({right:0, top:0, bottom:0, width:20})
 			]}),
 		]}),
-		new Container({left: 0, right:0, bottom: 65, height: 50, skin: cloudSkin, contents:[
+		new Container({left: 0, right:0, bottom: 65, height: 50, skin: whiteSkin, contents:[
 			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: buttonSkin,
 				behavior: Object.create(Container.prototype, {
 					onTouchEnded: { value: function(content, id, x, y, ticks){
