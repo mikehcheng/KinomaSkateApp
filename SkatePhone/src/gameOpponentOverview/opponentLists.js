@@ -82,7 +82,7 @@ var mainColumnFriendList = new Column({
     	new opponentButtonTemplate({player: "Tom", score: "24", screen: "mainColumnFriendList"}),
     	new opponentButtonTemplate({player: "Joe", score: "35", screen: "mainColumnFriendList"}),
     	new opponentButtonTemplate({player: "Sarah", score: "55", screen: "mainColumnFriendList"}),
-    	new Line({top:10, left:0, right:0, height:53, skin: cloudSkin,}),
+    	new Line({top:11, left:0, right:0, height:53, skin: cloudSkin,}),
     	new navBar({index:5})
     ]
 })
@@ -108,7 +108,7 @@ var mainColumnCommList = new Column({
 		new opponentButtonTemplate({player: "Bob", score: "27", screen: "mainColumnCommList"}),
 		new opponentButtonTemplate({player: "Sue", score: "36", screen: "mainColumnCommList"}),
 		new opponentButtonTemplate({player: "Julie", score: "41", screen: "mainColumnCommList"}),
-    	new Line({top:10, left:0, right:0, height:53, skin: cloudSkin,}),
+    	new Line({top:11, left:0, right:0, height:53, skin: cloudSkin,}),
     	new navBar({index:6})
     ]
 })
