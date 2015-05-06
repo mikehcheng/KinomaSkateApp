@@ -13,6 +13,8 @@ var scoreStyle = new Style( { font:	"bold 24px", color: "black", horizontal:"cen
 var timerStyle = new Style( { font:	"bold 24px", color: "blue", horizontal:"center"});
 var finishedStyle = new Style( { font:	"bold 24px", color: "red", horizontal:"center"});
 
+var blueBorderSkin = new Skin({fill:"white", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
+
 // HANDLERS
 Handler.bind("/readTrick", {
 	onInvoke: function(handler, message) {
@@ -40,13 +42,13 @@ Handler.bind("/delay", {
 
 // RUN SCREEN ELEMENTS
 var noLabelTable = Column.template(function($) { return { left: $.left, right: $.right, top: $.top,
-	skin: whiteSkin,
+	skin: blueBorderSkin,
 	contents: [
 		Column($, {left: 0, right: 0, top: 0, contents: []})
 	]
 }});
 
-var trickRowSkin = new Skin({stroke:"black", borders: {bottom:1}})
+var trickRowSkin = new Skin({stroke:"#3498db", borders: {bottom:1}})
 var trickRow = Line.template(function($) { return {
 	top:0, bottom:0, left:0, right:0, height: 30, skin: trickRowSkin, contents: [
 		Label($, {top:7, left: 5, width:280, skin:whiteSkin, style: smallLabelStyle, string: $.trick}),
@@ -55,22 +57,22 @@ var trickRow = Line.template(function($) { return {
 }});
 
 var videoContainer = Container.template(function($) { return {
-	left:0, right:0, bottom: 0, height:160, skin: graySkin, contents: [
+	left:0, right:0, bottom: 0, height:160, skin: cloudSkin, contents: [
 		
 	]
 }});
 
 var scoreColumn = Column.template(function($) { return {
 	left:$.left, right:$.right, name:"scoreColumn", top:$.top, bottom:$.bottom,
-	skin: new Skin({fill: "white", stroke: "black", borders: { bottom: 2, left: 1}}), contents: [
-		Label($, {top:3, left: 0, right:0, name: "score", style: scoreStyle, string: "0"}),
+	skin: new Skin({fill: "#ECF0F1", stroke: "black", borders: { bottom: 2, left: 1}}), contents: [
+		Label($, {top:5, left: 0, right:0, name: "score", style: scoreStyle, string: "0"}),
 		Label($, {bottom:3, left:0, right:0, style: extraStyle, string: "points"})
 	]
 }});
 
 var timerColumn = Column.template(function($) { return {
 	left:$.left, right:$.right, top:$.top, bottom:$.bottom, 
-	skin: new Skin({fill: "white", stroke: "black", borders: { bottom: 2, right: 1}}), contents: [
+	skin: new Skin({fill: "#ECF0F1", stroke: "black", borders: { bottom: 2, right: 1}}), contents: [
 		Label($,{top:3, left: 0, right:0, style: timerStyle, behavior: Object.create(timerBehavior.prototype)}),
 		Label($,{bottom:3, left:0, right:0, style: extraStyle, string: "remaining"})
 	]
@@ -119,7 +121,7 @@ var runNumber;
 function createActiveRun(game) {
 	runNumber = game.myRuns.length + 1;
 	trickTable = new noLabelTable({left: 10, right:10, top: 10, bottom: 10});
-	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:0})
+	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:140})
 	currentRun = {score:0, moves: [], video: ""};
 	currentGame = game;
 	var titleString = "Tracking Run " + runNumber.toString() + "...";
@@ -130,33 +132,33 @@ function createActiveRun(game) {
 	headerLabel = headerBar[1];
 	
 	activeRunCon = new Container({
-		top:0, bottom:0, left:0, right:0, skin: whiteSkin, contents: [
+		top:0, bottom:0, left:0, right:0, skin: cloudSkin, contents: [
 			// list of tricks
-			new scrollContainer({left:0, right:0, top:135, bottom: 55, contents: [trickTable]}),
+			new scrollContainer({left:0, right:0, top:135, bottom: 0, contents: [trickTable]}),
 			
 			// box around list of tricks
 			new Column({left:0, right:0, top:135, bottom: 55, contents: [
 				new Container({left:8, right:8, top:0, height:10, 
-					skin: new Skin({fill: "white", borders: {bottom: 2}, stroke: "black"})}),
+					skin: new Skin({fill: "#ECF0F1"})}),
 				new Line({left:0, right:0, height:210, contents: [
 					new Container({left:0, height:210, width: 10, 
-						skin: new Skin({fill: "white", borders: {right: 2}, stroke: "black"})}),
+						skin: new Skin({fill: "#ECF0F1"})}),
 					new Container({left:10, right:10}),
 					new Container({right:0, height:210, width: 10, 
-						skin: new Skin({fill: "white", borders: {left: 2}, stroke: "black"})}),
+						skin: new Skin({fill: "#ECF0F1"})}),
 				]}),
 				new Container({left:8, right:8, bottom: 0, height:30, 
-					skin: new Skin({fill: "white", borders: {top: 2}, stroke: "black"}) })
+					skin: new Skin({fill: "#ECF0F1"}) })
 			]}),
 			
 			// label above list of tricks
-			new Column({left:0, right:0, top:105, height:30, skin: whiteSkin, contents: [
-				new Label({left:10, top:10, style: labelStyle, string:"Tricks Completed"}),
+			new Column({left:0, right:0, top:115, height:30, skin: cloudSkin, contents: [
+				new Label({left:10, top:10, skin:cloudSkin, style: labelStyle, string:"Tricks Completed"}),
 			]}),
 			
 			// label for information
-			new Line({left:0, right:0, top:55, height:50, contents:[
-				new timerColumn({left:0, right:0, top:0, bottom:0}),
+			new Line({left:0, right:0, top:55, height:200, contents:[
+				new timerColumn({left:0, right:0, top:0, bottom:140}),
 				scoreField
 			]}),
 			
@@ -180,32 +182,34 @@ function createInactiveRun(game) {
 		tStyle: new Style({ font: "bold 25px", color:"white", horizontal:"center"}) });
 	
 	inactiveRunCon = new Container({
-		top:0, bottom:0, left:0, right:0, skin: whiteSkin, contents: [
+		top:0, bottom:0, left:0, right:0, skin: cloudSkin, contents: [
 			// list of tricks
-			new scrollContainer({left:0, right:0, top:135, bottom: 55, contents: [trickTable]}),
+			new scrollContainer({left:0, right:0, top:135, bottom: 0, contents: [trickTable]}),
 			
 			// box around list of tricks
 			new Column({left:0, right:0, top:135, bottom: 55, contents: [
 				new Container({left:9, right:9, top:0, height:10, 
-					skin: new Skin({fill: "white", borders: {bottom: 2}, stroke: "black"})}),
+					skin: cloudSkin}),
 				new Line({left:0, right:0, height:210, contents: [
 					new Container({left:0, height:210, width: 10, 
-						skin: new Skin({fill: "white", borders: {right: 2}, stroke: "black"})}),
+						skin: cloudSkin}),
 					new Container({left:10, right:10}),
 					new Container({right:0, height:210, width: 10, 
-						skin: new Skin({fill: "white", borders: {left: 2}, stroke: "black"})}),
+						skin: cloudSkin}),
 				]}),
 				new Container({left:9, right:9, bottom: 0, height:30, 
-					skin: new Skin({fill: "white", borders: {top: 2}, stroke: "black"}) })
+					skin: cloudSkin }),
+				
+			
 			]}),
 			
 			// label above list of tricks
-			new Column({left:0, right:0, top:105, height:30, skin: whiteSkin, contents: [
-				new Label({left:10, top:10, style: labelStyle, string:"Tricks Completed"}),
+			new Column({left:0, right:0, top:105, height:30, skin: cloudSkin, contents: [
+				new Label({left:10, top:10, skin: cloudSkin, style: labelStyle, string:"Tricks Completed"}),
 			]}),
 			
 			// label for information
-			new Line({left:0, right:0, top:55, height:50, contents:[
+			new Line({left:0, right:0, top:45, height:50, contents:[
 				scoreField
 			]}),
 			

@@ -13,10 +13,11 @@ var infoStyle = new Style( { font: "bold 16px", color:"#2980b9" });
 var blueBorderSkin = new Skin({fill:"white", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
 var whiteSkin = new Skin({fill:"white"});
 var whiteGreenSkin = new Skin({fill:"#ECF0F1"});
+var labelStyleWhite = new Style( { font: "20px", color:"white" } );
 
 
 var lightGraySkin = new Skin({fill: "#696969"});
-var tableSkin = new Skin({fill: "white"});
+var tableSkin = blueBorderSkin;
 var rowSkin = new Skin({borders: {bottom: 1}, stroke: "#ECF0F1"});
 var separatorSkin = new Skin({ fill: 'blue',});
 
@@ -122,7 +123,7 @@ function createHome() {
 				}),
 				contents:[ new Line({contents: [
 	   				new Thumbnail({width: 20, height: 20, aspect: 'fit', url: "resources/add.png" }),
-	   				new Label({style: labelStyle, width: labelStyle.measure("Create Game").width, string: "Create Game", left: 10})
+	   				new Label({style: labelStyleWhite, width: labelStyle.measure("Create Game").width, string: "Create Game", left: 10})
 	   			]})
 			]})
 		]}),
