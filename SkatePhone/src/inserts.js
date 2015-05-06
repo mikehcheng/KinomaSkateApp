@@ -1,12 +1,13 @@
 // LIGHTS CODE
-function sendColors(colorDict) {
-	var msg = new Message(deviceURL + "/colorBoard");
-	msg.requestText = JSON.stringify(colorDict);
-	application.invoke(msg);
-}
 
 function resetColors() {
-	application.invoke(new Message(deviceURL + "/resetBoard"));
+	application.invoke(new Message(deviceURL + "resetBoard"));
+}
+
+function setColors(colorDict) {
+	var msg = new Message(deviceURL + "colorBoard");
+	msg.requestText = JSON.stringify(colorDict);
+	application.invoke(msg, Message.JSON);
 }
 
 var shadedBlueBorderSkin = new Skin({fill:"#663498db", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
@@ -18,14 +19,16 @@ var colorTextButton = BUTTONS.Button.template(function($){ return{
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: {value : function(button) {
-			trace("mmmmmm\n");
 			if (selectedIndex != button.index) { //if this doesn't work, hardcode some index and keep running list of buttons
 				if (selectedIndex != -1) { button.container[selectedIndex].skin = blueBorderSkin; }
-				this.skin = shadedBlueBorderSkin;
-				sendColors($.colorDict);
+				button.skin = shadedBlueBorderSkin;
+				selectedIndex = button.index;
+				trace("Attempting to color");
+				setColors($.colorDict);
 			} else {
-				this.skin = blueBorderSkin;
-				resetColors()
+				button.skin = blueBorderSkin;
+				resetColors();
+				selectedIndex = -1;
 			}
 		}}
 	})
