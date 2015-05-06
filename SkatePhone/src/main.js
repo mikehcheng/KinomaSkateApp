@@ -8,12 +8,12 @@ var blackSkin = new Skin({ fill: "black"});
 var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
-var titleStyle = new Style( { font: "bold 25px", color:"black", horizontal:"center"});
+var titleStyle = new Style( { font: "bold 25px", color:"white", horizontal:"center"});
 var labelStyle = new Style( { font: "20px", color:"black" } );
 var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
 var miniTitleStyle = new Style( { font: "bold 28px", color:"black"} );
 var textStyle = new Style( { font: "bold 25px", color:"blue"} );
-var backButtonStyle = new Style( {font: "bold 35px", color:"black", horizontal:"right"} );
+var backButtonStyle = new Style( {font: "bold 25px", color:"white", horizontal:"right"} );
 
 deviceURL = "";
 var receivedTrick = undefined;
@@ -42,8 +42,6 @@ include ("runOverview/game.js");
 include	("runOverview/run.js");
 
 var map = new Texture('resources/map.png');
-var medlocation = new Texture('resources/medlocation.png');
-//var medCircle = 
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
  
 include ("gameOpponentOverview/createGameOpponent.js");
@@ -83,7 +81,7 @@ var popped = false;
 
 //map screen 1
 var mainColumnMap = new Column({
-    left: 0, right: 0, top: 0, bottom: 0, active: true, skin: whiteSkin,
+    left: 0, right: 0, top: 0, bottom: 0, active: true, skin: blackSkin,
     contents: [
         new headerBarTemplate({header:"NEAREST SKATE PARKS"}),
     	new Line({top:3, left:0, right:0, height:430, skin: mapSkin, active:true, name: "map",
