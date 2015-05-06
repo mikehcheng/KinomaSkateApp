@@ -7,8 +7,6 @@ var THEME = require('themes/sample/theme');
 			SKINS & STYLES
 #########################################*/
 
-var largeTitleStyle = new Style( { font: "bold 40px", color:"black" } );
-var smallLabelStyle = new Style( { font: "14px", color:"black" } );
 var infoStyle = new Style( { font: "bold 16px", color:"#2980b9" });
 var labelStyleWhite = new Style( { font: "20px", color:"white" } );
 

@@ -47,7 +47,7 @@ var playerScore = Container.template(function($){ return {skin: boxCloudSkin, co
 	]})
 ]}});
 
-var gameTableRow = Line.template(function($) { return { left: 0, right: 0, height: 50, active: true, skin: rowSkin,
+var gameTableRow = Line.template(function($) { return { left: 2, right: 2, height: 50, active: true, skin: rowSkin,
 	behavior: Object.create(Behavior.prototype, {
 		onTouchEnded: {value: function(container, id, x,  y, ticks) {
 			var msg = new Message("/loadRun");
@@ -82,8 +82,8 @@ var specializedBackButton = BUTTONS.Button.template(function($){ return{
 }})
 
 function createGame(game){
-	var buttonString = (game.myTurn) ? "Track Your Run" : "Waiting for Opponent";
-	var buttonSkin = (game.myTurn) ? new Skin({fill: "#3498db"}) : new Skin({fill: "#3498db"});
+	var buttonString = (game.myTurn) ? "Start your Turn" : "Waiting for Opponent";
+	var buttonSkin = (game.myTurn) ? new Skin({fill: "#3498db"}) : lightGraySkin;
 	var customTableSkin = new Skin({stroke:"#3498db", fill: "white", borders: {top: 2, bottom: 2, left: ((game.myTurn) ? 2 : 0), right: ((game.myTurn) ? 0 : 2)}});
 	var myRunsTable = new Table({string: "", width: 152, left: 0, top: 0, tableSkin: ((game.myTurn) ? customTableSkin : tableSkin)});
 	var opRunsTable = new Table({string: "", width: 151, left: 0, top: 0, tableSkin: ((game.myTurn) ? tableSkin : customTableSkin)});
@@ -150,7 +150,7 @@ function createPreRun(game){
 	});
 
 	preRunCon = new Column({left: 0, right: 0, bottom: 0, top: 0, skin: whiteSkin, contents: [
-		new Label({style: largeTitleStyle, top: 100, string: game.gameType}),
+		new Label({style: new Style({font: "bold 40px", color:"black"}), top: 100, string: game.gameType}),
 		new Text({style: new Style({ font: "20px", color:"black", horizontalAlignment: "justify"}), left: 20, right: 20, top: 10, string:"Perform as many tricks as you can within the given time. Tougher tricks are awarded more points."}),
 		new Label({style: labelStyle, string: "YOUR RUN BEGINS IN:", top: 30}),
 		new Label({style: new Style({font: "20px", color:"blue"}), name: "timer", behavior: Object.create(countdownBehavior.prototype, {game: game}), top: 10})

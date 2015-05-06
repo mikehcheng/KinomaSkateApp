@@ -48,7 +48,7 @@ var noLabelTable = Column.template(function($) { return { left: $.left, right: $
 
 var trickRowSkin = new Skin({stroke:"#3498db", borders: {bottom:1}})
 var trickRow = Line.template(function($) { return {
-	top:0, bottom:0, left:0, right:0, height: 30, skin: trickRowSkin, contents: [
+	top:0, left:2, right:2, height: 30, skin: trickRowSkin, contents: [
 		Label($, {top:7, left: 5, width:280, skin:whiteSkin, style: smallLabelStyle, string: $.trick}),
 		Label($, {top:7, right: 5, width:10, skin:whiteSkin, style: infoStyle, string: trickDictionary[$.trick]})
 	]
