@@ -1,8 +1,3 @@
-// PHONE MAIN
-
-var SCROLLER = require('mobile/scroller');
-var THEME = require('themes/sample/theme');
-
 /*#########################################
 			SKINS & STYLES
 #########################################*/

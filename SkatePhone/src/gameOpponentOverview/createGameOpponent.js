@@ -1,16 +1,3 @@
-var CONTROL = require('mobile/control');
-var KEYBOARD = require('mobile/keyboard');
-var BUTTONS = require("controls/buttons");
-var SLIDERS = require('controls/sliders'); 
-var smallTextStyle = new Style( { font: "bold  13px", color:"black"} );
-var gameTitleStyle = new Style( { font: "bold 28px", color:"#3498db"} );
-var pbBlueSkin = new Skin({ fill: "#3498db"}); //#4169E1
-var gsGreenSkin = new Skin({ fill: "#16a085"});
-var turSkin = new Skin({fill: "#1abc9c"});
-var steelBlueSkin = new Skin({fill:"#76DEA2"}); //#4682B4
-
-
-
 var trickContestTemplate = BUTTONS.Button.template(function($){ return{
 	index: $.index,
     top:30, bottom:0, left: 5,  right: 5, height:40, skin: blueBorderSkin,

@@ -1,9 +1,3 @@
-var CONTROL = require('mobile/control');
-var KEYBOARD = require('mobile/keyboard');
-var BUTTONS = require("controls/buttons");
-var SLIDERS = require('controls/sliders'); 
-var textStyle = new Style( { font: "bold 25px", color:"#3498db"} );
-
 function createGameData(player) {
 	return {
 		gameIndex: user.games.length,

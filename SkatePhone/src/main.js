@@ -1,26 +1,30 @@
 //@program
-var CONTROL = require('mobile/control');
-var KEYBOARD = require('mobile/keyboard');
-var THEME = require("themes/flat/theme");
+
+var SCROLLER = require('mobile/scroller');
+var THEME = require('themes/sample/theme');
 var BUTTONS = require("controls/buttons");
-var SLIDERS = require('controls/sliders'); 
 
 var blackSkin = new Skin({ fill: "black"});
 var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
 var cloudSkin = new Skin({fill:"#ECF0F1"});
+var pbBlueSkin = new Skin({fill:"#3498db"});
 
 var titleStyle = new Style( { font: "bold 25px", color:"white", horizontal:"center"});
 var title2Style = new Style( { font: "20px", color:"black", horizontal:"center"});
 var miniTitleStyle = new Style( { font: "bold 28px", color:"black"} );
+var gameTitleStyle = new Style( { font: "bold 28px", color:"#3498db"} );
 
+var textStyle = new Style( { font: "bold 25px", color:"#3498db"} );
 var labelStyle = new Style( { font: "20px", color:"black" } );
 var label2Style = new Style( { font: "bold 20px", color:"black" } );
 var smallLabelStyle = new Style( { font: "14px", color:"black" } );
+var smallTextStyle = new Style( { font: "bold  13px", color:"black"} );
 
-var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
-var textStyle = new Style( { font: "bold 25px", color:"blue"} );
+var buttonStyle = new Style( { font: "bold 18px", color:"black" } );
+var button2Style = new Style( { font: "bold 25px", color:"black" } );
+var button3Style = new Style( { font: "bold 23px", color:"black" } );
 var backButtonStyle = new Style( {font: "bold 35px", color:"white", horizontal:"right"} );
 
 var blueBorderSkin = new Skin({fill:"white", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
@@ -44,8 +48,7 @@ Handler.bind("/discover", Behavior({
 }));
 
 include	("navBar.js");
-include	("trickButtons.js");
-include	("inserts.js");
+include	("trickManual.js");
 include ("data.js");
 include ("home.js");
 include ("profile.js");
@@ -221,55 +224,7 @@ for (i=0; i < parks.length; ++i) {
 // see 9
 
 //Trick 1  12
-var mainColumnTrick1 = new Column({
-	 left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin,
-	 contents: [
-	    manualLabel = new headerBarTemplate({header:"Trick Manual"}),
-	    popularLabel = new Label({top: 5, left: 8,string: "Levels:", style: label2Style}),
-    	
-    	basicButton = new Line({left:0, right:0, height:53, active:true, 
-    		contents: [
-    			new BasicButton(),
-    			
-		  	],	  	
-    	}),
-    	intermediateButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
-    		contents: [
-    			new IntermediateButton(),
-		  	],	  	
-    	}),
-    	advancedButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
-    		contents: [
-    			new AdvancedButton(),
-		  	],	  	
-    	}),
-    	customButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
-    		contents: [
-    			new CustomButton(),
-		  	],	  	
-    	}),
-    	popularLabel = new Label({top: 10, left: 8,string: "Popular Tricks:", style: label2Style}),
-    	
-    	fakieButton = new Line({top: 0, left:0, right:0, height:53, active:true,  
-    		contents: [
-    			new FakieButton(),
-		  	],	  	
-    	}),
-    	noseButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
-    		contents: [
-    			new NoseSlideButton(),
-		  	],	  	
-    	}),
-    	
-    	tailButton = new Line({top: 0, left:0, right:0, height:53, active:true, 
-    		contents: [
-    			new TailSlideButton(),
-		  	],	  	
-    	}),
-    	new Container({top:7, bottom:55}),
-    	originalNav = new navBar({index:12})
-    ]
-})
+// in trickManual.js
 
 // profile 15
 // create with createProfile()

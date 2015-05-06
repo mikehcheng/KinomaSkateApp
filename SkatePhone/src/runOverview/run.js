@@ -207,7 +207,7 @@ function createInactiveRun(game) {
 			]}),
 			
 			// label above list of tricks
-			new Column({left:0, right:0, top:95, height:30, skin: cloudSkin, contents: [
+			new Line({left:0, right:0, top:95, height:30, skin: cloudSkin, contents: [
 				new Label({left:10, top:10, skin: cloudSkin, style: labelStyle, string:"Tricks Completed"}),
 			]}),
 			

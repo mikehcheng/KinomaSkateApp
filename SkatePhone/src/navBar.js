@@ -17,8 +17,6 @@ INDEXES FOR THE SCREENS (for buttons)
 15 maincolumnprofile
 */
 
-var pbBlueSkin = new Skin({fill:"#3498db"});
-
 var screenDictionary = {
 	1: "mainColumnMap",
 	2: "homeCon",
