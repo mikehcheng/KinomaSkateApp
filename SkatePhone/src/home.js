@@ -9,13 +9,23 @@ var THEME = require('themes/sample/theme');
 
 var largeTitleStyle = new Style( { font: "bold 40px", color:"black" } );
 var smallLabelStyle = new Style( { font: "14px", color:"black" } );
-var infoStyle = new Style( { font: "16px", color:"blue" });
+var infoStyle = new Style( { font: "bold 16px", color:"#2980b9" });
+var blueBorderSkin = new Skin({fill:"white", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
+var whiteSkin = new Skin({fill:"white"});
+var whiteGreenSkin = new Skin({fill:"#ECF0F1"});
+var labelStyleWhite = new Style( { font: "20px", color:"white" } );
 
-var whiteSkin = new Skin( { fill:"white" });
+
 var lightGraySkin = new Skin({fill: "#696969"});
-var tableSkin = new Skin({borders: {top: 2, right: 2, left: 2, bottom: 2}, stroke: "black"});
-var rowSkin = new Skin({borders: {bottom: 1}, stroke: "black"});
+var tableSkin = blueBorderSkin;
+var rowSkin = new Skin({borders: {bottom: 1}, stroke: "#ECF0F1"});
 var separatorSkin = new Skin({ fill: 'blue',});
+
+
+var royalBlueSkin = new Skin({ fill: "#3598DB"}); //#4169E1
+var greenSkin = new Skin({fill: "#2ED07B"});
+//var cloudSkin = new Skin({fill:"#ECF0F1"}); //#4682B4
+var cloudSkin = new Skin({fill:"#ECF0F1"});
 
 /*#########################################
 			GENERIC CONSTRUCTORS
@@ -23,7 +33,7 @@ var separatorSkin = new Skin({ fill: 'blue',});
 
 var Table = Column.template(function($) { return { left: $.left, right: $.right, top: $.top, width: (('width' in $) ? $.width : undefined),
 	contents: [
-		Label($, {left: 0, bottom: 10, style: labelStyle, string: $.string}),
+		Label($, {left: 0, bottom: 0, width: 310, style: labelStyle, string: $.string, skin: whiteGreenSkin}),
 		Column($, {left: 0, right: 0, top: 0, skin: (("tableSkin" in $) ? $.tableSkin: tableSkin), contents: []})
 	]
 }});
@@ -55,11 +65,11 @@ var homeTableRow = Line.template(function($) { return { left: 0, right: 0, heigh
 }});
  
 var scrollContainer = Container.template(function($){return {
-	left:0, right:0, top:$.top, bottom: $.bottom,  skin: (('skin' in $) ? $.skin : whiteSkin),
+	left:0, right:0, top:$.top, bottom: $.bottom,  skin: (('skin' in $) ? $.skin : whiteGreenSkin),
 	contents: [
    		SCROLLER.VerticalScroller(new Object(), {
    			contents: [
-          			new Column({ left: 0, right: 0, top: 0,  skin: whiteSkin, contents: $.contents}),
+          			new Column({ left: 0, right: 0, top: 0,  skin: whiteGreenSkin, contents: $.contents}),
           			SCROLLER.VerticalScrollbar(new Object(), { })
    		]})
    	]}});
@@ -103,9 +113,9 @@ function createHome() {
 	opTurnTable = new Table({string: "Opponent's Turn", left: 5, right:5, top: 35}); 
 	homeCon = new Container({left: 0, right: 0, bottom: 0, top: 0, contents: [
 		new scrollContainer({top: 50, bottom: 125, contents: [ myTurnTable, opTurnTable ]}),
-		new headerBarTemplate({header:"ACTIVE GAMES"}),
-		new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteSkin, contents:[
-			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "green"}),
+		new headerBarTemplate({header:"Active Games"}),
+		new Container({left: 0, right:0, bottom: 55, height: 70, skin: whiteGreenSkin, contents:[
+			new Container({left: 10, right: 10, bottom: 10, top: 10, active: true, skin: new Skin({fill: "#3498db"}),
 				behavior: Object.create(Container.prototype, {
 					onTouchEnded: { value: function(content, id, x, y, ticks){
 						content.invoke(new Message("/createGame"));
@@ -113,7 +123,7 @@ function createHome() {
 				}),
 				contents:[ new Line({contents: [
 	   				new Thumbnail({width: 20, height: 20, aspect: 'fit', url: "resources/add.png" }),
-	   				new Label({style: labelStyle, width: labelStyle.measure("Create Game").width, string: "Create Game", left: 10})
+	   				new Label({style: labelStyleWhite, width: labelStyle.measure("Create Game").width, string: "Create Game", left: 10})
 	   			]})
 			]})
 		]}),
