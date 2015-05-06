@@ -45,44 +45,28 @@ include	("runOverview/run.js");
 
 var map = new Texture('resources/map2.png');
 
-//var medCircle = 
+
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
 
 include ("gameOpponentOverview/createGameOpponent.js");
 include ("gameOpponentOverview/opponentLists.js");
 
-//map screen which you go to if you click on the map button
-
-/*behavior: Object.create(Behavior.prototype, {
-		onTouchEnded: {value: function(line, id, x, y, ticks){
-			//681, 112
-			trace("You touched at: " + x + ", " + y + "\n");
-			if (x> 631 && x<731 && y > 62 && y <162){
-				if (popped = false) {
-					mainColumnMap.mapLine.add(popup);
-						popped = true; 
-				}
-				else{
-					mainColumnMap.mapline.remove(popup);
-					popped = false;
-				}
-			}
-			else{
-				if (popped == true) {
-   					 		mainColumnMap.map.remove(popup);
-   					 		popped = false;
-   					 	}
-   					
-   					}
-		}}
-	})*/
 
 var popped = false;
-var parks = [{x: 90, y: 10, size: 15, height:30, width:30}, {x:30, y:70, size:30, height:40,width:40}, {x:50,y:80, size:1, height:20, width:20}];
+var parks = [{x: 90, y: 10, size: 15, height:30, width:30}, {x:150, y:70, size:30, height:40,width:40}, {x:300,y:80, size:14, height:20, width:20}];
 var buttonText = new Style({font:"bold 15px", color:"blue"});
 var button2Text = new Style({font:"bold 15px", color: "red"});
 
+var smallL = new Texture('resources/1circle.png',);
+var smallSkin = new Skin(smallL, {x:0,y:0,width:20,height:20});
 
+var medL = new Texture('resources/3circle.png');
+var medSkin = new Skin(medL, {x:0, y:0, width:30, height:30});
+
+var largeL = new Texture('resources/4circle.png');
+var largeSkin = new Skin(largeL, {x:0, y:0, width:40, height:40});
+
+var currentpopup;
 var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
   top:55, bottom:15, left:15, right:15, skin: new Skin({fill:"white"}),
   contents:[
@@ -91,37 +75,47 @@ var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
       trace("Button was tapped.\n");
-      var checkins = (parseInt(parks[2].size) + 1).toString();
-      popup.checkinnum.string = checkins + " check-ins";
+      var prev = parks[$.index].size;
+      var checkins = parks[$.index].size + 1;
+      parks[$.index].size= checkins;
+      currentpopup.checkinnum.string = checkins + " check-ins";
+      if (prev < 15 && parseInt(checkins) >= 15) {
+      	 var over = new Park({skin: medSkin, top: parks[$.index].x, left: parks[$.index].y, width:30, height: 30, index: $.index}) //
+    	 mapLine.add(over)
+      }
+      if (prev < 30 && parseInt(checkins) >= 30) {
+      	var over = new Park({skin: largeSkin, top: parks[$.index].x, left: parks[$.index].y, width: 40, height: 40, index: $.index}) //
+    	 mapLine.add(over)
+      }
       var n = new checkButtonTemplate({textForLabel:"Checked In", style:button2Text});
-      popup.add(n);
+      currentpopup.add(n);
     }},
   })
 }});
 
-var checkbutton = new checkButtonTemplate({textForLabel:"Check In", style: buttonText});
 
 var popupStyle = new Style( { font: "15px", color:"black"} );
-var popup = new Container({top:-130, height:100, width:130, left: 45, skin:blueSkin,
+var popupTemplate = Container.template(function($) { return{
+	top:$.t - 50, height:100, width:130, left:$.l + 60, skin:blueSkin,
 	contents: [
 		new Label({top:1,left:5, string: "Berkeley Skate Park", height:15,style: popupStyle}),
 		new Label({top:15,left:5, string: "1100 Channing Way", height:15, style: popupStyle}),
-		new Label({top:30,left:5, height:15, name: "checkinnum", string: parks[2].size + " check-ins", style: popupStyle}),
-		checkbutton
+		new Label({top:30,left:5, height:15, name: "checkinnum", string: parks[$.index].size + " check-ins", style: popupStyle}),
+		new checkButtonTemplate({textForLabel:"Check In", style: buttonText, index:$.index})
 	]
-})
-
+	}
+});
 
 
 
        
-var mapLine = new Column({top:5, bottom:5, left:15, right:15, height:400, skin: mapSkin,active:true, 
+var mapLine = new Container({top:5, bottom:5, left:15, right:15, height:400, skin: mapSkin,active:true, 
     		  contents:[
     	],
     	 behavior: Behavior({
             onTouchEnded: function(content){
             	if (popped == true){
-            		mapLine.remove(popup);
+            		mapLine.remove(currentpopup);
             		popped = false;
             	}
             }
@@ -145,22 +139,26 @@ var mainColumnMap = new Column({
     ]
  });
 
-var smallL = new Texture('resources/1circle.png',);
-var smallSkin = new Skin(smallL, {x:0,y:0,width:20,height:20});
 
-var medL = new Texture('resources/3circle.png');
-var medSkin = new Skin(medL, {x:0, y:0, width:30, height:30});
-
-var largeL = new Texture('resources/4circle.png');
-var largeSkin = new Skin(largeL, {x:0, y:0, width:40, height:40});
 
 var Park = Content.template(function($) { return {
-    top: $.top, left: $.left, width:$.width, height: $.height, skin: $.skin, population: $.population, active: true,
+    top: $.top, left: $.left, width:$.width, height: $.height, skin: $.skin, index:$.index,  active: true, //population: $.population,
     behavior: Behavior({
             onTouchEnded: function(content){
-            	mapLine.add(popup);
+            if (popped == false){
+            	var x = new popupTemplate({t:$.top, l: $.left, index:$.index});
+				currentpopup = x;
+            	mapLine.add(x);
             	popped = true;
             }
+            else{
+            	mapLine.remove(currentpopup);
+            	var x = new popupTemplate({t:$.top, l: $.left, index:$.index});
+				currentpopup = x;
+            	mapLine.add(x);
+            	popped = true;
+            }
+           }
     })
 }})
 
@@ -174,7 +172,7 @@ for (i=0; i < parks.length; ++i) {
     else if (parks[i].size >= 15) {
         skin = medSkin
     }
-    var over = new Park({skin: skin, top: parks[i].x, left: parks[i].y, width: parks[i].width, height: parks[i].height, population:parks[i].size}) //
+    var over = new Park({skin: skin, top: parks[i].x, left: parks[i].y, width: parks[i].width, height: parks[i].height, index: i}) //
     mapLine.add(over)
 }
 
