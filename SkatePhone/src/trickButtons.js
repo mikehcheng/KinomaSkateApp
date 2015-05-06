@@ -9,18 +9,12 @@ var fakieButton;
 var noseButton;
 var tailButton;
 var originalNav;
-var royalBlueSkin = new Skin({ fill: "#3598DB"}); 
-var greenSkin = new Skin({fill: "#2ED07B"});
-var yellowSkin = new Skin({fill:"#F2CA3C"}); 
-var buttonStyle = new Style( { font: "bold 18px", color:"black" } );
-var button2Style = new Style( { font: "bold 25px", color:"black" } );
-var button3Style = new Style( { font: "bold 23px", color:"black" } );
 
 var BasicButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:5, height:50, skin: royalBlueSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
 		new Label({left:5, height:45, string:"Basics", style: buttonStyle}),
-		new Label({top: 15, right: 5,string: ">", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -32,10 +26,10 @@ var BasicButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var IntermediateButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:5, height:50, skin: greenSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
 		new Label({left:5, height:45, string:"Intermediate", style: buttonStyle}),
-		new Label({top: 15, right: 5,string: ">", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -46,10 +40,10 @@ var IntermediateButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var AdvancedButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:5, height:50, skin: royalBlueSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
 		new Label({left:5, height:45, string:"Advanced", style: buttonStyle}),
-		new Label({top: 15, right: 5,string: ">", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -60,10 +54,10 @@ var AdvancedButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var CustomButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:5, height:50, skin: greenSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
 		new Label({left:5, height:45, string:"Custom Tricks", style: buttonStyle}),
-		new Label({top: 15, right: 5,string: ">", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -74,10 +68,10 @@ var CustomButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var FakieButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:5, height:50, skin: yellowSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
-		new Label({left:5, height:45, string:"Fakie", style: button2Style}),
-		new Label({top: 15, right: 5,string: ">", style: buttonStyle}),
+		new Label({left:5, height:45, string:"Fakie", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -88,10 +82,10 @@ var FakieButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var NoseSlideButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:5, height:50, skin: royalBlueSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
 		new Label({left:5, height:45, string:"Noseslide", style: buttonStyle}),
-		new Label({top: 15, right: 5,string: ">", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -102,10 +96,10 @@ var NoseSlideButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var TailSlideButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:5, height:50, skin: yellowSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
 		new Label({left:5, height:45, string:"Tailslide", style: buttonStyle}),
-		new Label({top: 15, right: 5,string: ">", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -117,14 +111,14 @@ var TailSlideButton = BUTTONS.Button.template(function($){ return{
 
 
 ////////////Basic Buttons////////////
-var olliePic = new Picture({aspect: "fill", height:130, left: 10, right:10, top: 15, width: 180, url: "resources/ollie.png"}),
+var olliePic = new Picture({aspect: "fill", height:100, top: 15, width: 180, url: "resources/ollie.png"}),
 
 
 var OllieButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:5, height:70, skin: greenSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
-		new Label({left:5, height:65, string:"Ollie", style: button3Style}),
-		new Label({top: 20, right: 5,string: ">", style: button2Style}),
+		new Label({left:5, height:45, string:"Ollie", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 		
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
@@ -137,10 +131,10 @@ var OllieButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var KickTurnButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:45, height:70, skin: yellowSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
-		new Label({left:5, height:45, string:"Kickturn", style: button3Style}),
-		new Label({top: 20, right: 5,string: ">", style: button2Style}),
+		new Label({left:5, height:45, string:"Kickturn", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -151,10 +145,10 @@ var KickTurnButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var GrindButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:90, height:70, skin: royalBlueSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
-		new Label({left:5, height:45, string:"50-50 Grind", style: button3Style}),
-		new Label({top: 20, right: 5,string: ">", style: button2Style}),
+		new Label({left:5, height:45, string:"50-50 Grind", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -165,10 +159,10 @@ var GrindButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var BoardSlideButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:135, height:70, skin: greenSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
-		new Label({left:5, height:45, string:"Boardslide", style: button3Style}),
-		new Label({top: 20, right: 5,string: ">", style: button2Style}),
+		new Label({left:5, height:45, string:"Boardslide", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
@@ -179,10 +173,10 @@ var BoardSlideButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var ManualsButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:180, height:70, skin: royalBlueSkin,
+	left: 5, right:5, top:5, height:30, skin: whiteSkin,
 	contents: [
-		new Label({left:5, height:45, string:"Manuals", style: button3Style}),
-		new Label({top: 20, right: 5,string: ">", style: button2Style}),
+		new Label({left:5, height:45, string:"Manuals", style: buttonStyle}),
+		new Label({top: 0, right: 5,string: ">", style: buttonStyle}),
 	],
 	behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		onTap: { value: function(content){
