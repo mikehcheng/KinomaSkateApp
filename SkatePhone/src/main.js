@@ -10,7 +10,7 @@ var blackSkin = new Skin({ fill: "black"});
 var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
-var cloudSkin = new Skin({fill:"white"});
+var cloudSkin = new Skin({fill:"#ECF0F1"});
 
 var titleStyle = new Style( { font: "bold 25px", color:"white", horizontal:"center"});
 var title2Style = new Style( { font: "20px", color:"black", horizontal:"center"});

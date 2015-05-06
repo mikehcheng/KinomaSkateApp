@@ -56,7 +56,7 @@ var trickRow = Line.template(function($) { return {
 
 var videoContainer = Container.template(function($) { return {
 
-	left:0, right:0, bottom: 0, height:160, skin: cloudSkin, contents: [
+	left:0, right:0, bottom: 0, height:160, skin: graySkin, contents: [
 
 	]
 }});
@@ -72,7 +72,7 @@ var scoreColumn = Column.template(function($) { return {
 var timerColumn = Column.template(function($) { return {
 	left:$.left, right:$.right, top:$.top, bottom:$.bottom, 
 	skin: new Skin({fill: "#ECF0F1", stroke: "black", borders: { bottom: 2, right: 1}}), contents: [
-		Label($,{top:3, left: 0, right:0, style: timerStyle, behavior: Object.create(timerBehavior.prototype)}),
+		Label($,{top:5, left: 0, right:0, style: timerStyle, behavior: Object.create(timerBehavior.prototype)}),
 		Label($,{bottom:3, left:0, right:0, style: extraStyle, string: "remaining"})
 	]
 }});
@@ -120,7 +120,7 @@ var runNumber;
 function createActiveRun(game) {
 	runNumber = game.myRuns.length + 1;
 	trickTable = new noLabelTable({left: 10, right:10, top: 10, bottom: 10});
-	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:140})
+	scoreField = new scoreColumn({left:0, right:0, top:0, bottom:150})
 	currentRun = {score:0, moves: [], video: ""};
 	currentGame = game;
 	var titleString = "Tracking Run " + runNumber.toString() + "...";
@@ -133,31 +133,34 @@ function createActiveRun(game) {
 	activeRunCon = new Container({
 		top:0, bottom:0, left:0, right:0, skin: cloudSkin, contents: [
 			// list of tricks
-			new scrollContainer({left:0, right:0, top:131, bottom: 190, contents: [trickTable]}),
+			new scrollContainer({left:0, right:0, top:125, bottom: 190, contents: [trickTable]}),
 			
 			// box around list of tricks
-			new Column({left:0, right:0, top:130, bottom: 55, contents: [
+			new Column({left:0, right:0, top:125, bottom: 55, contents: [
 				new Container({left:8, right:8, top:0, height:10, 
-					skin: new Skin({fill: "#ECF0F1"})}),
+					skin: new Skin({fill: "#ECF0F1", borders: {bottom:2}, stroke: "#3498db"})}),
 				new Line({left:0, right:0, height:210, contents: [
 					new Container({left:0, height:210, width: 10, 
-						skin: new Skin({fill: "#ECF0F1"})}),
+						skin: new Skin({fill: "#ECF0F1", borders: {right:2}, stroke: "#3498db"})
+						}),
 					new Container({left:10, right:10}),
 					new Container({right:0, height:210, width: 10, 
-						skin: new Skin({fill: "#ECF0F1"})}),
+						skin: new Skin({fill: "#ECF0F1", borders: {left:2}, stroke: "#3498db"})
+						}),
 				]}),
 				new Container({left:8, right:8, bottom: 0, height:30, 
-					skin: new Skin({fill: "#ECF0F1"}) })
+					skin: new Skin({fill: "#ECF0F1", borders: {top:2}, stroke: "#3498db"})}),
+			
 			]}),
 			
 			// label above list of tricks
-			new Column({left:0, right:0, top:110, height:30, skin: cloudSkin, contents: [
-				new Label({left:10, top:10, skin:cloudSkin, style: labelStyle, string:"Tricks Completed"}),
+			new Column({left:0, right:0, top:95, height:30, skin: cloudSkin, contents: [
+				new Label({left:10, top:10, skin: cloudSkin, style: labelStyle, string:"Tricks Completed"}),
 			]}),
 			
 			// label for information
 			new Line({left:0, right:0, top:50, height:200, contents:[
-				new timerColumn({left:0, right:0, top:0, bottom:140}),
+				new timerColumn({left:0, right:0, top:0, bottom:150}),
 				scoreField
 			]}),
 			
@@ -183,22 +186,23 @@ function createInactiveRun(game) {
 	inactiveRunCon = new Container({
 		top:0, bottom:0, left:0, right:0, skin: cloudSkin, contents: [
 			// list of tricks
-			new scrollContainer({left:0, right:0, top:125, bottom: 0, contents: [trickTable]}),
+			new scrollContainer({left:0, right:0, top:125, bottom: 190, contents: [trickTable]}),
 			
 			// box around list of tricks
 			new Column({left:0, right:0, top:125, bottom: 55, contents: [
-				new Container({left:9, right:9, top:0, height:10, 
-					skin: cloudSkin}),
+				new Container({left:8, right:8, top:0, height:10, 
+					skin: new Skin({fill: "#ECF0F1", borders: {bottom:2}, stroke: "#3498db"})}),
 				new Line({left:0, right:0, height:210, contents: [
 					new Container({left:0, height:210, width: 10, 
-						skin: cloudSkin}),
+						skin: new Skin({fill: "#ECF0F1", borders: {right:2}, stroke: "#3498db"})
+						}),
 					new Container({left:10, right:10}),
 					new Container({right:0, height:210, width: 10, 
-						skin: cloudSkin}),
+						skin: new Skin({fill: "#ECF0F1", borders: {left:2}, stroke: "#3498db"})
+						}),
 				]}),
-				new Container({left:9, right:9, bottom: 0, height:30, 
-					skin: cloudSkin }),
-				
+				new Container({left:8, right:8, bottom: 0, height:30, 
+					skin: new Skin({fill: "#ECF0F1", borders: {top:2}, stroke: "#3498db"})}),
 			
 			]}),
 			
@@ -208,7 +212,7 @@ function createInactiveRun(game) {
 			]}),
 			
 			// label for information
-			new Line({left:0, right:0, top:45, height:50, contents:[
+			new Line({left:0, right:0, top:50, height:50, contents:[
 				scoreField
 			]}),
 			
