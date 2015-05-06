@@ -17,7 +17,6 @@ INDEXES FOR THE SCREENS (for buttons)
 15 maincolumnprofile
 */
 
-var cloudSkin = new Skin({fill:"#ECF0F1"});
 var pbBlueSkin = new Skin({fill:"#3498db"});
 
 var screenDictionary = {

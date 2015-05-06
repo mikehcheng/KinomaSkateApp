@@ -4,6 +4,8 @@ var KEYBOARD = require('mobile/keyboard');
 var THEME = require("themes/flat/theme");
 var BUTTONS = require("controls/buttons");
 var SLIDERS = require('controls/sliders'); 
+
+
 var blackSkin = new Skin({ fill: "black"});
 var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
@@ -16,6 +18,8 @@ var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
 var miniTitleStyle = new Style( { font: "bold 28px", color:"black"} );
 var textStyle = new Style( { font: "bold 25px", color:"blue"} );
 var backButtonStyle = new Style( {font: "bold 35px", color:"white", horizontal:"right"} );
+var cloudSkin = new Skin({fill:"white"});
+var blueBorderSkin = new Skin({fill:"white", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
 
 deviceURL = "";
 var receivedTrick = undefined;

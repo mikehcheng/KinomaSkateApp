@@ -134,19 +134,18 @@ function createPreRun(game){
 		onCreate: function(container, data){
 			this.timing = 10;
 			container.interval = 1000;
-			container.string = this.timing.toString() + " secs";
+			container.string = timeString(this.timing.toString());
 			container.start();
 		},
 		onTimeChanged: function(container) {
 			this.timing--;
-			trace ("hi");
 			if (this.timing == 0) {
 				container.stop();
 				var newRunMsg = new Message("/trackRun");
 				newRunMsg.requestText = JSON.stringify(game);
 				container.invoke(newRunMsg);
 			}
-			container.string = this.timing.toString() + " secs";
+			container.string = timeString(this.timing.toString());
 		},
 	});
 
