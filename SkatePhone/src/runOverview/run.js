@@ -133,10 +133,10 @@ function createActiveRun(game) {
 	activeRunCon = new Container({
 		top:0, bottom:0, left:0, right:0, skin: cloudSkin, contents: [
 			// list of tricks
-			new scrollContainer({left:0, right:0, top:135, bottom: 0, contents: [trickTable]}),
+			new scrollContainer({left:0, right:0, top:131, bottom: 190, contents: [trickTable]}),
 			
 			// box around list of tricks
-			new Column({left:0, right:0, top:135, bottom: 55, contents: [
+			new Column({left:0, right:0, top:130, bottom: 55, contents: [
 				new Container({left:8, right:8, top:0, height:10, 
 					skin: new Skin({fill: "#ECF0F1"})}),
 				new Line({left:0, right:0, height:210, contents: [
@@ -151,12 +151,12 @@ function createActiveRun(game) {
 			]}),
 			
 			// label above list of tricks
-			new Column({left:0, right:0, top:115, height:30, skin: cloudSkin, contents: [
+			new Column({left:0, right:0, top:110, height:30, skin: cloudSkin, contents: [
 				new Label({left:10, top:10, skin:cloudSkin, style: labelStyle, string:"Tricks Completed"}),
 			]}),
 			
 			// label for information
-			new Line({left:0, right:0, top:55, height:200, contents:[
+			new Line({left:0, right:0, top:50, height:200, contents:[
 				new timerColumn({left:0, right:0, top:0, bottom:140}),
 				scoreField
 			]}),
@@ -183,10 +183,10 @@ function createInactiveRun(game) {
 	inactiveRunCon = new Container({
 		top:0, bottom:0, left:0, right:0, skin: cloudSkin, contents: [
 			// list of tricks
-			new scrollContainer({left:0, right:0, top:135, bottom: 0, contents: [trickTable]}),
+			new scrollContainer({left:0, right:0, top:125, bottom: 0, contents: [trickTable]}),
 			
 			// box around list of tricks
-			new Column({left:0, right:0, top:135, bottom: 55, contents: [
+			new Column({left:0, right:0, top:125, bottom: 55, contents: [
 				new Container({left:9, right:9, top:0, height:10, 
 					skin: cloudSkin}),
 				new Line({left:0, right:0, height:210, contents: [
@@ -203,7 +203,7 @@ function createInactiveRun(game) {
 			]}),
 			
 			// label above list of tricks
-			new Column({left:0, right:0, top:105, height:30, skin: cloudSkin, contents: [
+			new Column({left:0, right:0, top:95, height:30, skin: cloudSkin, contents: [
 				new Label({left:10, top:10, skin: cloudSkin, style: labelStyle, string:"Tricks Completed"}),
 			]}),
 			
