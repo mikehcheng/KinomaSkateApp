@@ -149,10 +149,10 @@ function createPreRun(game){
 		},
 	});
 
-	preRunCon = new Column({left: 0, right: 0, bottom: 0, top: 0, skin: whiteSkin, contents: [
-		new Label({style: new Style({font: "bold 40px", color:"black"}), top: 100, string: game.gameType}),
-		new Text({style: new Style({ font: "20px", color:"black", horizontalAlignment: "justify"}), left: 20, right: 20, top: 10, string:"Perform as many tricks as you can within the given time. Tougher tricks are awarded more points."}),
-		new Label({style: labelStyle, string: "YOUR RUN BEGINS IN:", top: 30}),
+	preRunCon = new Column({left: 0, right: 0, bottom: 0, top: 0, skin: blueBoldBorderSkin, contents: [
+		new Label({style: new Style({font: "bold 40px", color:"#348adb"}), top: 150, string: game.gameType}),
+		new Text({style: new Style({ font: "20px", color:"#348adb", horizontalAlignment: "justify"}), left: 20, right: 20, top: 10, string:"Perform as many tricks as you can within the given time. Tougher tricks are awarded more points."}),
+		new Label({style: new Style({font: "20px", color:"#348adb"}), string: "YOUR RUN BEGINS IN:", top: 30}),
 		new Label({style: new Style({font: "20px", color:"blue"}), name: "timer", behavior: Object.create(countdownBehavior.prototype, {game: game}), top: 10})
 	]});
 	application.add(preRunCon);

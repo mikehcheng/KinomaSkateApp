@@ -75,7 +75,7 @@ var mainColumnChoose = new Column({
     			skateGameType,
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:141, active:true, 
+    	new Line({top:1, left:0, right:0, height:141, active:true, 
     		contents:[
     			battleRoyaleGameType,
     		]
@@ -128,7 +128,7 @@ var mainColumnOpp = new Column({
     			friendsButton,
     		]
     	}),
-    	new Line({top:3, left:0, right:0, height:212, active:true, 
+    	new Line({top:4, left:0, right:0, height:212, active:true, 
     		contents:[
     			//new Label({top: 10, left: 5,string: "OPPONENT", style: titleStyle})
     			communityButton,

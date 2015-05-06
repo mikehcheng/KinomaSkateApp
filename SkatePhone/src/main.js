@@ -25,6 +25,7 @@ var textStyle = new Style( { font: "bold 25px", color:"blue"} );
 var backButtonStyle = new Style( {font: "bold 35px", color:"white", horizontal:"right"} );
 
 var blueBorderSkin = new Skin({fill:"white", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
+var blueBoldBorderSkin = new Skin({fill:"white", borders: {top:5, bottom:5, left:5, right:5}, stroke: "#3498db"});
 
 deviceURL = "";
 var receivedTrick = undefined;
