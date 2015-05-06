@@ -13,8 +13,6 @@ var scoreStyle = new Style( { font:	"bold 24px", color: "black", horizontal:"cen
 var timerStyle = new Style( { font:	"bold 24px", color: "blue", horizontal:"center"});
 var finishedStyle = new Style( { font:	"bold 24px", color: "red", horizontal:"center"});
 
-var blueBorderSkin = new Skin({fill:"white", borders: {top:2, bottom:2, left:2, right:2}, stroke: "#3498db"});
-
 // HANDLERS
 Handler.bind("/readTrick", {
 	onInvoke: function(handler, message) {
