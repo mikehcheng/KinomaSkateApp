@@ -8,14 +8,14 @@ var blackSkin = new Skin({ fill: "black"});
 var graySkin = new Skin({fill: "#3F3F3F"});
 var whiteSkin = new Skin({fill: "white"});
 var blueSkin = new Skin({ fill: "#4169E1"});
-var titleStyle = new Style( { font: "bold 25px", color:"black", horizontal:"center"});
+var titleStyle = new Style( { font: "bold 25px", color:"white", horizontal:"center"});
 var title2Style = new Style( { font: "20px", color:"black", horizontal:"center"});
 var labelStyle = new Style( { font: "20px", color:"black" } );
 var label2Style = new Style( { font: "bold 20px", color:"black" } );
 var buttonStyle = new Style( { font: "bold 25px", color:"black" } );
 var miniTitleStyle = new Style( { font: "bold 28px", color:"black"} );
 var textStyle = new Style( { font: "bold 25px", color:"blue"} );
-var backButtonStyle = new Style( {font: "bold 35px", color:"black", horizontal:"right"} );
+var backButtonStyle = new Style( {font: "bold 35px", color:"white", horizontal:"right"} );
 
 deviceURL = "";
 var receivedTrick = undefined;
