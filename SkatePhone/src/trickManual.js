@@ -75,6 +75,7 @@ var basicsButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
 var ollieButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
      	onTap: {value : function(button){
     		mainColumnTrick3 = ollieColumn;
+    		ollieVid.time = 0;
     		application.remove(mainColumnTrick2);
     		application.add(mainColumnTrick3);
         }}
@@ -130,12 +131,25 @@ var basicsColumn = new Column({
 	 ]
 });
 
-var olliePic = new Picture({aspect: "fill", height:130, left: 10, right:10, top: 15, width: 150, url: "resources/ollie.png"}),
+//var olliePic = new Picture({aspect: "fill", height:130, left: 10, right:10, top: 15, width: 150, url: "resources/ollie.png"}),
+
+// VIDEO SOURCE: https://www.youtube.com/watch?v=Jig3uiYsb4w
+var ollieVid = new Media({aspect: "fill", height:130, left:10, right:10, top:15, width: 150, url: "resources/ollie.mp4",
+		behavior: Object.create( Behavior.prototype, {
+			onLoaded: {value: function(media) {
+				media.start();
+				//media.state = media.PAUSED;
+			}}, 
+			onFinished: {value: function(media) {
+				media.time = 0;
+			}}, 
+		})
+});
 var ollieColumn = new Column({
 	left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin, contents:[
 	 	new headerBarTemplateWithBack({header: "Ollie", index:14}),
 	 	new Column({top:0, left:0, right:0, skin: whiteSkin, contents:[
-	 		olliePic,
+	 		ollieVid,
 	 		new Label({top: 5, left: 5, string: "Steps:", style: miniTitleStyle}),
 	 		new colorTextButton({text: ollieSteps[0], colorDict: ollieColors[0]}),
 	 		new colorTextButton({text: ollieSteps[1], colorDict: ollieColors[1]}),
