@@ -135,7 +135,7 @@ var basicsColumn = new Column({
 
 // VIDEO SOURCE: https://www.youtube.com/watch?v=Jig3uiYsb4w
 var ollieVid = new Media({aspect: "fill", height:130, left:10, right:10, top:15, width: 150,
-        url: "resources/ollie.mp4",
+        url: "resources/ollie.3gp",
 		behavior: Object.create( Behavior.prototype, {
 			onLoaded: {value: function(media) {
 				media.start();
