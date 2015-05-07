@@ -79,6 +79,7 @@ var largeL = new Texture('resources/4circle.png');
 var largeSkin = new Skin(largeL, {x:0, y:0, width:40, height:40});
 
 var currentpopup;
+var currentcheckin;
 var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
   top:55, bottom:15, left:15, right:15, skin: new Skin({fill:"white"}),
   contents:[
@@ -99,7 +100,8 @@ var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
       	var over = new Park({skin: largeSkin, top: parks[$.index].x, left: parks[$.index].y, width: 40, height: 40, index: $.index}) //
     	 mapLine.add(over)
       }
-      var n = new checkButtonTemplate({textForLabel:"Checked In", style:button2Text});
+       currentpopup.remove(currentcheckin);
+      var n = new Label({string:"Checked In", style:button2Text, top:55, bottom:15, left:15, right:15, skin:whiteSkin});
       currentpopup.add(n);
     }},
   })
@@ -113,8 +115,16 @@ var popupTemplate = Container.template(function($) { return{
 		new Label({top:1,left:5, string: "Berkeley Skate Park", height:15,style: popupStyle}),
 		new Label({top:15,left:5, string: "1100 Channing Way", height:15, style: popupStyle}),
 		new Label({top:30,left:5, height:15, name: "checkinnum", string: parks[$.index].size + " check-ins", style: popupStyle}),
-		new checkButtonTemplate({textForLabel:"Check In", style: buttonText, index:$.index})
-	]
+		//new checkButtonTemplate({textForLabel:"Check In", style: buttonText, index:$.index})
+	],
+		behavior: Behavior({
+		onCreate: function(content){
+			var c = new checkButtonTemplate({textForLabel:"Check In", style: buttonText, index:$.index})
+			currentcheckin = c;
+			content.add(c);
+		}
+	})
+
 	}
 });
 
