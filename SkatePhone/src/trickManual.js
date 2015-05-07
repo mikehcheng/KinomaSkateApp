@@ -134,7 +134,8 @@ var basicsColumn = new Column({
 //var olliePic = new Picture({aspect: "fill", height:130, left: 10, right:10, top: 15, width: 150, url: "resources/ollie.png"}),
 
 // VIDEO SOURCE: https://www.youtube.com/watch?v=Jig3uiYsb4w
-var ollieVid = new Media({aspect: "fill", height:130, left:10, right:10, top:15, width: 150, url: "resources/ollie.mp4",
+var ollieVid = new Media({aspect: "fill", height:130, left:10, right:10, top:15, width: 150,
+        url: "resources/ollie.mp4",
 		behavior: Object.create( Behavior.prototype, {
 			onLoaded: {value: function(media) {
 				media.start();
@@ -148,7 +149,7 @@ var ollieVid = new Media({aspect: "fill", height:130, left:10, right:10, top:15,
 var ollieColumn = new Column({
 	left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin, contents:[
 	 	new headerBarTemplateWithBack({header: "Ollie", index:14}),
-	 	new Column({top:0, left:0, right:0, skin: whiteSkin, contents:[
+	 	new Column({top:0, left:0, right:0, skin: cloudSkin, contents:[
 	 		ollieVid,
 	 		new Label({top: 5, left: 5, string: "Steps:", style: miniTitleStyle}),
 	 		new colorTextButton({text: ollieSteps[0], colorDict: ollieColors[0]}),
