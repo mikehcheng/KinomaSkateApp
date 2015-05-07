@@ -99,7 +99,7 @@ var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
       	var over = new Park({skin: largeSkin, top: parks[$.index].x, left: parks[$.index].y, width: 40, height: 40, index: $.index}) //
     	 mapLine.add(over)
       }
-      var n = new checkButtonTemplate({textForLabel:"Checked In", style:button2Text});
+      var n = new Label({string:"Checked In", style:button2Text, skin:whiteSkin,top:55, bottom:15, left:15, right:15});
       currentpopup.add(n);
     }},
   })
