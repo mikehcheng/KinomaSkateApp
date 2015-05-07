@@ -43,15 +43,15 @@ include ("profile.js");
 include ("runOverview/game.js");
 include	("runOverview/run.js");
 
-var map = new Texture('resources/map2.png');
 
-
-var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
 
 include ("gameOpponentOverview/createGameOpponent.js");
 include ("gameOpponentOverview/opponentLists.js");
 
+var map = new Texture('resources/map2.png');
 
+
+var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
 var popped = false;
 var parks = [{x: 90, y: 10, size: 15, height:30, width:30}, {x:150, y:70, size:30, height:40,width:40}, {x:300,y:80, size:14, height:20, width:20}];
 var buttonText = new Style({font:"bold 15px", color:"blue"});
@@ -113,6 +113,12 @@ var mapLine = new Container({top:5, bottom:5, left:15, right:15, height:400, ski
     		  contents:[
     	],
     	 behavior: Behavior({
+    	 	onDisplayed: function(content){
+    	 		if (popped == true){
+    	 			mapLine.remove(currentpopup);
+    	 			popped = false;
+    	 		}
+    	 	},
             onTouchEnded: function(content){
             	if (popped == true){
             		mapLine.remove(currentpopup);

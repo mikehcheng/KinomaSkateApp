@@ -125,7 +125,7 @@ var olliePic = new Picture({aspect: "fill", height:130, left: 10, right:10, top:
 
 
 var OllieButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:5, height:70, skin: blueBorderSkin,
+	left: 5, right:5, top:5, height:50, skin: blueBorderSkin,
 	contents: [
 		new Label({left:5, height:65, string:"Ollie", style: button3Style}),
 		new Label({top: 20, right: 5,string: ">", style: button2Style}),
@@ -141,7 +141,7 @@ var OllieButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var KickTurnButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:45, height:70, skin: blueBorderSkin,
+	left: 5, right:5, top:45, height:50, skin: blueBorderSkin,
 	contents: [
 		new Label({left:5, height:45, string:"Kickturn", style: button3Style}),
 		new Label({top: 20, right: 5,string: ">", style: button2Style}),
@@ -155,7 +155,7 @@ var KickTurnButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var GrindButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:90, height:70, skin: blueBorderSkin,
+	left: 5, right:5, top:90, height:50, skin: blueBorderSkin,
 	contents: [
 		new Label({left:5, height:45, string:"50-50 Grind", style: button3Style}),
 		new Label({top: 20, right: 5,string: ">", style: button2Style}),
@@ -169,7 +169,7 @@ var GrindButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var BoardSlideButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:135, height:70, skin: blueBorderSkin,
+	left: 5, right:5, top:135, height:50, skin: blueBorderSkin,
 	contents: [
 		new Label({left:5, height:45, string:"Boardslide", style: button3Style}),
 		new Label({top: 20, right: 5,string: ">", style: button2Style}),
@@ -183,7 +183,7 @@ var BoardSlideButton = BUTTONS.Button.template(function($){ return{
 }});
 
 var ManualsButton = BUTTONS.Button.template(function($){ return{
-	left: 5, right:5, top:180, height:70, skin: blueBorderSkin,
+	left: 5, right:5, top:180, height:50, skin: blueBorderSkin,
 	contents: [
 		new Label({left:5, height:45, string:"Manuals", style: button3Style}),
 		new Label({top: 20, right: 5,string: ">", style: button2Style}),
