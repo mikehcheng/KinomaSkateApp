@@ -8,6 +8,7 @@ var trickContestTemplate = BUTTONS.Button.template(function($){ return{
     ],
      behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
      	onTap: {value : function(button){
+     		mainColumnOpp = opponentSelection;
     		application.remove(mainColumnChoose);
     		application.add(mainColumnOpp);
         }}
@@ -22,11 +23,7 @@ var skateGameTemplate = BUTTONS.Button.template(function($){ return{
         new Label({top: 40, left: 143, string: "S.K.A.T.E", style: gameTitleStyle}),
         new Label({top: 74, left: 102, string: "Mimic or outperform your opponent", style: smallTextStyle})
     ],
-     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-     	onTap: {value : function(button){
-    		trace("Not implemented\n");
-        }}
-     })
+    behavior: unimplementedGameSelectBehavior
  }})
  
  var battleRoyaleTemplate = BUTTONS.Button.template(function($){ return{
@@ -37,12 +34,26 @@ var skateGameTemplate = BUTTONS.Button.template(function($){ return{
         new Label({top: 35, left: 119,string: "Battle Royale", style: gameTitleStyle}),
         new Label({top: 69, left: 130, string: "Be the first to land a trick", style: smallTextStyle})
     ],
-     behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-     	onTap: {value : function(button){
-    		trace("Not implemented\n");
+    behavior: unimplementedGameSelectBehavior
+}});
+ 
+var unimplementedGameSelectBehavior =  Object.create(BUTTONS.ButtonBehavior.prototype, {
+     	onTap: { value: function(button){
+    		mainColumnOpp = createNotImplementedColumn2(button[1].string, 4)
+    		application.remove(mainColumnChoose);
+    		application.add(mainColumnOpp);
         }}
-     })
- }})
+     });
+ 
+function createNotImplementedColumn2(title, indexOfLevel) { return new Column({
+	left: 0, right: 0, top: 0, bottom: 0, skin:cloudSkin, contents:[
+		new headerBarTemplateWithBack({header: title, index: indexOfLevel}),
+		new Text({top: 55, bottom:60, left:10, right:10, style: title2Style,
+			string: "We have not included this gametype in the final prototype. " +
+					"Only trick contest is available."}),
+		new navBar({index: indexOfLevel})
+	]
+})};
 
 // choose game type 3
 var trickContestGameType = new trickContestTemplate({index: 3});
@@ -104,7 +115,9 @@ var communityButtonTemplate = BUTTONS.Button.template(function($){ return{
 //choose opponent 4
 var friendsButton = new friendsButtonTemplate({index: 4});
 var communityButton = new communityButtonTemplate({index: 4});
-var mainColumnOpp = new Column({
+var mainColumnOpp;
+
+var opponentSelection = new Column({
 	 left: 0, right: 0, top: 0, bottom: 0, skin: cloudSkin,
 	 contents: [
 	  	new headerBarTemplateWithBack({header:"Opponents", index:4}), 	
