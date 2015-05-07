@@ -67,7 +67,7 @@ var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
 var popped = false;
 var parks = [{x: 90, y: 10, size: 15, height:30, width:30}, {x:150, y:70, size:30, height:40,width:40}, {x:300,y:80, size:14, height:20, width:20}];
 var buttonText = new Style({font:"bold 15px", color:"blue"});
-var button2Text = new Style({font:"bold 15px", color: "red"});
+var button2Text = new Style({font:"bold 15px", color: "red", horizontal: "center"});
 
 var smallL = new Texture('resources/1circle.png',);
 var smallSkin = new Skin(smallL, {x:0,y:0,width:20,height:20});
@@ -87,7 +87,6 @@ var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
-      trace("Button was tapped.\n");
       var prev = parks[$.index].size;
       var checkins = parks[$.index].size + 1;
       parks[$.index].size= checkins;
