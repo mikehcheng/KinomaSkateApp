@@ -65,7 +65,7 @@ var map = new Texture('resources/map2.png');
 
 var mapSkin = new Skin(map, {x:0,y:0, height: 430, width:320});
 var popped = false;
-var parks = [{x: 90, y: 10, size: 15, height:30, width:30}, {x:150, y:70, size:30, height:40,width:40}, {x:300,y:80, size:14, height:20, width:20}];
+var parks = [{x: 90, y: 10, size: 15, height:30, width:30}, {x:150, y:70, size:30, height:40,width:40}, {x:300,y:80, size:14, height:30, width:30}];
 var buttonText = new Style({font:"bold 15px", color:"blue"});
 var button2Text = new Style({font:"bold 15px", color: "red", horizontal: "center"});
 
@@ -78,30 +78,39 @@ var medSkin = new Skin(medL, {x:0, y:0, width:30, height:30});
 var largeL = new Texture('resources/4circle.png');
 var largeSkin = new Skin(largeL, {x:0, y:0, width:40, height:40});
 
+var parkDict = {};
 var currentpopup;
 var currentcheckin;
+var checkedIndex = -1;
 var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
   top:55, bottom:15, left:15, right:15, skin: new Skin({fill:"white"}),
   contents:[
-    new Label({left:0, right:0, height:15, string:$.textForLabel, style:$.style})
+    new Label({string: (checkedIndex == $.index) ? "Checked In" : "Check In", left:0, right:0, height:15, style:$.style})
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-    onTap: { value:  function(button){
-      var prev = parks[$.index].size;
-      var checkins = parks[$.index].size + 1;
-      parks[$.index].size= checkins;
-      currentpopup.checkinnum.string = checkins + " check-ins";
-      if (prev < 15 && parseInt(checkins) >= 15) {
-      	 var over = new Park({skin: medSkin, top: parks[$.index].x, left: parks[$.index].y, width:30, height: 30, index: $.index}) //
-    	 mapLine.add(over)
+    onTap: { value:  function(button) {
+      if (checkedIndex != $.index) {
+      	if (checkedIndex != -1) {
+      	  parks[checkedIndex].size -= 1;
+      	}
+      	checkedIndex = $.index;
+      	parks[$.index].size += 1;
+      	button.first.string = "Checked In";
+      	button.first.style = button2Text;
+      } else {
+      	checkedIndex = -1;
+      	parks[$.index].size -= 1;
+      	button.first.string = "Check In";
+      	button.first.style = buttonText;
       }
-      if (prev < 30 && parseInt(checkins) >= 30) {
-      	var over = new Park({skin: largeSkin, top: parks[$.index].x, left: parks[$.index].y, width: 40, height: 40, index: $.index}) //
-    	 mapLine.add(over)
+      currentpopup.checkinnum.string = parks[$.index].size + " check-ins";
+      if (parks[$.index].size >= 30) {
+      	parkDict[$.index].skin = largeSkin;
+      } else if (parks[$.index].size >= 15) {
+        parkDict[$.index].skin = medSkin;
+      } else {
+      	parkDict[$.index].skin = smallSkin;
       }
-       currentpopup.remove(currentcheckin);
-      var n = new Label({string:"Checked In", style:button2Text, top:55, bottom:15, left:15, right:15, skin:whiteSkin});
-      currentpopup.add(n);
     }},
   })
 }});
@@ -109,7 +118,7 @@ var checkButtonTemplate = BUTTONS.Button.template(function($){ return{
 
 var popupStyle = new Style( { font: "15px", color:"black"} );
 var popupTemplate = Container.template(function($) { return{
-	top:$.t - 50, height:100, width:130, left:$.l + 60, skin:blueSkin,
+	top:$.t - 50, height:100, width:130, left:$.l + 60, skin:blueSkin, active: true,
 	contents: [
 		new Label({top:1,left:5, string: "Berkeley Skate Park", height:15,style: popupStyle}),
 		new Label({top:15,left:5, string: "1100 Channing Way", height:15, style: popupStyle}),
@@ -118,10 +127,10 @@ var popupTemplate = Container.template(function($) { return{
 	],
 		behavior: Behavior({
 		onCreate: function(content){
-			var c = new checkButtonTemplate({textForLabel:"Check In", style: buttonText, index:$.index})
+			var c = new checkButtonTemplate({style: buttonText, index:$.index})
 			currentcheckin = c;
 			content.add(c);
-		}
+		},
 	})
 
 	}
@@ -200,6 +209,7 @@ for (i=0; i < parks.length; ++i) {
         skin = medSkin
     }
     var over = new Park({skin: skin, top: parks[i].x, left: parks[i].y, width: parks[i].width, height: parks[i].height, index: i}) //
+    parkDict[i] = over;
     mapLine.add(over)
 }
 
