@@ -5,3 +5,9 @@ Our app allows users to compete in games with skaters of their same skill level,
 With Skatebud, skaters have the opportunity to engage with skaters far and wide, of all skill levels!
 
 By Michael Cheng, Rahul Joshi, Angelica Inguanzo, Samuel Son, and Yujia Ma
+
+---------------------------------
+
+Running SkateBud:
+
+After the repository has been pulled, there will be two folders, SkateDevice and SkatePhone. These should be imported as separate projects in the Kinoma project explorer. Run the device first and then the phone. The phone should output to the console "Found the device" once it has connected. Once attached, the app should function as expected.
